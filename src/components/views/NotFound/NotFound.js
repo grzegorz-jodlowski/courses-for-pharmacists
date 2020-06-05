@@ -4,13 +4,26 @@ import clsx from 'clsx';
 
 import styles from './NotFound.module.scss';
 
+import { Link } from 'react-router-dom';
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
-const Component = ({className, children}) => (
+const Component = ({ className, children }) => (
   <div className={clsx(className, styles.root)}>
-    <h2>NotFound</h2>
-    {children}
+    <div className={styles.face}>
+      <div className={styles.band}>
+        <div className={styles.red}></div>
+        <div className={styles.white}></div>
+        <div className={styles.blue}></div>
+      </div>
+      <div className={styles.eyes}></div>
+      <div className={styles.dimples}></div>
+      <div className={styles.mouth}></div>
+    </div>
+
+    <h1>Ups! Nie znalazłem tej strony!</h1>
+    <div className={styles.btn}><Link to={`${process.env.PUBLIC_URL}/`} > Wróć do strony głównej</Link></div>
   </div>
 );
 
