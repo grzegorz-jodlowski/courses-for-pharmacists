@@ -1,5 +1,5 @@
 {
-  "name": "Online Pharmacy",
+  "name": "Kursy dla Farmaceutów",
   "version": "0.1.0",
   "scripts": {
     "start": "run-p start:* ",
