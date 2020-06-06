@@ -12,7 +12,7 @@ import styles from './Hero.module.scss';
 
 const Component = ({ className, children }) => (
   <section className={clsx(className, styles.hero)}>
-    <div className={styles.arrow}></div>
+    <a href="#CourseCard" className={styles.arrow}></a>
   </section>
 );
 

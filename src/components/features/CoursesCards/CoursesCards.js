@@ -11,7 +11,7 @@ import { CourseCard } from '../../common/CourseCard/CourseCard';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children }) => (
-  <section className={clsx(className, styles.root)}>
+  <section className={clsx(className, styles.root)} id="CourseCard">
     <CourseCard />
     <CourseCard />
     <CourseCard />
