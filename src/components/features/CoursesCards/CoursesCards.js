@@ -4,13 +4,19 @@ import clsx from 'clsx';
 
 import styles from './CoursesCards.module.scss';
 
+import { CourseCard } from '../../common/CourseCard/CourseCard';
+
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children }) => (
   <section className={clsx(className, styles.root)}>
-    <h2>CoursesCards</h2>
-    {children}
+    <CourseCard />
+    <CourseCard />
+    <CourseCard />
+    <CourseCard />
+    <CourseCard />
   </section>
 );
 

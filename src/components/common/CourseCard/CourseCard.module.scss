@@ -1,5 +1,51 @@
 @import "../../../styles/settings.scss";
 
-// .root {
+.root {
+  border: 1.5px solid $color-border-light;
+  color: $color-text;
+  min-height: 250px;
+  transition: $transition;
+  transform: scale(1);
+  overflow: hidden;
 
-// }
+  &:hover {
+    transform: scale(1.03);
+
+    & .button {
+      bottom: 15%;
+    }
+  }
+}
+
+.image {
+  display: block;
+  height: 170px;
+  margin: 0 auto;
+}
+
+.description {
+  border-top: 1px solid $color-border-light;
+  padding: 1rem;
+  position: relative;
+}
+
+.title {
+  font-size: 1.2rem;
+}
+
+.price {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.button {
+  border: none;
+  background: none;
+  position: absolute;
+  right: 5%;
+  bottom: -40%;
+  transition: $transition;
+  font-size: 1.3rem;
+  color: $color-primary;
+  font-weight: 700;
+}

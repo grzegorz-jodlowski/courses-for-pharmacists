@@ -4,14 +4,20 @@ import clsx from 'clsx';
 
 import styles from './CourseCard.module.scss';
 
+import { Link } from 'react-router-dom';
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children }) => (
-  <article className={clsx(className, styles.root)}>
-    <h2>CourseCard</h2>
-    {children}
-  </article>
+  <Link to={`${process.env.PUBLIC_URL}/`} className={clsx(className, styles.root)}>
+    <img src="img/bandage.jpg" alt="" className={styles.image} />
+    <div className={styles.description}>
+      <h2 className={styles.title}>Kurs VIDEO: Opatrunki specjalistyczne w aptece</h2>
+      <p className={styles.price}>299.00 PLN</p>
+      <button className={styles.button}>Dowiedz się więcej</button>
+    </div>
+  </Link>
 );
 
 Component.propTypes = {

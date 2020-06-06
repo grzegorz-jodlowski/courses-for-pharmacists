@@ -4,6 +4,7 @@ import clsx from 'clsx';
 
 import styles from './Homepage.module.scss';
 import { Hero } from '../../features/Hero/Hero';
+import { CoursesCards } from '../../features/CoursesCards/CoursesCards';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
@@ -11,6 +12,7 @@ import { Hero } from '../../features/Hero/Hero';
 const Component = ({ className, children }) => (
   <main className={clsx(className, styles.root, 'container')}>
     <Hero />
+    <CoursesCards />
   </main>
 );
 

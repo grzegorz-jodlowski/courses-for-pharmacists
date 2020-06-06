@@ -1,5 +1,9 @@
 @import "../../../styles/settings.scss";
 
-// .root {
-
-// }
+.root {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 3rem;
+  grid-row-gap: 3rem;
+  margin-top: 6rem;
+}
