@@ -1,5 +1,20 @@
 @import "../../../styles/settings.scss";
 
-// .root {
+.root {
+  height: $top-bar-size;
+  border-bottom: 1px solid $color-border-light;
+}
 
-// }
+.wrapper {
+  margin: 0 auto;
+  max-width: $container-width-large;
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: $breakpoint-xl) {
+    max-width: $container-width-medium;
+  }
+  @media (max-width: $breakpoint-lg) {
+    max-width: $container-width-small;
+  }
+}

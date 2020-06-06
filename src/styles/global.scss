@@ -7,13 +7,17 @@
   box-sizing: border-box;
 }
 
+:root {
+  font-size: $base-size;
+}
+
 body {
   margin: 0;
   padding: 0;
   color: $color-text;
   background: $color-background;
   font-family: $font-text;
-  font-size: ($base-size * 1.3);
+  font-size: ($base-size * 1.5);
   line-height: 1.5;
   letter-spacing: 0.5px;
   overflow-y: scroll;
