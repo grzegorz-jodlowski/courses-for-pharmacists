@@ -18,3 +18,8 @@
     max-width: $container-width-small;
   }
 }
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}

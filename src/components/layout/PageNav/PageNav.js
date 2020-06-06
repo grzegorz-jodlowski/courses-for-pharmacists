@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import styles from './PageNav.module.scss';
 
 import { Logo } from '../../common/Logo/Logo';
+import { NavButton } from '../../common/NavButton/NavButton';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
@@ -13,10 +14,11 @@ const Component = ({ className, children }) => (
   <nav className={clsx(className, styles.root)}>
     <div className={styles.wrapper}>
       <Logo />
-      <div>
-        <button>cc</button>
-        <button>bb</button>
-        <button>aa</button>
+      <div className={styles.buttons}>
+        <NavButton text={"Moje kursy"} path={'courses'} />
+        <NavButton text={"Koszyk"} path={'cart'} />
+        <NavButton text={"Kontakt"} path={'contact'} />
+        <NavButton text={"Wyloguj"} path={'login'} />
       </div>
     </div>
   </nav>

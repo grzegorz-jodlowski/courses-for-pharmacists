@@ -1,0 +1,16 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  display: block;
+  margin: 0;
+  padding: 0 2rem;
+  color: $color-text;
+  height: $top-bar-size;
+  line-height: $top-bar-size;
+  font-weight: 700;
+  transition: $transition;
+
+  &:hover {
+    background-color: $light-gray;
+  }
+}
