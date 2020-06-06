@@ -9,8 +9,7 @@ import styles from './Footer.module.scss';
 
 const Component = ({ className, children }) => (
   <footer className={clsx(className, styles.root)}>
-    <h2>Footer</h2>
-    {children}
+    Footer
   </footer>
 );
 

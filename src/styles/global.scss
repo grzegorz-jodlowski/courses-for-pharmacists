@@ -23,6 +23,11 @@ body {
   overflow-y: scroll;
 }
 
+//temporary
+h2 {
+  margin: 0;
+}
+
 a,
 a:hover,
 a:visited {
@@ -30,8 +35,8 @@ a:visited {
 }
 
 .container {
-  margin: 1rem auto;
-  min-height: calc(100vh - #{$top-bar-size});
+  margin: 0 auto;
+  min-height: calc(100vh - #{$top-bar-size} - #{$footer-size});
   max-width: $container-width-large;
   @media (max-width: $breakpoint-xl) {
     max-width: $container-width-medium;
