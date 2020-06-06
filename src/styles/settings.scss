@@ -1,7 +1,33 @@
-$base-size: 12px;
-
-// Colours
+// Main colours - for client changing
 $white: #ffffff;
 $red: #af4b57;
 $blue: #445878;
-$dark: #383a41;
+$black: #141414;
+$dark-gray: #383a41;
+$light-gray: #887788;
+
+$color-text: $black;
+$color-text-bright: $white;
+$color-primary: $red;
+$color-secondary: $blue;
+$color-background: $white;
+$color-background-dark: $dark-gray;
+$color-border: $dark-gray;
+
+$color-success: #01916d;
+$color-success-back: #00bc8c;
+$color-info: #2b7cb3;
+$color-info-back: #3598db;
+$color-warning: #f0932b;
+$color-warning-back: #d68529;
+$color-danger: #f0932b;
+$color-danger-back: #d68529;
+$color-error: #ea2027;
+$color-error-back: #ff5d6c;
+
+$font-header: "Roboto", sans-serif;
+$font-text: "Open Sans", sans-serif;
+
+$radius: 5px;
+$base-size: 12px;
+$transition: all 0.5s;
