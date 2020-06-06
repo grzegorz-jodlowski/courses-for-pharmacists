@@ -4,13 +4,17 @@ import clsx from 'clsx';
 
 import styles from './Logo.module.scss';
 
+import { Link } from 'react-router-dom';
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children }) => (
-  <div className={clsx(className, styles.root)}>
-    <img src="logo.png" alt="Logo Kursy dla Farmaceutów" className={styles.logo} />
-  </div>
+  <Link to={`${process.env.PUBLIC_URL}/`}>
+    <div className={clsx(className, styles.root)}>
+      <img src="logo.png" alt="Logo Kursy dla Farmaceutów" className={styles.logo} />
+    </div>
+  </Link>
 );
 
 Component.propTypes = {
