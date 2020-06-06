@@ -4,13 +4,17 @@ import clsx from 'clsx';
 
 import styles from './MainLayout.module.scss';
 
+import { PageNav } from '../PageNav/PageNav';
+import { Footer } from '../Footer/Footer';
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children }) => (
   <div className={clsx(className, styles.root)}>
-    <h2>MainLayout</h2>
+    <PageNav />
     {children}
+    <Footer />
   </div>
 );
 
