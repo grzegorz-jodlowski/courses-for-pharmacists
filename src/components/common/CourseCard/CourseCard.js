@@ -7,11 +7,11 @@ import styles from './CourseCard.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
+const Component = ({ className, children }) => (
+  <article className={clsx(className, styles.root)}>
     <h2>CourseCard</h2>
     {children}
-  </div>
+  </article>
 );
 
 Component.propTypes = {

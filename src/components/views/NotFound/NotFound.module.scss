@@ -1,7 +1,5 @@
 @import "../../../styles/settings.scss";
 
-$break: 400px;
-
 *,
 *:before,
 *:after {
@@ -16,10 +14,9 @@ $break: 400px;
   border-radius: 10px;
   background-color: $color-background;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 40px;
 
-  @media screen and (max-width: $break) {
-    margin-top: 40px;
+  @media screen and (max-width: $breakpoint-xs) {
     transform: scale(0.8);
   }
 
@@ -73,7 +70,7 @@ $break: 400px;
   }
 
   .eyes {
-    width: 128px;
+    width: 104px;
     margin: 0 auto;
     margin-top: 40px;
 
@@ -145,7 +142,7 @@ h1 {
   font-size: 2.5em;
   padding-top: 20px;
 
-  @media screen and (max-width: $break) {
+  @media screen and (max-width: $breakpoint-xs) {
     padding-left: 20px;
     padding-right: 20px;
     font-size: 2em;
@@ -153,6 +150,7 @@ h1 {
 }
 
 .btn {
+  display: block;
   background-color: rgba($color-secondary, 1);
   width: 320px;
   margin: 0 auto;
@@ -163,18 +161,18 @@ h1 {
   margin-bottom: 50px;
   transition: all 0.2s linear;
   text-decoration: none;
+  border: none;
 
   a {
     font-size: 1.2em;
     text-decoration: none;
     color: $color-text-bright;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-weight: 400;
     padding: 20px;
     display: block;
   }
 
-  @media screen and (max-width: $break) {
+  @media screen and (max-width: $breakpoint-xs) {
     margin: 0 auto;
     margin-top: 60px;
     margin-bottom: 50px;

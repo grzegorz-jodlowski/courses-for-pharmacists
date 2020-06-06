@@ -7,11 +7,11 @@ import styles from './Footer.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
+const Component = ({ className, children }) => (
+  <footer className={clsx(className, styles.root)}>
     <h2>Footer</h2>
     {children}
-  </div>
+  </footer>
 );
 
 Component.propTypes = {

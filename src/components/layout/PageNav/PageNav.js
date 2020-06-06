@@ -7,11 +7,11 @@ import styles from './PageNav.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
+const Component = ({ className, children }) => (
+  <nav className={clsx(className, styles.root)}>
     <h2>PageNav</h2>
     {children}
-  </div>
+  </nav>
 );
 
 Component.propTypes = {

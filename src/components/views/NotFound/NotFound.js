@@ -10,8 +10,8 @@ import { Link } from 'react-router-dom';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children }) => (
-  <div className={clsx(className, styles.root)}>
-    <div className={styles.face}>
+  <main className={clsx(className, styles.root, 'container')}>
+    <section className={styles.face}>
       <div className={styles.band}>
         <div className={styles.red}></div>
         <div className={styles.white}></div>
@@ -20,11 +20,11 @@ const Component = ({ className, children }) => (
       <div className={styles.eyes}></div>
       <div className={styles.dimples}></div>
       <div className={styles.mouth}></div>
-    </div>
+    </section>
 
     <h1>Ups! Nie znalazłem tej strony!</h1>
-    <div className={styles.btn}><Link to={`${process.env.PUBLIC_URL}/`} > Wróć do strony głównej</Link></div>
-  </div>
+    <button className={styles.btn}><Link to={`${process.env.PUBLIC_URL}/`} > Wróć do strony głównej</Link></button>
+  </main>
 );
 
 Component.propTypes = {
