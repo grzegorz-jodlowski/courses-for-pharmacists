@@ -7,13 +7,12 @@ import styles from './Hero.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
+
+// TODO: scroll on click
+
 const Component = ({ className, children }) => (
   <section className={clsx(className, styles.hero)}>
-    <div className={styles.hero__description}>
-      <h1 className={styles.hero__title}>Oglądaj, słuchaj i poczuj się pewnie w aptece!</h1>
-      <p className={styles.hero__subtitle}>Praktyczne kursy dla farmaceutów</p>
-      <button>Zobacz więcej!</button>
-    </div>
+    <div className={styles.arrow}></div>
   </section>
 );
 
