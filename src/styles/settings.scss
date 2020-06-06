@@ -4,7 +4,7 @@ $red: #af4b57;
 $blue: #445878;
 $black: #141414;
 $dark-gray: #383a41;
-$light-gray: #887788;
+$light-gray: #e0e4ec;
 
 $color-text: $black;
 $color-text-bright: $white;
@@ -12,7 +12,8 @@ $color-primary: $red;
 $color-secondary: $blue;
 $color-background: $white;
 $color-background-dark: $dark-gray;
-$color-border: $dark-gray;
+$color-border-dark: $dark-gray;
+$color-border-light: $light-gray;
 
 $color-success: #01916d;
 $color-success-back: #00bc8c;
@@ -31,7 +32,8 @@ $font-text: "Open Sans", sans-serif;
 $radius: 5px;
 
 $base-size: 12px;
-$top-bar-size: 14rem;
+
+$top-bar-size: 4rem;
 
 $container-width-large: 1600px;
 $container-width-medium: 1160px;
