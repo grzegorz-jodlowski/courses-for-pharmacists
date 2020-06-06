@@ -4,12 +4,28 @@ import clsx from 'clsx';
 
 import styles from './Footer.module.scss';
 
+import { Link } from 'react-router-dom';
+
+import { Copyright } from '../../common/Copyright/Copyright';
+
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children }) => (
   <footer className={clsx(className, styles.root)}>
-    Footer
+    <p>
+      <Copyright />
+      {'Korzystając ze strony wyrażasz zgodę na używanie cookies oraz akceptujesz '}
+      <Link to={`${process.env.PUBLIC_URL}/terms`} className={styles.link}>
+        {'regulamin'}
+      </Link>
+      {', '}
+      <Link to={`${process.env.PUBLIC_URL}/privacy`} className={styles.link}>
+        {'politykę prywatności i politykę cookies'}
+      </Link>
+      {'.'}
+    </p>
   </footer>
 );
 

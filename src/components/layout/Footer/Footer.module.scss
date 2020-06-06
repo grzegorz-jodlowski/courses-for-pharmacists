@@ -2,4 +2,14 @@
 
 .root {
   height: $footer-size;
+  background-color: $color-secondary;
+  color: $color-text-bright;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  color: $color-text-bright;
 }

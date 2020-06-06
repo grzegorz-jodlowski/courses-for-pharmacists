@@ -7,11 +7,15 @@ import styles from './Copyright.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <h2>Copyright</h2>
-    {children}
-  </div>
+const Component = ({ className, children }) => (
+  <span className={clsx(className, styles.root)}>
+    {'Copyright © '}
+    <a href="https://kursydlafarmaceutow.pl" className={styles.link}>
+      Kursy dla Farmaceutów
+    </a>{' '}
+    {new Date().getFullYear()}
+    {'. '}
+  </span>
 );
 
 Component.propTypes = {

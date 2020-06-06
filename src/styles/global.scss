@@ -5,6 +5,8 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
@@ -23,11 +25,6 @@ body {
   overflow-y: scroll;
 }
 
-//temporary
-h2 {
-  margin: 0;
-}
-
 a,
 a:hover,
 a:visited {
@@ -38,9 +35,12 @@ a:visited {
   margin: 0 auto;
   min-height: calc(100vh - #{$top-bar-size} - #{$footer-size});
   max-width: $container-width-large;
+  padding: 2rem;
+
   @media (max-width: $breakpoint-xl) {
     max-width: $container-width-medium;
   }
+
   @media (max-width: $breakpoint-lg) {
     max-width: $container-width-small;
   }
