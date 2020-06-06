@@ -2,24 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import styles from './PageNav.module.scss';
-
-import { Logo } from '../../common/Logo/Logo';
+import styles from './Logo.module.scss';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children }) => (
-  <nav className={clsx(className, styles.root)}>
-    <div className={styles.wrapper}>
-      <Logo />
-      <div>
-        <button>cc</button>
-        <button>bb</button>
-        <button>aa</button>
-      </div>
-    </div>
-  </nav>
+  <div className={clsx(className, styles.root)}>
+    <img src="logo.png" alt="Logo Kursy dla Farmaceutów" className={styles.logo} />
+  </div>
 );
 
 Component.propTypes = {
@@ -38,8 +29,8 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as PageNav,
-  // Container as PageNav,
-  Component as PageNavComponent, //for tests
+  Component as Logo,
+  // Container as Logo,
+  Component as LogoComponent, //for tests
 };
 
