@@ -1,13 +1,13 @@
 @import "../../../styles/settings.scss";
 
 .root {
-  height: $footer-size;
   background-color: $color-secondary;
   color: $color-text-bright;
   font-size: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1rem 0;
 }
 
 .link {
