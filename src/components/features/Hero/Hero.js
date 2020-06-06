@@ -8,10 +8,13 @@ import styles from './Hero.module.scss';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children }) => (
-  <header className={clsx(className, styles.root)}>
-    <h2>Hero</h2>
-    {children}
-  </header>
+  <section className={clsx(className, styles.hero)}>
+    <div className={styles.hero__description}>
+      <h1 className={styles.hero__title}>Oglądaj, słuchaj i poczuj się pewnie w aptece!</h1>
+      <p className={styles.hero__subtitle}>Praktyczne kursy dla farmaceutów</p>
+      <button>Zobacz więcej!</button>
+    </div>
+  </section>
 );
 
 Component.propTypes = {
