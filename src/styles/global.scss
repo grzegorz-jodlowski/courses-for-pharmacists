@@ -28,4 +28,11 @@ a:visited {
 .container {
   margin: 1rem auto;
   min-height: calc(100vh - #{$top-bar-size});
+  max-width: $container-width-large;
+  @media (max-width: $breakpoint-xl) {
+    max-width: $container-width-medium;
+  }
+  @media (max-width: $breakpoint-lg) {
+    max-width: $container-width-small;
+  }
 }
