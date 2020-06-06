@@ -7,9 +7,6 @@ import styles from './Hero.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
-
-// TODO: scroll on click
-
 const Component = ({ className, children }) => (
   <section className={clsx(className, styles.hero)}>
     <a href="#CourseCard" className={styles.arrow}></a>

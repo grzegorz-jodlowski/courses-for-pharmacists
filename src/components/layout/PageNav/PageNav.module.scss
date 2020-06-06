@@ -10,6 +10,7 @@
   max-width: $container-width-large;
   display: flex;
   justify-content: space-between;
+  position: relative;
 
   @media (max-width: $breakpoint-xl) {
     max-width: $container-width-medium;
@@ -22,4 +23,19 @@
 .buttons {
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: $breakpoint-s) {
+    display: none;
+  }
+}
+
+.hamburger {
+  border: none;
+  background-color: transparent;
+  font-size: 3rem;
+  margin-right: 2rem;
+
+  @media (min-width: $breakpoint-s) {
+    display: none;
+  }
 }
