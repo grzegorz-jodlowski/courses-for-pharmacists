@@ -1,5 +1,59 @@
 @import "../../../styles/settings.scss";
 
-// .root {
+.root {
+  margin-top: 2rem;
+  min-height: calc(100vh - 20rem);
+  border: 1.5px solid $color-border-light;
+  color: $color-text;
+  border-radius: $radius;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
-// }
+  @media (max-width: $breakpoint-s) {
+    margin: 2rem;
+  }
+}
+
+.image {
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+  background-size: contain;
+}
+
+.info {
+  border-top: 1px solid $color-border-light;
+  padding: 1.5rem;
+  position: relative;
+  font-size: 1.2rem;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.description {
+  margin-bottom: 2rem;
+}
+
+.price,
+.chapters,
+.length {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: $color-secondary;
+  font-weight: 700;
+}
+
+.button {
+  border: none;
+  background: none;
+  position: absolute;
+  right: 5%;
+  bottom: -40%;
+  transition: $transition;
+  font-size: 1.3rem;
+  color: $color-primary;
+  font-weight: 700;
+}
