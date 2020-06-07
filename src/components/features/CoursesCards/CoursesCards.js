@@ -8,18 +8,29 @@ import { CourseCard } from '../../common/CourseCard/CourseCard';
 
 
 import { connect } from 'react-redux';
-import { getAll } from '../../../redux/coursesRedux';
+import { getAll, fetchCourses } from '../../../redux/coursesRedux';
 
-const Component = ({ className, children, courses }) => (
-  <section className={clsx(className, styles.root)} id="CourseCard">
-    {courses.map(course => <CourseCard key={course._id} course={course} />)}
-  </section>
-);
+class Component extends React.Component {
+  componentDidMount() {
+    const { fetchCourses } = this.props;
+    fetchCourses();
+  }
+
+  render() {
+    const { courses, className } = this.props;
+    return (
+      <section className={clsx(className, styles.root)} id="CourseCard">
+        {courses.map(course => <CourseCard key={course._id} course={course} />)}
+      </section>
+    );
+  }
+}
 
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   courses: PropTypes.array,
+  fetchCourses: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -27,6 +38,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  fetchCourses: () => dispatch(fetchCourses()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

@@ -23,7 +23,7 @@ export const fetchCourseSuccess = payload => ({ payload, type: FETCH_COURSE_SUCC
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
 
 // /* thunk creators */
-export const fetchPublished = () => {
+export const fetchCourses = () => {
   return (dispatch, getState) => {
     dispatch(fetchStarted());
     const state = getState();
