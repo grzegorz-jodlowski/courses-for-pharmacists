@@ -2,13 +2,13 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-// import coursesReducer from './coursesRedux';
+import coursesReducer from './coursesRedux';
 import loginReducer from './loginRedux';
 import { initialState } from './initialState';
 
 // define reducers
 const reducers = {
-  // courses: coursesReducer,
+  courses: coursesReducer,
   isLogged: loginReducer,
 };
 
