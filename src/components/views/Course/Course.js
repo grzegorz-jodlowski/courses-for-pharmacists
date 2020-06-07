@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 import styles from './Course.module.scss';
 
 import { lengthToHoursMinutes } from '../../../utils/lengthToHoursMinutes';
 
 import { connect } from 'react-redux';
-import { fetchCourseDetails } from '../../../redux/coursesRedux';
+import { fetchCourseDetails, getCurrentCourse } from '../../../redux/coursesRedux';
 
 class Component extends React.Component {
   componentDidMount() {
@@ -17,7 +19,6 @@ class Component extends React.Component {
 
   render() {
     const { className, children, course } = this.props;
-    console.log(' : Component -> render -> course', course);
     const { title, image, price, _id, chapters, length, gallery, description } = course;
 
     return (
@@ -30,8 +31,17 @@ class Component extends React.Component {
             <p className={styles.price}>{`Cena: ${price}.00 PLN`}</p>
             <p className={styles.chapters}>{`Ilość rozdziałów: ${chapters}`}</p>
             <p className={styles.length}>{`Długość kursu: ${lengthToHoursMinutes(length)}`}</p>
-            {/* <button className={styles.button}>Dowiedz się więcej</button> */}
           </div>
+          <article className={styles.gallery}>
+            <Carousel>
+              {gallery && gallery.map((item, i) => (
+                <div key={i}>
+                  <img src={`/img/${item}`} alt={`Zdjęcie ${i + 1} w galerii kursu ${title}`} />
+                </div>
+              ))}
+            </Carousel>
+          </article>
+          {/* <button className={styles.button}>Dowiedz się więcej</button> */}
         </section>
       </main>
     );
@@ -47,7 +57,7 @@ Component.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  course: state.courses.currentCourse,
+  course: getCurrentCourse(state),
 });
 
 const mapDispatchToProps = dispatch => ({
