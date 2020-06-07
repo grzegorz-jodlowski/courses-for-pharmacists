@@ -1,7 +1,9 @@
 export const initialState = {
+  cart: [],
+  order: [],
   user: {
     id: '1',
-    courses: ['5edce9b0677f8af3ddc60406'],
+    courses: ['5edce4fc61ce708dd5a364ba'],
   },
   isLogged: true,
   courses: {
