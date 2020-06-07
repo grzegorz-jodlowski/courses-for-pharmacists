@@ -3,13 +3,13 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // import coursesReducer from './coursesRedux';
-// import loginReducer from './loginRedux';
+import loginReducer from './loginRedux';
 import { initialState } from './initialState';
 
 // define reducers
 const reducers = {
   // courses: coursesReducer,
-  // isLogged: loginReducer,
+  isLogged: loginReducer,
 };
 
 // add blank reducers for initial state properties without reducers
