@@ -45,7 +45,7 @@ class Component extends React.Component {
             <NavButton text={'Kontakt'} path={'contact'} />
             <NavButton text={'Wyloguj'} path={'login'} />
           </div>
-          <button onClick={() => this.handleMenuClick()} className={styles.hamburger}><span role="img" aria-label="Hamburger menu.">🍔</span></button>
+          <button onClick={() => this.handleMenuClick()} className={styles.hamburger}>&#9776;</button>
         </div>
       </nav>
     );
