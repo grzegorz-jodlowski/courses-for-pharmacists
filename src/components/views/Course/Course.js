@@ -12,9 +12,23 @@ import { connect } from 'react-redux';
 import { fetchCourseDetails, getCurrentCourse } from '../../../redux/coursesRedux';
 
 class Component extends React.Component {
+  state = {
+    quantity: 1,
+  };
+
   componentDidMount() {
     const { fetchCourseDetails, match } = this.props;
     fetchCourseDetails(match.params._id);
+  }
+
+  handleQuantityChange(event) {
+    this.setState({ quantity: event.target.value });
+  }
+
+  handleSubmit(event, id) {
+    alert(`ilość: ${this.state.quantity} kurs: ${id}`);
+    this.setState({ quantity: 1 });
+    event.preventDefault();
   }
 
   render() {
@@ -41,7 +55,11 @@ class Component extends React.Component {
               ))}
             </Carousel>
           </article>
-          {/* <button className={styles.button}>Dowiedz się więcej</button> */}
+          <form className={styles.addCartForm} onSubmit={(e) => this.handleSubmit(e, _id)}>
+            <label htmlFor="quantity">Ilość: <span></span></label>
+            <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={this.state.quantity} onChange={this.handleQuantityChange.bind(this)} />
+            <input className={styles.submitButton} type="submit" value="Dodaj do koszyka" />
+          </form>
         </section>
       </main>
     );

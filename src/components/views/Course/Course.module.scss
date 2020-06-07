@@ -48,15 +48,31 @@
 .gallery {
   margin: 3rem 1.5rem;
 }
+.addCartForm {
+  display: block;
+  text-align: center;
+  font-size: 2rem;
+}
 
-.button {
-  border: none;
-  background: none;
-  position: absolute;
-  right: 5%;
-  bottom: -40%;
+.inputQuantity {
+  width: 70px;
+  text-align: center;
+}
+
+.submitButton {
+  margin: 2rem auto;
+  display: block;
+  background-color: $color-secondary;
+  border-radius: $radius;
+  cursor: pointer;
   transition: $transition;
-  font-size: 1.3rem;
-  color: $color-primary;
-  font-weight: 700;
+  border: none;
+  color: $color-text-bright;
+  padding: 15px 40px;
+  outline: none;
+  font-size: 1.5rem;
+
+  &:hover {
+    background-color: rgba($color-secondary, 0.8);
+  }
 }
