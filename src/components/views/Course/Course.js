@@ -6,10 +6,13 @@ import { Carousel } from 'react-responsive-carousel';
 
 import styles from './Course.module.scss';
 
+import { Link } from 'react-router-dom';
+
 import { lengthToHoursMinutes } from '../../../utils/lengthToHoursMinutes';
 
 import { connect } from 'react-redux';
 import { fetchCourseDetails, getCurrentCourse } from '../../../redux/coursesRedux';
+import { addToCart } from '../../../redux/cartRedux';
 
 class Component extends React.Component {
   state = {
@@ -26,14 +29,22 @@ class Component extends React.Component {
   }
 
   handleSubmit(event, id) {
-    alert(`ilość: ${this.state.quantity} kurs: ${id}`);
+    const cartItem = {
+      quantity: this.state.quantity,
+      courseId: id,
+    };
+
+    this.props.addToCart(cartItem);
+
     this.setState({ quantity: 1 });
     event.preventDefault();
   }
 
   render() {
-    const { className, children, course } = this.props;
+    const { className, children, course, cart } = this.props;
     const { title, image, price, _id, chapters, length, gallery, description } = course;
+
+    const isCourseInCart = cart.some(({ courseId }) => courseId === _id);
 
     return (
       <main className={'container'}>
@@ -55,11 +66,19 @@ class Component extends React.Component {
               ))}
             </Carousel>
           </article>
-          <form className={styles.addCartForm} onSubmit={(e) => this.handleSubmit(e, _id)}>
-            <label htmlFor="quantity">Ilość: <span></span></label>
-            <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={this.state.quantity} onChange={this.handleQuantityChange.bind(this)} />
-            <input className={styles.submitButton} type="submit" value="Dodaj do koszyka" />
-          </form>
+          {isCourseInCart
+            ?
+            <div className={styles.toCart} >
+              <div className={styles.toCartInfo}>Kurs jest w koszyku</div>
+              <button className={styles.toCartButton}><Link to={`${process.env.PUBLIC_URL}/cart`} > Przejdź do koszyka</Link></button>
+            </div>
+            :
+            <form className={styles.addCartForm} onSubmit={(e) => this.handleSubmit(e, _id)}>
+              <label htmlFor="quantity">Ilość: <span></span></label>
+              <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={this.state.quantity} onChange={this.handleQuantityChange.bind(this)} />
+              <input className={styles.submitButton} type="submit" value="Dodaj do koszyka" />
+            </form>
+          }
         </section>
       </main>
     );
@@ -72,14 +91,18 @@ Component.propTypes = {
   match: PropTypes.object,
   course: PropTypes.object,
   fetchCourseDetails: PropTypes.func,
+  addToCart: PropTypes.func,
+  cart: PropTypes.array,
 };
 
 const mapStateToProps = state => ({
   course: getCurrentCourse(state),
+  cart: state.cart,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchCourseDetails: id => dispatch(fetchCourseDetails(id)),
+  addToCart: obj => dispatch(addToCart(obj)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
