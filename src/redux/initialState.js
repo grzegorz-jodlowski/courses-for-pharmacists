@@ -16,7 +16,7 @@ export const initialState = {
   order: [],
   user: {
     id: '1',
-    courses: ['5edce4fc61ce708dd5a364ba'],
+    courses: ['5edce4fc61ce708dd5a364ba', '5edce9b0677f8af3ddc60406'],
   },
   isLogged: true,
   courses: {
