@@ -12,34 +12,34 @@ import { NavButton } from '../../common/NavButton/NavButton';
 
 class Component extends React.Component {
   state = {
-    menu: null,
+    isOpen: false,
   }
 
   handleMenuClick() {
-    if (this.state.menu === null) {
-      this.setState({
-        menu: {
-          display: 'block',
-          position: 'absolute',
-          top: '8rem',
-          left: 0,
-          width: '100%',
-          backgroundColor: '#fff',
-          textAlign: 'center',
-        },
-      });
-    } else {
-      this.setState({ menu: null });
-    }
+    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+  }
+
+  classes = {
+    menu: {
+      display: 'block',
+      position: 'absolute',
+      top: '8rem',
+      left: 0,
+      width: '100%',
+      backgroundColor: '#fff',
+      textAlign: 'center',
+    },
   }
 
   render() {
+    const { isOpen } = this.state;
+
     return (
       <nav className={clsx(this.className, styles.root)
       } >
         <div className={styles.wrapper}>
           <Logo />
-          <div style={this.state.menu} className={clsx(styles.buttons)}>
+          <div style={isOpen ? this.classes.menu : null} className={clsx(styles.buttons)}>
             <NavButton text={'Moje kursy'} path={'courses'} />
             <NavButton text={'Koszyk'} path={'cart'} />
             <NavButton text={'Kontakt'} path={'contact'} />
