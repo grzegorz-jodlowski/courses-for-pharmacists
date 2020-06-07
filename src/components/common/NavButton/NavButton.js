@@ -7,11 +7,11 @@ import styles from './NavButton.module.scss';
 import { Link } from 'react-router-dom';
 
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
+import { connect } from 'react-redux';
+import { updateLoginStatus } from '../../../redux/loginRedux';
 
-const Component = ({ className, children, text, path }) => (
-  <Link to={`${process.env.PUBLIC_URL}/${path}`} className={clsx(className, styles.root)}>
+const Component = ({ className, children, text, path, updateLoginStatus }) => (
+  <Link to={`${process.env.PUBLIC_URL}/${path}`} className={clsx(className, styles.root)} onClick={() => updateLoginStatus(path)}>
     {text}
   </Link>
 );
@@ -21,21 +21,22 @@ Component.propTypes = {
   className: PropTypes.string,
   text: PropTypes.string,
   path: PropTypes.string,
+  updateLoginStatus: PropTypes.func,
+
 };
 
-// const mapStateToProps = state => ({
-//   concerts: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+});
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  updateLoginStatus: log => dispatch(updateLoginStatus(log)),
+});
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as NavButton,
-  // Container as NavButton,
+  // Component as NavButton,
+  Container as NavButton,
   Component as NavButtonComponent, //for tests
 };
 

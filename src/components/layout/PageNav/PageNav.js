@@ -7,8 +7,8 @@ import styles from './PageNav.module.scss';
 import { Logo } from '../../common/Logo/Logo';
 import { NavButton } from '../../common/NavButton/NavButton';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
+import { connect } from 'react-redux';
+// import { updateLoginStatus } from '../../../redux/loginRedux';
 
 class Component extends React.Component {
   state = {
@@ -33,6 +33,7 @@ class Component extends React.Component {
 
   render() {
     const { isOpen } = this.state;
+    const { isLogged } = this.props;
 
     return (
       <nav className={clsx(this.className, styles.root)
@@ -43,7 +44,11 @@ class Component extends React.Component {
             <NavButton text={'Moje kursy'} path={'courses'} />
             <NavButton text={'Koszyk'} path={'cart'} />
             <NavButton text={'Kontakt'} path={'contact'} />
-            <NavButton text={'Wyloguj'} path={'login'} />
+            {isLogged
+              ?
+              <NavButton text={'Wyloguj'} path={'logout'} />
+              :
+              <NavButton text={'Zaloguj'} path={'login'} />}
           </div>
           <button onClick={() => this.handleMenuClick()} className={styles.hamburger}>&#9776;</button>
         </div>
@@ -55,21 +60,22 @@ class Component extends React.Component {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  isLogged: PropTypes.bool,
+
 };
 
-// const mapStateToProps = state => ({
-//   concerts: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+  isLogged: state.isLogged,
+});
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+});
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as PageNav,
-  // Container as PageNav,
+  // Component as PageNav,
+  Container as PageNav,
   Component as PageNavComponent, //for tests
 };
 
