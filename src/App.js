@@ -13,6 +13,7 @@ import { Privacy } from './components/views/Privacy/Privacy';
 import { Terms } from './components/views/Terms/Terms';
 import { Login } from './components/views/Login/Login';
 import { NotFound } from './components/views/NotFound/NotFound';
+import { CoursePanel } from './components/views/CoursePanel/CoursePanel';
 
 
 import { store } from './redux/store';
@@ -25,6 +26,7 @@ const App = () => (
           <Route exact path={`${process.env.PUBLIC_URL}/`} component={Homepage} />
           <Route exact path={`${process.env.PUBLIC_URL}/course/:_id`} component={Course} />
           <Route exact path={`${process.env.PUBLIC_URL}/courses`} component={MyCourses} />
+          <Route exact path={`${process.env.PUBLIC_URL}/panel/:_id`} component={CoursePanel} />
           <Route exact path={`${process.env.PUBLIC_URL}/cart`} component={Cart} />
           <Route exact path={`${process.env.PUBLIC_URL}/contact`} component={Contact} />
           <Route exact path={`${process.env.PUBLIC_URL}/privacy`} component={Privacy} />
