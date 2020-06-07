@@ -53,6 +53,10 @@
   }
 }
 
+label span {
+  color: $color-primary;
+}
+
 .inputName,
 .inputEmail {
   width: 60%;
@@ -71,13 +75,13 @@
 .submitButton {
   display: block;
   background-color: $color-secondary;
-  // width: 60%;
   border-radius: $radius;
   cursor: pointer;
   transition: $transition;
   border: none;
   color: $color-text-bright;
   padding: 15px 40px;
+  outline: none;
 
   &:hover {
     background-color: rgba($color-secondary, 0.8);
