@@ -8,17 +8,10 @@ import styles from './Newsletter.module.scss';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 class Component extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      email: '',
-    };
-
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  state = {
+    name: '',
+    email: '',
+  };
 
   handleNameChange(event) {
     this.setState({ name: event.target.value });
@@ -38,18 +31,14 @@ class Component extends React.Component {
 
     return (
       <section className={clsx(styles.root)}>
-        <h2>Zapisz się na newsletter i odbierz darmowe rozdziały oferowanych kursów!</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Imię:
-            <input type="text" value={this.state.name} onChange={this.handleNameChange} />
-          </label>
-          <label>
-            Email:
-            <input type="text" value={this.state.email} onChange={this.handleEmailChange} />
-          </label>
-          <p>Zapisując się na newsletter wyrażasz zgodę na przesyłanie informacji o produktach, nowościach i promocjach ze strony Kursy dla Farmaceutów.</p>
-          <input type="submit" value="Wyślij" />
+        <h2 className={styles.title}>Zapisz się na newsletter i odbierz darmowe rozdziały oferowanych kursów!</h2>
+        <form className={styles.form} onSubmit={this.handleSubmit.bind(this)}>
+          <label htmlFor="name">Imię:</label>
+          <input name="name" id="name" required className={styles.inputName} type="text" value={this.state.name} onChange={this.handleNameChange.bind(this)} />
+          <label htmlFor="email">Email:</label>
+          <input name="email" id="email" required className={styles.inputEmail} type="text" value={this.state.email} onChange={this.handleEmailChange.bind(this)} />
+          <p className={styles.disclaimer} >Zapisując się na newsletter wyrażasz zgodę na przesyłanie informacji o produktach, nowościach i promocjach ze strony Kursy dla Farmaceutów.</p>
+          <input className={styles.submitButton} type="submit" value="Zapisz mnie i wyślij rozdziały!" />
         </form>
       </section>
     );
