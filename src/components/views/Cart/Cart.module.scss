@@ -3,3 +3,145 @@
 // .root {
 
 // }
+
+.title {
+  font-family: $font-header;
+  font-size: 3rem;
+  text-align: center;
+  padding: 2rem 0;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 2rem;
+
+  @media (max-width: $breakpoint-xs) {
+    width: 100%;
+  }
+
+  &::after {
+    content: "";
+    width: 10%;
+    height: 6px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    position: absolute;
+    background-color: $color-secondary;
+    border-radius: $radius;
+    transition: $transition;
+
+    @media (max-width: $breakpoint-m) {
+      width: 20%;
+    }
+  }
+}
+
+.cartItem {
+  border: 1.5px solid $color-border-light;
+  color: $color-text;
+  min-height: 120px;
+  border-radius: $radius;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  margin-bottom: 2rem;
+  padding: 2rem;
+  padding-right: 4rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: $breakpoint-s) {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}
+
+.cartItemTitle {
+  font-weight: 700;
+  color: $color-secondary;
+}
+
+.inputQuantity {
+  text-align: center;
+  position: absolute;
+  right: 18px;
+  top: 70px;
+  width: 40px;
+  height: 32px;
+  opacity: 0.5;
+  background-color: transparent;
+  border-radius: $radius;
+  padding-left: 12px;
+}
+
+.removeButton {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 40px;
+  height: 40px;
+  opacity: 0.3;
+  background-color: transparent;
+  border: none;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:before {
+    position: absolute;
+    left: 15px;
+    content: " ";
+    height: 40px;
+    width: 2px;
+    background-color: #333;
+  }
+
+  &:after {
+    position: absolute;
+    left: 15px;
+    content: " ";
+    height: 40px;
+    width: 2px;
+    background-color: #333;
+  }
+  &:before {
+    transform: translateY(-50%) rotate(45deg);
+  }
+  &:after {
+    transform: translateY(-50%) rotate(-45deg);
+  }
+}
+
+.additionalInfo {
+  align-self: flex-start;
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1rem;
+  min-width: 40%;
+  border-radius: $radius;
+}
+
+.summaryButton {
+  margin: 4rem auto 1rem;
+  display: block;
+  background-color: $color-secondary;
+  border-radius: $radius;
+  cursor: pointer;
+  transition: $transition;
+  border: none;
+  color: $color-text-bright;
+  padding: 15px 40px;
+  outline: none;
+  font-size: 1.5rem;
+
+  &:hover {
+    background-color: rgba($color-secondary, 0.8);
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $color-text-bright;
+}

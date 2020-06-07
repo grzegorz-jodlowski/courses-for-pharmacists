@@ -28,10 +28,12 @@ class Component extends React.Component {
     this.setState({ quantity: event.target.value });
   }
 
-  handleSubmit(event, id) {
+  handleSubmit(event, id, title, price) {
     const cartItem = {
       quantity: this.state.quantity,
       courseId: id,
+      title,
+      price,
     };
 
     this.props.addToCart(cartItem);
@@ -76,8 +78,8 @@ class Component extends React.Component {
                 <button className={styles.toCartButton}><Link to={`${process.env.PUBLIC_URL}/cart`} > Przejdź do koszyka</Link></button>
               </div>
               :
-              <form className={styles.addCartForm} onSubmit={(e) => this.handleSubmit(e, _id)}>
-                <label htmlFor="quantity">Ilość: <span></span></label>
+              <form className={styles.addCartForm} onSubmit={(e) => this.handleSubmit(e, _id, title, price)}>
+                <label htmlFor="quantity">Ilość:</label>
                 <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={this.state.quantity} onChange={this.handleQuantityChange.bind(this)} />
                 <input className={styles.submitButton} type="submit" value="Dodaj do koszyka" />
               </form>}
