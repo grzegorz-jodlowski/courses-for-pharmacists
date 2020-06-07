@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 
-// const coursesRoutes = require('./routes/courses.routes');
+const coursesRoutes = require('./routes/courses.routes');
 
 const app = express();
 
@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 /* API ENDPOINTS */
-// app.use('/api', coursesRoutes);
+app.use('/api', coursesRoutes);
 
 /* API ERROR PAGES */
 app.use('/api', (req, res) => {
