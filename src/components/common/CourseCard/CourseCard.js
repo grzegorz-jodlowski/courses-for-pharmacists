@@ -10,9 +10,9 @@ import { Link } from 'react-router-dom';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children, course }) => {
-  const { image, title, price } = course;
+  const { _id, image, title, price } = course;
   return (
-    <Link to={`${process.env.PUBLIC_URL}/`} className={clsx(className, styles.root)}>
+    <Link to={`${process.env.PUBLIC_URL}/course/${_id}`} className={clsx(className, styles.root)}>
       <img src={`img/${image}`} alt={`Miniatura kursu: ${title}`} className={styles.image} />
       <div className={styles.description}>
         <h2 className={styles.title}>{title}</h2>
