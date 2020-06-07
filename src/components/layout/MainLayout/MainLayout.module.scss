@@ -5,4 +5,11 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
+  position: relative;
+}
+
+.select {
+  position: absolute;
+  top: 10rem;
+  left: 1rem;
 }

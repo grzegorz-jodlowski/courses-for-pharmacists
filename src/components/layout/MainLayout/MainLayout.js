@@ -7,12 +7,17 @@ import styles from './MainLayout.module.scss';
 import { PageNav } from '../PageNav/PageNav';
 import { Footer } from '../Footer/Footer';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
+import { connect } from 'react-redux';
+import { updateLoginStatus } from '../../../redux/loginRedux';
 
-const Component = ({ className, children }) => (
+const Component = ({ className, children, updateLoginStatus }) => (
   <div className={clsx(className, styles.root)}>
     <PageNav />
+    {/* select for tests */}
+    <select onChange={(e) => updateLoginStatus(e.target.value)} className={styles.select}>
+      <option value="login">Login</option>
+      <option value="logout">Logout</option>
+    </select>
     {children}
     <Footer />
   </div>
@@ -21,21 +26,22 @@ const Component = ({ className, children }) => (
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  updateLoginStatus: PropTypes.func,
+
 };
 
-// const mapStateToProps = state => ({
-//   concerts: reduxSelector(state),
-// });
+const mapStateToProps = state => ({
+});
 
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
+const mapDispatchToProps = dispatch => ({
+  updateLoginStatus: log => dispatch(updateLoginStatus(log)),
+});
 
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as MainLayout,
-  // Container as MainLayout,
+  // Component as MainLayout,
+  Container as MainLayout,
   Component as MainLayoutComponent, //for tests
 };
 
