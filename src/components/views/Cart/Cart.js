@@ -7,7 +7,7 @@ import styles from './Cart.module.scss';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { removeFromCart, updateCartItemQuantity } from '../../../redux/cartRedux';
+import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../../../redux/cartRedux';
 
 class Component extends React.Component {
 
@@ -15,11 +15,11 @@ class Component extends React.Component {
     this.props.updateCartItemQuantity({ id, quantity: e.target.value });
   }
 
-  handleInfoChange() {
-
+  handleInfoChange(id, e) {
+    this.props.updateCartItemInfo({ id, additionalInfo: e.target.value });
   }
 
-  handleRemove(e, id) {
+  handleRemove(id, e) {
     e.preventDefault();
     this.props.removeFromCart(id);
   }
@@ -43,8 +43,8 @@ class Component extends React.Component {
             <form key={courseId} className={styles.cartItem}>
               <p className={styles.cartItemTitle}>{title}</p>
               <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={quantity} onChange={(e) => this.handleQuantityChange(courseId, e)} />
-              <textarea name="additionalInfo" id="additionalInfo" className={styles.additionalInfo} onChange={this.handleInfoChange.bind(this)} placeholder="Miejsce na dodatkowe informacje..."></textarea>
-              <button className={styles.removeButton} onClick={(e) => this.handleRemove(e, courseId)}></button>
+              <textarea name="additionalInfo" id="additionalInfo" className={styles.additionalInfo} onChange={(e) => this.handleInfoChange(courseId, e)} placeholder="Miejsce na dodatkowe informacje..."></textarea>
+              <button className={styles.removeButton} onClick={(e) => this.handleRemove(courseId, e)}></button>
             </form>
           )}
           <p className={styles.cartValue}>{`Do zapłaty: ${cartValue},00 PLN`}</p>
@@ -64,6 +64,7 @@ Component.propTypes = {
   cart: PropTypes.array,
   removeFromCart: PropTypes.func,
   updateCartItemQuantity: PropTypes.func,
+  updateCartItemInfo: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -73,6 +74,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   removeFromCart: id => dispatch(removeFromCart(id)),
   updateCartItemQuantity: ({ id, quantity }) => dispatch(updateCartItemQuantity({ id, quantity })),
+  updateCartItemInfo: ({ id, additionalInfo }) => dispatch(updateCartItemInfo({ id, additionalInfo })),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

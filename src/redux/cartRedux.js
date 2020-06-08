@@ -41,11 +41,18 @@ export default function reducer(statePart = [], action = {}) {
           };
         }
         return cartItem;
-      }
-      );
+      });
     }
     case UPDATE_CART_ITEM_INFO: {
-      return statePart;
+      return statePart.map(cartItem => {
+        if (cartItem.courseId === action.payload.id) {
+          return {
+            ...cartItem,
+            additionalInfo: action.payload.additionalInfo,
+          };
+        }
+        return cartItem;
+      });
     }
     default:
       return statePart;
