@@ -7,12 +7,12 @@ import styles from './Cart.module.scss';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { removeFromCart } from '../../../redux/cartRedux';
+import { removeFromCart, updateCartItemQuantity } from '../../../redux/cartRedux';
 
 class Component extends React.Component {
 
-  handleQuantityChange() {
-
+  handleQuantityChange(id, e) {
+    this.props.updateCartItemQuantity({ id, quantity: e.target.value });
   }
 
   handleInfoChange() {
@@ -42,7 +42,7 @@ class Component extends React.Component {
           {cart.map(({ quantity, courseId, title, price }) =>
             <form key={courseId} className={styles.cartItem}>
               <p className={styles.cartItemTitle}>{title}</p>
-              <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={quantity} onChange={this.handleQuantityChange.bind(this)} />
+              <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={quantity} onChange={(e) => this.handleQuantityChange(courseId, e)} />
               <textarea name="additionalInfo" id="additionalInfo" className={styles.additionalInfo} onChange={this.handleInfoChange.bind(this)} placeholder="Miejsce na dodatkowe informacje..."></textarea>
               <button className={styles.removeButton} onClick={(e) => this.handleRemove(e, courseId)}></button>
             </form>
@@ -63,7 +63,7 @@ Component.propTypes = {
   className: PropTypes.string,
   cart: PropTypes.array,
   removeFromCart: PropTypes.func,
-
+  updateCartItemQuantity: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -71,7 +71,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  removeFromCart: (id) => dispatch(removeFromCart(id)),
+  removeFromCart: id => dispatch(removeFromCart(id)),
+  updateCartItemQuantity: ({ id, quantity }) => dispatch(updateCartItemQuantity({ id, quantity })),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
