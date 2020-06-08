@@ -12,8 +12,10 @@ import { getAll, fetchCourses } from '../../../redux/coursesRedux';
 
 class Component extends React.Component {
   componentDidMount() {
-    const { fetchCourses } = this.props;
-    fetchCourses();
+    const { fetchCourses, courses } = this.props;
+    if (courses.length === 0) {
+      fetchCourses();
+    }
   }
 
   render() {
