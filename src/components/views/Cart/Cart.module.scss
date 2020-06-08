@@ -50,6 +50,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  transition: $transition;
 
   @media (max-width: $breakpoint-s) {
     margin-left: 2rem;

@@ -36,6 +36,7 @@ class Component extends React.Component {
       courseId: id,
       title,
       price,
+      additionalInfo: '',
     };
 
     this.props.addToCart(cartItem);
