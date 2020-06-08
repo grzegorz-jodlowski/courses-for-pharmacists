@@ -8,6 +8,8 @@ import styles from './Course.module.scss';
 
 import { Link } from 'react-router-dom';
 
+import { Spinner } from '../../common/Spinner/Spinner';
+
 import { lengthToHoursMinutes } from '../../../utils/lengthToHoursMinutes';
 
 import { connect } from 'react-redux';
@@ -43,51 +45,55 @@ class Component extends React.Component {
   }
 
   render() {
-    const { className, children, course, cart, user, isLogged } = this.props;
+    const { className, children, course, cart, user, isLogged, loading, loadingError } = this.props;
     const { title, image, price, _id, chapters, length, gallery, description } = course;
 
-    const isCourseInCart = cart.some(({ courseId }) => courseId === _id);
-    const isCourseAlreadyBought = user.courses.some(course => course === _id);
+    if (loading || loadingError) {
+      return <Spinner />;
+    } else {
 
-    return (
-      <main className={'container'}>
-        <section className={clsx(className, styles.root)}>
-          <img src={`/img/${image}`} alt={`Miniatura kursu: ${title}`} className={styles.image} />
-          <div className={styles.info}>
-            <h2 className={styles.title}>{title}</h2>
-            <p className={styles.description}>{description}</p>
-            <p className={styles.price}>{`Cena: ${price}.00 PLN`}</p>
-            <p className={styles.chapters}>{`Ilość rozdziałów: ${chapters}`}</p>
-            <p className={styles.length}>{`Długość kursu: ${lengthToHoursMinutes(length)}`}</p>
-          </div>
-          <article className={styles.gallery}>
-            <Carousel>
-              {gallery && gallery.map((item, i) => (
-                <div key={i}>
-                  <img src={`/img/${item}`} alt={`Zdjęcie ${i + 1} w galerii kursu ${title}`} />
-                </div>
-              ))}
-            </Carousel>
-          </article>
-          {isCourseAlreadyBought && isLogged ?
-            <button className={styles.toCartButton}><Link to={`${process.env.PUBLIC_URL}/panel/${_id}`} > Przejdź do panelu kursu</Link></button>
-            :
-            isCourseInCart ?
-              <div className={styles.toCart} >
-                <div className={styles.toCartInfo}>Kurs jest w koszyku</div>
-                <button className={styles.toCartButton}><Link to={`${process.env.PUBLIC_URL}/cart`} > Przejdź do koszyka</Link></button>
-              </div>
+      const isCourseInCart = cart.some(({ courseId }) => courseId === _id);
+      const isCourseAlreadyBought = user.courses.some(course => course === _id);
+
+      return (
+        <main className={'container'}>
+          <section className={clsx(className, styles.root)}>
+            <img src={`/img/${image}`} alt={`Miniatura kursu: ${title}`} className={styles.image} />
+            <div className={styles.info}>
+              <h2 className={styles.title}>{title}</h2>
+              <p className={styles.description}>{description}</p>
+              <p className={styles.price}>{`Cena: ${price}.00 PLN`}</p>
+              <p className={styles.chapters}>{`Ilość rozdziałów: ${chapters}`}</p>
+              <p className={styles.length}>{`Długość kursu: ${lengthToHoursMinutes(length)}`}</p>
+            </div>
+            <article className={styles.gallery}>
+              <Carousel>
+                {gallery && gallery.map((item, i) => (
+                  <div key={i}>
+                    <img src={`/img/${item}`} alt={`Zdjęcie ${i + 1} w galerii kursu ${title}`} />
+                  </div>
+                ))}
+              </Carousel>
+            </article>
+            {isCourseAlreadyBought && isLogged ?
+              <button className={styles.toCartButton}><Link to={`${process.env.PUBLIC_URL}/panel/${_id}`} > Przejdź do panelu kursu</Link></button>
               :
-              <form className={styles.addCartForm} onSubmit={(e) => this.handleSubmit(e, _id, title, price)}>
-                <label htmlFor="quantity">Ilość:</label>
-                <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={this.state.quantity} onChange={this.handleQuantityChange.bind(this)} />
-                <input className={styles.submitButton} type="submit" value="Dodaj do koszyka" />
-              </form>}
-        </section>
-      </main>
-    );
+              isCourseInCart ?
+                <div className={styles.toCart} >
+                  <div className={styles.toCartInfo}>Kurs jest w koszyku</div>
+                  <button className={styles.toCartButton}><Link to={`${process.env.PUBLIC_URL}/cart`} > Przejdź do koszyka</Link></button>
+                </div>
+                :
+                <form className={styles.addCartForm} onSubmit={(e) => this.handleSubmit(e, _id, title, price)}>
+                  <label htmlFor="quantity">Ilość:</label>
+                  <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={this.state.quantity} onChange={this.handleQuantityChange.bind(this)} />
+                  <input className={styles.submitButton} type="submit" value="Dodaj do koszyka" />
+                </form>}
+          </section>
+        </main>
+      );
+    }
   }
-
 }
 Component.propTypes = {
   children: PropTypes.node,
@@ -99,6 +105,8 @@ Component.propTypes = {
   cart: PropTypes.array,
   user: PropTypes.object,
   isLogged: PropTypes.bool,
+  loading: PropTypes.bool,
+  loadingError: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
@@ -106,6 +114,8 @@ const mapStateToProps = state => ({
   cart: state.cart,
   user: state.user,
   isLogged: state.isLogged,
+  loading: state.courses.loading.active,
+  loadingError: state.courses.loading.error,
 });
 
 const mapDispatchToProps = dispatch => ({
