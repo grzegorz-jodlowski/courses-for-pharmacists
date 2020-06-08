@@ -149,11 +149,10 @@
   &:hover {
     background-color: rgba($color-secondary, 0.8);
   }
-}
-
-a {
-  text-decoration: none;
-  color: $color-text-bright;
-  padding: 15px 40px;
-  display: block;
+  a {
+    text-decoration: none;
+    color: $color-text-bright;
+    padding: 15px 40px;
+    display: block;
+  }
 }
