@@ -8,11 +8,14 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../../../redux/cartRedux';
+import { addProducts } from '../../../redux/orderRedux';
 
 class Component extends React.Component {
 
   handleSummary() {
+    const { addProducts, cart } = this.props;
 
+    addProducts(cart);
   }
 
   handleQuantityChange(id, e) {
@@ -69,6 +72,7 @@ Component.propTypes = {
   removeFromCart: PropTypes.func,
   updateCartItemQuantity: PropTypes.func,
   updateCartItemInfo: PropTypes.func,
+  addProducts: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -79,6 +83,7 @@ const mapDispatchToProps = dispatch => ({
   removeFromCart: id => dispatch(removeFromCart(id)),
   updateCartItemQuantity: ({ id, quantity }) => dispatch(updateCartItemQuantity({ id, quantity })),
   updateCartItemInfo: ({ id, additionalInfo }) => dispatch(updateCartItemInfo({ id, additionalInfo })),
+  addProducts: cart => dispatch(addProducts(cart)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

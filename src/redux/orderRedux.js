@@ -8,18 +8,19 @@ const reducerName = 'order';
 const createActionName = name => `app/${reducerName}/${name}`;
 
 // /* action types */
-const UPDATE_ORDER = createActionName('UPDATE_ORDER');
+const ADD_PRODUCTS = createActionName('ADD_PRODUCTS');
 
 // /* action creators */
-export const updateOrder = payload => ({ payload, type: UPDATE_ORDER });
+export const addProducts = payload => ({ payload, type: ADD_PRODUCTS });
 
 
 /* reducer */
 export default function reducer(statePart = {}, action = {}) {
   switch (action.type) {
-    case UPDATE_ORDER: {
+    case ADD_PRODUCTS: {
       return {
         ...statePart,
+        products: action.payload,
       };
     }
     default:
