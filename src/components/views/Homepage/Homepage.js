@@ -9,6 +9,7 @@ import { Newsletter } from '../../features/Newsletter/Newsletter';
 
 import { connect } from 'react-redux';
 import { getAll, fetchCourses } from '../../../redux/coursesRedux';
+import { Spinner } from '../../common/Spinner/Spinner';
 
 class Component extends React.Component {
   componentDidMount() {
@@ -17,12 +18,12 @@ class Component extends React.Component {
   }
 
   render() {
-    const { className, courses } = this.props;
+    const { className, courses, loading, loadingError } = this.props;
     return (
       <main className={clsx(className, styles.root, 'container')
       }>
         <Hero />
-        <CoursesCards courses={courses} />
+        {loading || loadingError ? <Spinner /> : <CoursesCards courses={courses} />}
         <Newsletter />
       </main>
     );
@@ -33,10 +34,14 @@ Component.propTypes = {
   className: PropTypes.string,
   courses: PropTypes.array,
   fetchCourses: PropTypes.func,
+  loading: PropTypes.bool,
+  loadingError: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
   courses: getAll(state),
+  loading: state.courses.loading.active,
+  loadingError: state.courses.loading.error,
 });
 
 const mapDispatchToProps = dispatch => ({
