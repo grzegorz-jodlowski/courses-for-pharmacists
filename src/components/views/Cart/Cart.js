@@ -11,6 +11,10 @@ import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../.
 
 class Component extends React.Component {
 
+  handleSummary() {
+
+  }
+
   handleQuantityChange(id, e) {
     this.props.updateCartItemQuantity({ id, quantity: e.target.value });
   }
@@ -48,7 +52,7 @@ class Component extends React.Component {
             </form>
           )}
           <p className={styles.cartValue}>{`Do zapłaty: ${cartValue},00 PLN`}</p>
-          <button className={styles.summaryButton}><Link to={`${process.env.PUBLIC_URL}/summary`} > Podsumuj zamówienie</Link></button>
+          <button className={styles.summaryButton} onClick={() => this.handleSummary()}><Link to={`${process.env.PUBLIC_URL}/summary`} > Do podsumowania</Link></button>
         </div>
         :
         <h2 className={styles.info}>Koszyk jest pusty</h2>

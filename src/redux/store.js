@@ -5,6 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import coursesReducer from './coursesRedux';
 import loginReducer from './loginRedux';
 import cartReducer from './cartRedux';
+import orderReducer from './orderRedux';
 import { initialState } from './initialState';
 
 // define reducers
@@ -12,6 +13,7 @@ const reducers = {
   courses: coursesReducer,
   isLogged: loginReducer,
   cart: cartReducer,
+  order: orderReducer,
 };
 
 // add blank reducers for initial state properties without reducers
