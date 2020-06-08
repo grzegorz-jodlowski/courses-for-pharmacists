@@ -26,6 +26,11 @@ class Component extends React.Component {
   render() {
     const { className, children, cart } = this.props;
 
+    let cartValue = 0;
+
+    cart.forEach(({ quantity, price }) => {
+      cartValue = cartValue + (quantity * price);
+    });
 
     return (<main className={clsx(className, styles.root, 'container')} >
       <h2 className={styles.title}>Zamówienie</h2>
@@ -41,6 +46,7 @@ class Component extends React.Component {
               <button className={styles.removeButton} onClick={this.handleRemove.bind(this)}></button>
             </form>
           )}
+          <p className={styles.cartValue}>{`Do zapłaty: ${cartValue},00 PLN`}</p>
           <button className={styles.summaryButton}><Link to={`${process.env.PUBLIC_URL}/summary`} > Podsumuj zamówienie</Link></button>
         </div>
         :

@@ -125,6 +125,14 @@
   border-radius: $radius;
 }
 
+.cartValue {
+  font-weight: 700;
+  color: $color-secondary;
+  text-align: right;
+  font-size: 1.7rem;
+  padding-right: 1rem;
+}
+
 .summaryButton {
   margin: 4rem auto 1rem;
   display: block;
