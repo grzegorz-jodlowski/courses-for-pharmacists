@@ -1,7 +1,8 @@
 @import "../../../styles/settings.scss";
 
 .root {
-  margin-top: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   min-height: calc(100vh - 20rem);
   border: 1.5px solid $color-border-light;
   color: $color-text;

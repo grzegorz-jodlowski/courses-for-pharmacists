@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import { MainLayout } from './components/layout/MainLayout/MainLayout';
 import { Homepage } from './components/views/Homepage/Homepage';
-import { Course } from './components/views/Course/Course';
+import { CoursePage } from './components/views/CoursePage/CoursePage';
 import { MyCourses } from './components/views/MyCourses/MyCourses';
 import { Cart } from './components/views/Cart/Cart';
 import { Contact } from './components/views/Contact/Contact';
@@ -33,7 +33,7 @@ class Component extends React.Component {
       <MainLayout>
         <Switch>
           <Route exact path={`${process.env.PUBLIC_URL}/`} component={Homepage} />
-          <Route exact path={`${process.env.PUBLIC_URL}/course/:_id`} component={Course} />
+          <Route exact path={`${process.env.PUBLIC_URL}/course/:_id`} component={CoursePage} />
           <Route exact path={`${process.env.PUBLIC_URL}/courses`} component={MyCourses} />
           <Route exact path={`${process.env.PUBLIC_URL}/panel/:_id`} component={CoursePanel} />
           <Route exact path={`${process.env.PUBLIC_URL}/cart`} component={Cart} />

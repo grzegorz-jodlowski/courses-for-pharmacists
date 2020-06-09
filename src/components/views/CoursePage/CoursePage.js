@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 
-import styles from './Course.module.scss';
+import styles from './CoursePage.module.scss';
 
 import { Spinner } from '../../common/Spinner/Spinner';
 import { Button } from '../../common/Button/Button';
@@ -58,7 +58,7 @@ class Component extends React.Component {
 
       return (
         <main className={'container'}>
-          <section className={clsx(className, styles.root)}>
+          <div className={clsx(className, styles.root)}>
             <img src={`/img/${image}`} alt={`Miniatura kursu: ${title}`} className={styles.image} />
             <div className={styles.info}>
               <h2 className={styles.title}>{title}</h2>
@@ -89,8 +89,9 @@ class Component extends React.Component {
                   <label htmlFor="quantity">Ilość:</label>
                   <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={this.state.quantity} onChange={this.handleQuantityChange.bind(this)} />
                   <Button submitForm={true} text={'Dodaj do koszyka'} />
-                </form>}
-          </section>
+                </form>
+            }
+          </div>
         </main>
       );
     }
@@ -127,8 +128,8 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as Course,
-  Container as Course,
-  Component as CourseComponent, //for tests
+  // Component as CoursePage,
+  Container as CoursePage,
+  Component as CoursePageComponent, //for tests
 };
 
