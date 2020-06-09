@@ -13,6 +13,7 @@ import { Course } from '../../features/Course/Course';
 import { connect } from 'react-redux';
 import { fetchCourseDetails, getCurrentCourse } from '../../../redux/coursesRedux';
 import { addToCart } from '../../../redux/cartRedux';
+import { QuantityInput } from '../../common/QuantityInput/QuantityInput';
 
 class Component extends React.Component {
   state = {
@@ -25,7 +26,9 @@ class Component extends React.Component {
   }
 
   handleQuantityChange(event) {
-    this.setState({ quantity: event.target.value });
+    if (event.target.value >= 1) {
+      this.setState({ quantity: event.target.value });
+    }
   }
 
   handleSubmit(event, id, title, price) {
@@ -69,8 +72,7 @@ class Component extends React.Component {
               </div>
               :
               <form className={styles.addCartForm} onSubmit={(e) => this.handleSubmit(e, _id, title, price)}>
-                <label htmlFor="quantity">Ilość:</label>
-                <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={this.state.quantity} onChange={this.handleQuantityChange.bind(this)} />
+                <QuantityInput value={this.state.quantity} action={this.handleQuantityChange.bind(this)} />
                 <Button submitForm={true} text={'Dodaj do koszyka'} />
               </form>}
         </main>

@@ -11,7 +11,7 @@ import { lengthToHoursMinutes } from '../../../utils/lengthToHoursMinutes';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children, course }) => {
-  const { title, image, price, _id, chapters, length, gallery, description } = course;
+  const { title, image, price, chapters, length, gallery, description } = course;
 
   return (
     <section className={clsx(className, styles.root)}>
