@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import styles from './NotFound.module.scss';
 
 import { Button } from '../../common/Button/Button';
+import { Title } from '../../common/Title/Title';
 import { Face } from '../../common/Face/Face';
 
 // import { connect } from 'react-redux';
@@ -13,7 +14,7 @@ import { Face } from '../../common/Face/Face';
 const Component = ({ className, children }) => (
   <main className={clsx(className, styles.root, 'container')}>
     <Face />
-    <h1 className={styles.title}>Ups! Nie znalazłem tej strony!</h1>
+    <Title >Ups! Nie znalazłem tej strony!</Title>
     <Button text={'Wróć do strony głównej'} />
   </main>
 );

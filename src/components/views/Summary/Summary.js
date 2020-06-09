@@ -4,12 +4,14 @@ import clsx from 'clsx';
 
 import styles from './Summary.module.scss';
 
+import { Title } from '../../common/Title/Title';
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children }) => (
   <div className={clsx(className, styles.root, 'container')}>
-    <h2>Summary</h2>
+    <Title decoration={true} >Zamówienie</Title>
     {children}
   </div>
 );

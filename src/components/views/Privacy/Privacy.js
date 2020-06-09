@@ -4,12 +4,14 @@ import clsx from 'clsx';
 
 import styles from './Privacy.module.scss';
 
+import { Title } from '../../common/Title/Title';
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children }) => (
   <main className={clsx(className, styles.root, 'container')}>
-    <h2>Privacy</h2>
+    <Title decoration={true} >Polityka prywatności</Title>
     {children}
   </main>
 );

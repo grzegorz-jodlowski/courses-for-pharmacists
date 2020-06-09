@@ -12,8 +12,7 @@
   border: 4px solid $color-border-dark;
   border-radius: 10px;
   background-color: $color-background;
-  margin: 0 auto;
-  margin-top: 40px;
+  margin: 2rem auto;
 
   @media screen and (max-width: $breakpoint-xs) {
     transform: scale(0.8);

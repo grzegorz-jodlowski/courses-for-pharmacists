@@ -4,43 +4,6 @@
   margin-top: 6rem;
   margin-bottom: 3rem;
   padding: 0 2rem;
-
-  &:hover .title::after {
-    left: 50%;
-  }
-}
-
-.title {
-  font-family: $font-header;
-  font-size: 3rem;
-  text-align: center;
-  padding: 2rem 0;
-  width: 80%;
-  margin: 0 auto;
-  position: relative;
-  margin-bottom: 2rem;
-
-  @media (max-width: $breakpoint-xs) {
-    width: 100%;
-  }
-
-  &::after {
-    content: "";
-    width: 40%;
-    height: 6px;
-    bottom: 0;
-    left: -150%;
-    transform: translateX(-50%);
-    display: block;
-    position: absolute;
-    background-color: $color-secondary;
-    border-radius: $radius;
-    transition: $transition;
-
-    @media (max-width: $breakpoint-m) {
-      left: 50%;
-    }
-  }
 }
 
 .form {

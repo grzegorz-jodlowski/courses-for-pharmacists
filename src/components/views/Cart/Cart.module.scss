@@ -4,39 +4,6 @@
 
 // }
 
-.title {
-  font-family: $font-header;
-  font-size: 3rem;
-  text-align: center;
-  padding: 2rem 0;
-  width: 80%;
-  margin: 0 auto;
-  position: relative;
-  margin-bottom: 2rem;
-
-  @media (max-width: $breakpoint-xs) {
-    width: 100%;
-  }
-
-  &::after {
-    content: "";
-    width: 10%;
-    height: 6px;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    display: block;
-    position: absolute;
-    background-color: $color-secondary;
-    border-radius: $radius;
-    transition: $transition;
-
-    @media (max-width: $breakpoint-m) {
-      width: 20%;
-    }
-  }
-}
-
 .cartItem {
   border: 1.5px solid $color-border-light;
   color: $color-text;

@@ -7,11 +7,13 @@ import styles from './MyCourses.module.scss';
 import { Login } from '../Login/Login';
 import { CoursesCards } from '../../features/CoursesCards/CoursesCards';
 import { Spinner } from '../../common/Spinner/Spinner';
+import { Title } from '../../common/Title/Title';
 
 import { connect } from 'react-redux';
 import { getAll, fetchCourses } from '../../../redux/coursesRedux';
 
 class Component extends React.Component {
+
   componentDidMount() {
     const { fetchCourses, courses } = this.props;
     if (courses.length === 0) {
@@ -26,6 +28,7 @@ class Component extends React.Component {
       const userCourses = courses.filter(course => user.courses.includes(course._id) ? course : null);
       return (
         <main className={clsx(className, styles.root, 'container')}>
+          <Title decoration={true} >Moje Kursy</Title>
           {loading || loadingError ? <Spinner /> : <CoursesCards courses={userCourses} />}
         </main>
       );

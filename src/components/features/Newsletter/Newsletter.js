@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import styles from './Newsletter.module.scss';
 
 import { Button } from '../../common/Button/Button';
+import { Title } from '../../common/Title/Title';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
@@ -28,18 +29,20 @@ class Component extends React.Component {
     this.setState({ name: '', email: '' });
     event.preventDefault();
   }
-  //
+
   render() {
 
     return (
       <section className={clsx(styles.root)} >
-        <h2 className={styles.title}>Zapisz się na newsletter i odbierz darmowe rozdziały oferowanych kursów!</h2>
+        <Title decoration={true}>Zapisz się na newsletter i odbierz darmowe rozdziały oferowanych kursów!</Title>
+
         <form className={styles.form} onSubmit={this.handleSubmit.bind(this)}>
           <label htmlFor="name">Imię <span>*</span></label>
           <input name="name" id="name" required className={styles.inputName} type="text" value={this.state.name} onChange={this.handleNameChange.bind(this)} />
           <label htmlFor="email">Email <span>*</span></label>
           <input name="email" id="email" required className={styles.inputEmail} type="text" value={this.state.email} onChange={this.handleEmailChange.bind(this)} />
           <p className={styles.disclaimer} >Zapisując się na newsletter wyrażasz zgodę na przesyłanie informacji o produktach, nowościach i promocjach ze strony Kursy dla Farmaceutów.</p>
+
           <Button submitForm={true} text={'Zapisz mnie i wyślij rozdziały!'} />
         </form>
       </section>

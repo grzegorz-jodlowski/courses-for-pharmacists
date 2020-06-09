@@ -4,9 +4,8 @@ import clsx from 'clsx';
 
 import styles from './Cart.module.scss';
 
-import { Link } from 'react-router-dom';
-
 import { Button } from '../../common/Button/Button';
+import { Title } from '../../common/Title/Title';
 
 import { connect } from 'react-redux';
 import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../../../redux/cartRedux';
@@ -43,7 +42,7 @@ class Component extends React.Component {
     });
 
     return (<main className={clsx(className, styles.root, 'container')} >
-      <h2 className={styles.title}>Zamówienie</h2>
+      <Title decoration={true} >Koszyk</Title>
 
       {cart.length > 0
         ?
