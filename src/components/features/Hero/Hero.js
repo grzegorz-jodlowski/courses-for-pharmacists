@@ -8,9 +8,11 @@ import styles from './Hero.module.scss';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children }) => (
-  <section className={clsx(className, styles.hero)}>
-    <a href="#CourseCard" ><div className={styles.arrow}></div></a>
-  </section>
+  <a href="#CourseCard" >
+    <section className={clsx(className, styles.hero)}>
+      <div className={styles.arrow}></div>
+    </section>
+  </a>
 );
 
 Component.propTypes = {

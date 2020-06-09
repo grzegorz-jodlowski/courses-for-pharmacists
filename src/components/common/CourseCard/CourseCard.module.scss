@@ -51,6 +51,8 @@
   font-size: 1.3rem;
   color: $color-primary;
   font-weight: 700;
+  outline: none;
+  cursor: pointer;
 
   @media (max-width: $breakpoint-m) {
     bottom: 15%;
