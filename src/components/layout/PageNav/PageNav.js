@@ -8,15 +8,21 @@ import { Logo } from '../../common/Logo/Logo';
 import { NavButton } from '../../common/NavButton/NavButton';
 
 import { connect } from 'react-redux';
-// import { updateLoginStatus } from '../../../redux/loginRedux';
+import { updateLoginStatus } from '../../../redux/loginRedux';
 
 class Component extends React.Component {
   state = {
     isOpen: false,
   }
 
-  handleMenuClick() {
-    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+  handleMenuClick(e) {
+    const path = e.target.href && e.target.href.split('/').pop();
+    if (window.innerWidth < 768) {
+      this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+    }
+    if (path === 'logout') {
+      this.props.updateLoginStatus(path);
+    }
   }
 
   classes = {
@@ -41,16 +47,16 @@ class Component extends React.Component {
         <div className={styles.wrapper}>
           <Logo />
           <div style={isOpen ? this.classes.menu : null} className={clsx(styles.buttons)}>
-            <NavButton text={'Moje kursy'} path={'courses'} />
-            <NavButton text={'Koszyk'} path={'cart'} />
-            <NavButton text={'Kontakt'} path={'contact'} />
+            <NavButton action={this.handleMenuClick.bind(this)} text={'Moje kursy'} path={'courses'} />
+            <NavButton action={this.handleMenuClick.bind(this)} text={'Koszyk'} path={'cart'} />
+            <NavButton action={this.handleMenuClick.bind(this)} text={'Kontakt'} path={'contact'} />
             {isLogged
               ?
-              <NavButton type={'log'} text={'Wyloguj'} path={'logout'} />
+              <NavButton action={this.handleMenuClick.bind(this)} text={'Wyloguj'} path={'logout'} />
               :
-              <NavButton type={'log'} text={'Zaloguj'} path={'login'} />}
+              <NavButton action={this.handleMenuClick.bind(this)} text={'Zaloguj'} path={'login'} />}
           </div>
-          <button onClick={() => this.handleMenuClick()} className={styles.hamburger}>&#9776;</button>
+          <button onClick={this.handleMenuClick.bind(this)} className={styles.hamburger}>&#9776;</button>
         </div>
       </nav>
     );
@@ -61,7 +67,7 @@ Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   isLogged: PropTypes.bool,
-
+  updateLoginStatus: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -69,6 +75,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  updateLoginStatus: log => dispatch(updateLoginStatus(log)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
