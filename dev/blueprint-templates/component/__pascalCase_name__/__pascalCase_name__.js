@@ -4,12 +4,14 @@ import clsx from 'clsx';
 
 import styles from './{{pascalCase name}}.module.scss';
 
+import { Title } from '../../common/Title/Title';
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
-const Component = ({className, children}) => (
+const Component = ({ className, children }) => (
   <div className={clsx(className, styles.root)}>
-    <h2>{{pascalCase name}}</h2>
+    <Title decoration={false}>{{ pascalCase name }}</Title>
     {children}
   </div>
 );
@@ -30,8 +32,8 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as {{pascalCase name}},
+  Component as {{ pascalCase name }},
   // Container as {{pascalCase name}},
-  Component as {{pascalCase name}}Component, //for tests
+  Component as {{ pascalCase name }}Component, //for tests
 };
 

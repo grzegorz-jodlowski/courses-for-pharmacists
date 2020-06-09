@@ -59,7 +59,7 @@ class Component extends React.Component {
           <Button action={this.handleSummary.bind(this)} text={'Do podsumowania'} path={'summary'} />
         </div>
         :
-        <h2 className={styles.info}>Koszyk jest pusty</h2>
+        <Title>Koszyk jest pusty</Title>
       }
     </main>
     );
