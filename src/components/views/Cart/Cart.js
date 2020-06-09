@@ -6,6 +6,8 @@ import styles from './Cart.module.scss';
 
 import { Link } from 'react-router-dom';
 
+import { Button } from '../../common/Button/Button';
+
 import { connect } from 'react-redux';
 import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../../../redux/cartRedux';
 import { addProducts } from '../../../redux/orderRedux';
@@ -55,7 +57,7 @@ class Component extends React.Component {
             </form>
           )}
           <p className={styles.cartValue}>{`Do zapłaty: ${cartValue},00 PLN`}</p>
-          <button className={styles.summaryButton} onClick={() => this.handleSummary()}><Link to={`${process.env.PUBLIC_URL}/summary`} > Do podsumowania</Link></button>
+          <Button action={this.handleSummary.bind(this)} text={'Do podsumowania'} path={'summary'} />
         </div>
         :
         <h2 className={styles.info}>Koszyk jest pusty</h2>

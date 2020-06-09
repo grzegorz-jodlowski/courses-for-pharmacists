@@ -1,0 +1,29 @@
+@import "../../../styles/settings.scss";
+
+.button {
+  margin: 4rem auto 1rem;
+  display: block;
+  background-color: $color-secondary;
+  border-radius: $radius;
+  cursor: pointer;
+  transition: $transition;
+  border: none;
+  color: $color-text-bright;
+  outline: none;
+  font-size: 1.5rem;
+
+  &:hover {
+    background-color: rgba($color-secondary, 0.8);
+  }
+  a {
+    text-decoration: none;
+    color: $color-text-bright;
+    padding: 15px 40px;
+    display: block;
+  }
+}
+
+.input {
+  @extend .button;
+  padding: 15px 40px;
+}

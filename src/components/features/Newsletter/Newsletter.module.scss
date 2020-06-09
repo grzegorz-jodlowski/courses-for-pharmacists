@@ -71,19 +71,3 @@ label span {
   text-align: center;
   width: 80%;
 }
-
-.submitButton {
-  display: block;
-  background-color: $color-secondary;
-  border-radius: $radius;
-  cursor: pointer;
-  transition: $transition;
-  border: none;
-  color: $color-text-bright;
-  padding: 15px 40px;
-  outline: none;
-
-  &:hover {
-    background-color: rgba($color-secondary, 0.8);
-  }
-}

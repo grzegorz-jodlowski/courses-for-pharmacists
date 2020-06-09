@@ -9,6 +9,7 @@ import styles from './Course.module.scss';
 import { Link } from 'react-router-dom';
 
 import { Spinner } from '../../common/Spinner/Spinner';
+import { Button } from '../../common/Button/Button';
 
 import { lengthToHoursMinutes } from '../../../utils/lengthToHoursMinutes';
 
@@ -77,18 +78,18 @@ class Component extends React.Component {
               </Carousel>
             </article>
             {isCourseAlreadyBought && isLogged ?
-              <button className={styles.toCartButton}><Link to={`${process.env.PUBLIC_URL}/panel/${_id}`} > Przejdź do panelu kursu</Link></button>
+              <Button text={'Przejdź do panelu kursu'} path={`panel/${_id}`} />
               :
               isCourseInCart ?
                 <div className={styles.toCart} >
                   <div className={styles.toCartInfo}>Kurs jest w koszyku</div>
-                  <button className={styles.toCartButton}><Link to={`${process.env.PUBLIC_URL}/cart`} > Przejdź do koszyka</Link></button>
+                  <Button text={'Przejdź do koszyka'} path={'cart'} />
                 </div>
                 :
                 <form className={styles.addCartForm} onSubmit={(e) => this.handleSubmit(e, _id, title, price)}>
                   <label htmlFor="quantity">Ilość:</label>
                   <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={this.state.quantity} onChange={this.handleQuantityChange.bind(this)} />
-                  <input className={styles.submitButton} type="submit" value="Dodaj do koszyka" />
+                  <Button submitForm={true} text={'Dodaj do koszyka'} />
                 </form>}
           </section>
         </main>
