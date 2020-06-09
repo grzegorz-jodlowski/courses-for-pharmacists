@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import styles from './CoursesCards.module.scss';
 
-import { CourseCard } from '../../common/CourseCard/CourseCard';
+import { CourseCard } from '../CourseCard/CourseCard';
 
 // import { connect } from 'react-redux';
 // import { getAll, fetchCourses } from '../../../redux/coursesRedux';
