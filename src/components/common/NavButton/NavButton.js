@@ -10,8 +10,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateLoginStatus } from '../../../redux/loginRedux';
 
-const Component = ({ className, children, text, path, updateLoginStatus }) => (
-  <Link to={`${process.env.PUBLIC_URL}/${path}`} className={clsx(className, styles.root)} onClick={() => updateLoginStatus(path)}>
+const Component = ({ className, children, text, path, updateLoginStatus, type }) => (
+  <Link to={`${process.env.PUBLIC_URL}/${path}`} className={clsx(className, styles.root)} onClick={type === 'log' ? () => updateLoginStatus(path) : null}>
     {text}
   </Link>
 );
@@ -21,8 +21,8 @@ Component.propTypes = {
   className: PropTypes.string,
   text: PropTypes.string,
   path: PropTypes.string,
+  type: PropTypes.string,
   updateLoginStatus: PropTypes.func,
-
 };
 
 const mapStateToProps = state => ({
