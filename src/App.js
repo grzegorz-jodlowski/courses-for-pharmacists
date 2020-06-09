@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
 
 import { MainLayout } from './components/layout/MainLayout/MainLayout';
 import { Homepage } from './components/views/Homepage/Homepage';
@@ -16,12 +16,20 @@ import { NotFound } from './components/views/NotFound/NotFound';
 import { CoursePanel } from './components/views/CoursePanel/CoursePanel';
 import { Summary } from './components/views/Summary/Summary';
 
+import { connect } from 'react-redux';
+import { getAll, fetchCourses } from './redux/coursesRedux';
 
-import { store } from './redux/store';
+class Component extends React.Component {
 
-const App = () => (
-  <Provider store={store}>
-    <BrowserRouter >
+  componentDidMount() {
+    const { fetchCourses, courses } = this.props;
+    if (courses.length === 0) {
+      fetchCourses();
+    }
+  }
+
+  render() {
+    return (
       <MainLayout>
         <Switch>
           <Route exact path={`${process.env.PUBLIC_URL}/`} component={Homepage} />
@@ -38,8 +46,27 @@ const App = () => (
           <Route exact path={`${process.env.PUBLIC_URL}*`} component={NotFound} />
         </Switch>
       </MainLayout>
-    </BrowserRouter>
-  </Provider>
-);
+    );
+  }
+}
 
-export { App };
+Component.propTypes = {
+  courses: PropTypes.array,
+  fetchCourses: PropTypes.func,
+};
+
+const mapStateToProps = state => ({
+  courses: getAll(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchCourses: () => dispatch(fetchCourses()),
+});
+
+const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+
+export {
+  // Component as App,
+  Container as App,
+  Component as AppComponent, //for tests
+};

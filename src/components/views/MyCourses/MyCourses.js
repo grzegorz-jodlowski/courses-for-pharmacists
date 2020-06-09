@@ -10,33 +10,22 @@ import { Spinner } from '../../common/Spinner/Spinner';
 import { Title } from '../../common/Title/Title';
 
 import { connect } from 'react-redux';
-import { getAll, fetchCourses } from '../../../redux/coursesRedux';
 
-class Component extends React.Component {
+const Component = ({ className, courses, loading, loadingError, isLogged, user }) => {
 
-  componentDidMount() {
-    const { fetchCourses, courses } = this.props;
-    if (courses.length === 0) {
-      fetchCourses();
-    }
+  if (isLogged) {
+    const userCourses = courses.filter(course => user.courses.includes(course._id) ? course : null);
+
+    return (
+      <main className={clsx(className, styles.root, 'container')}>
+        <Title decoration={true} >Moje Kursy</Title>
+        {loading || loadingError ? <Spinner /> : <CoursesCards courses={userCourses} />}
+      </main>
+    );
+  } else {
+    return <Login />;
   }
-
-  render() {
-    const { className, isLogged, user, courses, loading, loadingError } = this.props;
-
-    if (isLogged) {
-      const userCourses = courses.filter(course => user.courses.includes(course._id) ? course : null);
-      return (
-        <main className={clsx(className, styles.root, 'container')}>
-          <Title decoration={true} >Moje Kursy</Title>
-          {loading || loadingError ? <Spinner /> : <CoursesCards courses={userCourses} />}
-        </main>
-      );
-    } else {
-      return <Login />;
-    }
-  }
-}
+};
 
 Component.propTypes = {
   children: PropTypes.node,
@@ -44,7 +33,6 @@ Component.propTypes = {
   isLogged: PropTypes.bool,
   user: PropTypes.object,
   courses: PropTypes.array,
-  fetchCourses: PropTypes.func,
   loading: PropTypes.bool,
   loadingError: PropTypes.bool,
 };
@@ -52,14 +40,12 @@ Component.propTypes = {
 const mapStateToProps = state => ({
   isLogged: state.isLogged,
   user: state.user,
-  courses: getAll(state),
+  courses: state.courses.data,
   loading: state.courses.loading.active,
   loadingError: state.courses.loading.error,
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchCourses: () => dispatch(fetchCourses()),
-
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
