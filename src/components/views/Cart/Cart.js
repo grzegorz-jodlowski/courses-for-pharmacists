@@ -6,11 +6,11 @@ import styles from './Cart.module.scss';
 
 import { Button } from '../../common/Button/Button';
 import { Title } from '../../common/Title/Title';
+import { Price } from '../../common/Price/Price';
+import { CartItem } from '../../features/CartItem/CartItem';
 
 import { connect } from 'react-redux';
-import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../../../redux/cartRedux';
 import { addProducts } from '../../../redux/orderRedux';
-import { Price } from '../../common/Price/Price';
 
 class Component extends React.Component {
 
@@ -18,19 +18,6 @@ class Component extends React.Component {
     const { addProducts, cart } = this.props;
 
     addProducts(cart);
-  }
-
-  handleQuantityChange(id, e) {
-    this.props.updateCartItemQuantity({ id, quantity: e.target.value });
-  }
-
-  handleInfoChange(id, e) {
-    this.props.updateCartItemInfo({ id, additionalInfo: e.target.value });
-  }
-
-  handleRemove(id, e) {
-    e.preventDefault();
-    this.props.removeFromCart(id);
   }
 
   render() {
@@ -42,27 +29,23 @@ class Component extends React.Component {
       cartValue += (quantity * price);
     });
 
-    return (<main className={clsx(className, styles.root, 'container')} >
-      <Title decoration={true} >Koszyk</Title>
+    return (
+      <main className={clsx(className, styles.root, 'container')} >
+        <Title decoration={true} >Koszyk</Title>
 
-      {cart.length > 0
-        ?
-        <div>
-          {cart.map(({ quantity, courseId, title, price }) =>
-            <form key={courseId} className={styles.cartItem}>
-              <p className={styles.cartItemTitle}>{title}</p>
-              <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={quantity} onChange={(e) => this.handleQuantityChange(courseId, e)} />
-              <textarea name="additionalInfo" id="additionalInfo" className={styles.additionalInfo} onChange={(e) => this.handleInfoChange(courseId, e)} placeholder="Miejsce na dodatkowe informacje..."></textarea>
-              <button className={styles.removeButton} onClick={(e) => this.handleRemove(courseId, e)}></button>
-            </form>
-          )}
-          <Price price={cartValue} />
-          <Button action={this.handleSummary.bind(this)} text={'Do podsumowania'} path={'summary'} />
-        </div>
-        :
-        <Title>Koszyk jest pusty</Title>
-      }
-    </main>
+        {cart.length > 0
+          ?
+          <div>
+            {cart.map(cartItem =>
+              <CartItem key={cartItem.courseId} cartItem={cartItem} />
+            )}
+            <Price price={cartValue} />
+            <Button action={this.handleSummary.bind(this)} text={'Do podsumowania'} path={'summary'} />
+          </div>
+          :
+          <Title>Koszyk jest pusty</Title>
+        }
+      </main>
     );
   }
 }
@@ -71,9 +54,6 @@ Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   cart: PropTypes.array,
-  removeFromCart: PropTypes.func,
-  updateCartItemQuantity: PropTypes.func,
-  updateCartItemInfo: PropTypes.func,
   addProducts: PropTypes.func,
 };
 
@@ -82,9 +62,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  removeFromCart: id => dispatch(removeFromCart(id)),
-  updateCartItemQuantity: ({ id, quantity }) => dispatch(updateCartItemQuantity({ id, quantity })),
-  updateCartItemInfo: ({ id, additionalInfo }) => dispatch(updateCartItemInfo({ id, additionalInfo })),
   addProducts: cart => dispatch(addProducts(cart)),
 });
 
