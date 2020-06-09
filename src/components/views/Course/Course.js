@@ -6,8 +6,6 @@ import { Carousel } from 'react-responsive-carousel';
 
 import styles from './Course.module.scss';
 
-import { Link } from 'react-router-dom';
-
 import { Spinner } from '../../common/Spinner/Spinner';
 import { Button } from '../../common/Button/Button';
 
@@ -47,7 +45,7 @@ class Component extends React.Component {
   }
 
   render() {
-    const { className, children, course, cart, user, isLogged, loading, loadingError } = this.props;
+    const { className, course, cart, user, isLogged, loading, loadingError } = this.props;
     const { title, image, price, _id, chapters, length, gallery, description } = course;
 
     if (loading || loadingError) {

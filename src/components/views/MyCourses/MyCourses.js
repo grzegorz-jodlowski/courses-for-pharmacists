@@ -22,7 +22,7 @@ class Component extends React.Component {
   }
 
   render() {
-    const { className, children, isLogged, user, courses, loading, loadingError } = this.props;
+    const { className, isLogged, user, courses, loading, loadingError } = this.props;
 
     if (isLogged) {
       const userCourses = courses.filter(course => user.courses.includes(course._id) ? course : null);

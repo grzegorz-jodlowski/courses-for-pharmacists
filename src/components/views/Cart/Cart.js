@@ -33,7 +33,7 @@ class Component extends React.Component {
   }
 
   render() {
-    const { className, children, cart } = this.props;
+    const { className, cart } = this.props;
 
     let cartValue = 0;
 
