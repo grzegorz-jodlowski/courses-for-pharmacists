@@ -6,6 +6,7 @@ import styles from './MyCourses.module.scss';
 
 import { Login } from '../Login/Login';
 import { CoursesCards } from '../../features/CoursesCards/CoursesCards';
+import { Spinner } from '../../common/Spinner/Spinner';
 
 import { connect } from 'react-redux';
 import { getAll, fetchCourses } from '../../../redux/coursesRedux';
@@ -19,13 +20,13 @@ class Component extends React.Component {
   }
 
   render() {
-    const { className, children, isLogged, user, courses } = this.props;
+    const { className, children, isLogged, user, courses, loading, loadingError } = this.props;
 
     if (isLogged) {
       const userCourses = courses.filter(course => user.courses.includes(course._id) ? course : null);
       return (
         <main className={clsx(className, styles.root, 'container')}>
-          <CoursesCards courses={userCourses} />
+          {loading || loadingError ? <Spinner /> : <CoursesCards courses={userCourses} />}
         </main>
       );
     } else {
@@ -41,16 +42,21 @@ Component.propTypes = {
   user: PropTypes.object,
   courses: PropTypes.array,
   fetchCourses: PropTypes.func,
+  loading: PropTypes.bool,
+  loadingError: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
   isLogged: state.isLogged,
   user: state.user,
   courses: getAll(state),
+  loading: state.courses.loading.active,
+  loadingError: state.courses.loading.error,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchCourses: () => dispatch(fetchCourses()),
+
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
