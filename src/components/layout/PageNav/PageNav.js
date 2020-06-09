@@ -15,13 +15,22 @@ class Component extends React.Component {
     isOpen: false,
   }
 
+  hamburgerMenuBreakpoint = 768;
+
   handleMenuClick(e) {
     const path = e.target.href && e.target.href.split('/').pop();
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= this.hamburgerMenuBreakpoint) {
       this.setState(prevState => ({ isOpen: !prevState.isOpen }));
     }
     if (path === 'logout') {
       this.props.updateLoginStatus(path);
+    }
+  }
+
+  handleLogoClick(e) {
+    const logoPath = e.target.src && e.target.src.split('/').pop();
+    if (logoPath && window.innerWidth <= this.hamburgerMenuBreakpoint) {
+      this.state.isOpen && this.setState(prevState => ({ isOpen: !prevState.isOpen }));
     }
   }
 
@@ -33,7 +42,7 @@ class Component extends React.Component {
       <nav className={clsx(this.className, styles.root)
       } >
         <div className={styles.wrapper}>
-          <Logo />
+          <Logo action={this.handleLogoClick.bind(this)} />
           <div className={isOpen ? clsx(styles.buttons, 'menuOpen') : clsx(styles.buttons)}>
             <NavButton action={this.handleMenuClick.bind(this)} text={'Moje kursy'} path={'courses'} />
             <NavButton action={this.handleMenuClick.bind(this)} text={'Koszyk'} path={'cart'} />

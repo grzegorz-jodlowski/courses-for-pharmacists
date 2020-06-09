@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
-const Component = ({ className, children }) => (
-  <Link to={`${process.env.PUBLIC_URL}/`}>
+const Component = ({ className, children, action }) => (
+  <Link to={`${process.env.PUBLIC_URL}/`} onClick={action}>
     <div className={clsx(className, styles.root)}>
       <img src="img/logo.png" alt="Logo Kursy dla Farmaceutów" className={styles.logo} />
     </div>
@@ -20,6 +20,7 @@ const Component = ({ className, children }) => (
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  action: PropTypes.func,
 };
 
 // const mapStateToProps = state => ({
