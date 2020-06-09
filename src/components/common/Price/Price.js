@@ -7,9 +7,9 @@ import styles from './Price.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
-const Component = ({ className, children, price }) => (
+const Component = ({ className, children, price, text }) => (
   <p className={clsx(className, styles.root)}>
-    {`Do zapłaty: ${price},00 PLN`}
+    {`${text} ${price},00 PLN`}
   </p>
 );
 
@@ -17,6 +17,7 @@ Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   price: PropTypes.number,
+  text: PropTypes.string,
 };
 
 // const mapStateToProps = state => ({

@@ -39,7 +39,7 @@ class Component extends React.Component {
             {cart.map(cartItem =>
               <CartItem key={cartItem.courseId} cartItem={cartItem} />
             )}
-            <Price price={cartValue} />
+            <Price price={cartValue} text={'Do zapłaty: '} />
             <Button action={this.handleSummary.bind(this)} text={'Do podsumowania'} path={'summary'} />
           </div>
           :
