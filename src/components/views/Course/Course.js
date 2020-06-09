@@ -8,6 +8,7 @@ import styles from './Course.module.scss';
 
 import { Spinner } from '../../common/Spinner/Spinner';
 import { Button } from '../../common/Button/Button';
+import { Info } from '../../common/Info/Info';
 
 import { lengthToHoursMinutes } from '../../../utils/lengthToHoursMinutes';
 
@@ -80,7 +81,7 @@ class Component extends React.Component {
               :
               isCourseInCart ?
                 <div className={styles.toCart} >
-                  <div className={styles.toCartInfo}>Kurs jest w koszyku</div>
+                  <Info variant={'success'}>Kurs jest w koszyku</Info>
                   <Button text={'Przejdź do koszyka'} path={'cart'} />
                 </div>
                 :

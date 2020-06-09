@@ -1,0 +1,45 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  border-left: 8px solid #111;
+  padding: 0.9rem 2rem;
+  margin: 1rem auto 1.5rem auto;
+  display: flex;
+  opacity: 1;
+  font-weight: lighter;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+  max-width: 19.5rem;
+  border-radius: 4px;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.success {
+  background: $color-success-back;
+  color: $color-text-bright;
+  border-color: $color-success;
+}
+
+.warning {
+  background: $color-warning-back;
+  color: $color-text-bright;
+  border-color: $color-warning;
+}
+
+.error {
+  background: $color-error-back;
+  color: $color-text-bright;
+  border-color: $color-error;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
