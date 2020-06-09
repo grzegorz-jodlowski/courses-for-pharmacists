@@ -10,6 +10,7 @@ import { Title } from '../../common/Title/Title';
 import { connect } from 'react-redux';
 import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../../../redux/cartRedux';
 import { addProducts } from '../../../redux/orderRedux';
+import { Price } from '../../common/Price/Price';
 
 class Component extends React.Component {
 
@@ -55,7 +56,7 @@ class Component extends React.Component {
               <button className={styles.removeButton} onClick={(e) => this.handleRemove(courseId, e)}></button>
             </form>
           )}
-          <p className={styles.cartValue}>{`Do zapłaty: ${cartValue},00 PLN`}</p>
+          <Price price={cartValue} />
           <Button action={this.handleSummary.bind(this)} text={'Do podsumowania'} path={'summary'} />
         </div>
         :
