@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import styles from './NotFound.module.scss';
 
-import { Link } from 'react-router-dom';
+import { Button } from '../../common/Button/Button';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
@@ -22,8 +22,8 @@ const Component = ({ className, children }) => (
       <div className={styles.mouth}></div>
     </section>
 
-    <h1>Ups! Nie znalazłem tej strony!</h1>
-    <button className={styles.btn}><Link to={`${process.env.PUBLIC_URL}/`} > Wróć do strony głównej</Link></button>
+    <h1 className={styles.title}>Ups! Nie znalazłem tej strony!</h1>
+    <Button text={'Wróć do strony głównej'} />
   </main>
 );
 
