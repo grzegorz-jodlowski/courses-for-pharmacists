@@ -34,23 +34,19 @@ a:visited {
 }
 
 .container {
-  margin: 0 auto;
-  padding: 2rem;
-  max-width: $container-width-large;
+  margin: 2rem;
+  align-self: center;
+  max-width: $container-width-xl;
   width: 100%;
   flex-grow: 1;
   z-index: -1;
 
   @media (max-width: $breakpoint-xl) {
-    max-width: $container-width-medium;
+    max-width: $container-width-lg;
   }
 
   @media (max-width: $breakpoint-lg) {
-    max-width: $container-width-small;
-  }
-
-  @media (max-width: $breakpoint-s) {
-    padding: 2rem 0;
+    max-width: 95%;
   }
 }
 

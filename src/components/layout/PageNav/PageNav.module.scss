@@ -7,16 +7,16 @@
 
 .wrapper {
   margin: 0 auto;
-  max-width: $container-width-large;
+  max-width: $container-width-xl;
   display: flex;
   justify-content: space-between;
   position: relative;
 
   @media (max-width: $breakpoint-xl) {
-    max-width: $container-width-medium;
+    max-width: $container-width-lg;
   }
   @media (max-width: $breakpoint-lg) {
-    max-width: $container-width-small;
+    max-width: $container-width-m;
   }
 }
 

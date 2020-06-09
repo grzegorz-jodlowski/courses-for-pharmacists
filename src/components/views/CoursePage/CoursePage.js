@@ -2,15 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
 
 import styles from './CoursePage.module.scss';
 
 import { Spinner } from '../../common/Spinner/Spinner';
 import { Button } from '../../common/Button/Button';
 import { Info } from '../../common/Info/Info';
-
-import { lengthToHoursMinutes } from '../../../utils/lengthToHoursMinutes';
+import { Course } from '../../features/Course/Course';
 
 import { connect } from 'react-redux';
 import { fetchCourseDetails, getCurrentCourse } from '../../../redux/coursesRedux';
@@ -47,7 +45,8 @@ class Component extends React.Component {
 
   render() {
     const { className, course, cart, user, isLogged, loading, loadingError } = this.props;
-    const { title, image, price, _id, chapters, length, gallery, description } = course;
+    const { title, price, _id } = course;
+
 
     if (loading || loadingError) {
       return <Spinner />;
@@ -57,41 +56,23 @@ class Component extends React.Component {
       const isCourseAlreadyBought = user.courses.some(course => course === _id);
 
       return (
-        <main className={'container'}>
-          <div className={clsx(className, styles.root)}>
-            <img src={`/img/${image}`} alt={`Miniatura kursu: ${title}`} className={styles.image} />
-            <div className={styles.info}>
-              <h2 className={styles.title}>{title}</h2>
-              <p className={styles.description}>{description}</p>
-              <p className={styles.price}>{`Cena: ${price}.00 PLN`}</p>
-              <p className={styles.chapters}>{`Ilość rozdziałów: ${chapters}`}</p>
-              <p className={styles.length}>{`Długość kursu: ${lengthToHoursMinutes(length)}`}</p>
-            </div>
-            <article className={styles.gallery}>
-              <Carousel>
-                {gallery && gallery.map((item, i) => (
-                  <div key={i}>
-                    <img src={`/img/${item}`} alt={`Zdjęcie ${i + 1} w galerii kursu ${title}`} />
-                  </div>
-                ))}
-              </Carousel>
-            </article>
-            {isCourseAlreadyBought && isLogged ?
-              <Button text={'Przejdź do panelu kursu'} path={`panel/${_id}`} />
+        <main className={clsx(className, styles.root, 'container')}>
+          <Course course={course} />
+
+          {isCourseAlreadyBought && isLogged ?
+            <Button text={'Przejdź do panelu kursu'} path={`panel/${_id}`} />
+            :
+            isCourseInCart ?
+              <div className={styles.toCart} >
+                <Info variant={'success'}>Kurs jest w koszyku</Info>
+                <Button text={'Przejdź do koszyka'} path={'cart'} />
+              </div>
               :
-              isCourseInCart ?
-                <div className={styles.toCart} >
-                  <Info variant={'success'}>Kurs jest w koszyku</Info>
-                  <Button text={'Przejdź do koszyka'} path={'cart'} />
-                </div>
-                :
-                <form className={styles.addCartForm} onSubmit={(e) => this.handleSubmit(e, _id, title, price)}>
-                  <label htmlFor="quantity">Ilość:</label>
-                  <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={this.state.quantity} onChange={this.handleQuantityChange.bind(this)} />
-                  <Button submitForm={true} text={'Dodaj do koszyka'} />
-                </form>
-            }
-          </div>
+              <form className={styles.addCartForm} onSubmit={(e) => this.handleSubmit(e, _id, title, price)}>
+                <label htmlFor="quantity">Ilość:</label>
+                <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={this.state.quantity} onChange={this.handleQuantityChange.bind(this)} />
+                <Button submitForm={true} text={'Dodaj do koszyka'} />
+              </form>}
         </main>
       );
     }
