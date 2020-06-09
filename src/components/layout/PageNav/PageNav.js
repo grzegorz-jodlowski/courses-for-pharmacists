@@ -17,24 +17,12 @@ class Component extends React.Component {
 
   handleMenuClick(e) {
     const path = e.target.href && e.target.href.split('/').pop();
-    if (window.innerWidth < 768) {
+    if (window.innerWidth <= 768) {
       this.setState(prevState => ({ isOpen: !prevState.isOpen }));
     }
     if (path === 'logout') {
       this.props.updateLoginStatus(path);
     }
-  }
-
-  classes = {
-    menu: {
-      display: 'block',
-      position: 'absolute',
-      top: '8rem',
-      left: 0,
-      width: '100%',
-      backgroundColor: '#fff',
-      textAlign: 'center',
-    },
   }
 
   render() {
@@ -46,7 +34,7 @@ class Component extends React.Component {
       } >
         <div className={styles.wrapper}>
           <Logo />
-          <div style={isOpen ? this.classes.menu : null} className={clsx(styles.buttons)}>
+          <div className={isOpen ? clsx(styles.buttons, 'menuOpen') : clsx(styles.buttons)}>
             <NavButton action={this.handleMenuClick.bind(this)} text={'Moje kursy'} path={'courses'} />
             <NavButton action={this.handleMenuClick.bind(this)} text={'Koszyk'} path={'cart'} />
             <NavButton action={this.handleMenuClick.bind(this)} text={'Kontakt'} path={'contact'} />

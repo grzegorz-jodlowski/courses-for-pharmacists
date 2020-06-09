@@ -53,3 +53,13 @@ a:visited {
     padding: 2rem 0;
   }
 }
+
+.menuOpen {
+  display: block;
+  position: absolute;
+  top: 8rem;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+}
