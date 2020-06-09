@@ -35,8 +35,9 @@
   font-size: 3rem;
   margin-right: 2rem;
   padding: 0 2rem;
+  display: none;
 
-  @media (min-width: $breakpoint-s) {
-    display: none;
+  @media (max-width: $breakpoint-s) {
+    display: block;
   }
 }
