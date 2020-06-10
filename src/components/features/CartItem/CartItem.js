@@ -6,6 +6,7 @@ import styles from './CartItem.module.scss';
 
 import { Price } from '../../common/Price/Price';
 import { QuantityInput } from '../../common/QuantityInput/QuantityInput';
+import { RemoveButton } from '../../common/RemoveButton/RemoveButton';
 
 import { connect } from 'react-redux';
 import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../../../redux/cartRedux';
@@ -34,7 +35,7 @@ class Component extends React.Component {
         <p className={styles.title}>{title}</p>
         <textarea name="additionalInfo" id="additionalInfo" className={styles.additionalInfo} onChange={(e) => this.handleInfoChange(courseId, e)} placeholder="Miejsce na dodatkowe informacje..."></textarea>
         <QuantityInput value={quantity} action={(e) => this.handleQuantityChange(courseId, e)} className={styles.inputQuantityPosition} />
-        <button className={styles.removeButton} onClick={(e) => this.handleRemove(courseId, e)}></button>
+        <RemoveButton action={(e) => this.handleRemove(courseId, e)} className={styles.removeButton} />
         <Price price={price * quantity} text={''} />
       </form>
     );

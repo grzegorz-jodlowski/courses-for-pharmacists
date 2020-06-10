@@ -1,0 +1,16 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  width: 40px;
+  height: 40px;
+  opacity: 0.3;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: $transition;
+  font-size: 2rem;
+
+  &:hover {
+    opacity: 1;
+  }
+}
