@@ -42,3 +42,13 @@
     display: block;
   }
 }
+
+.menuOpen {
+  display: block;
+  position: absolute;
+  top: 8rem;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+}

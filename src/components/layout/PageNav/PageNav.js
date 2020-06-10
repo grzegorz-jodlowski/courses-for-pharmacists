@@ -39,11 +39,10 @@ class Component extends React.Component {
     const { isLogged } = this.props;
 
     return (
-      <nav className={clsx(this.className, styles.root)
-      } >
+      <nav className={clsx(this.className, styles.root)} >
         <div className={styles.wrapper}>
           <Logo action={this.handleLogoClick.bind(this)} />
-          <div className={isOpen ? clsx(styles.buttons, 'menuOpen') : clsx(styles.buttons)}>
+          <div className={isOpen ? clsx(styles.buttons, styles.menuOpen) : clsx(styles.buttons)}>
             <NavButton action={this.handleMenuClick.bind(this)} text={'Moje kursy'} path={'courses'} />
             <NavButton action={this.handleMenuClick.bind(this)} text={'Koszyk'} path={'cart'} />
             <NavButton action={this.handleMenuClick.bind(this)} text={'Kontakt'} path={'contact'} />
