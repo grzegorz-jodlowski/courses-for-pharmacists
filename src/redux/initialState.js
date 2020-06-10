@@ -23,7 +23,6 @@ export const initialState = {
     },
     privacy: null,
     terms: null,
-    user: null,
     products: [],
   },
   user: {
