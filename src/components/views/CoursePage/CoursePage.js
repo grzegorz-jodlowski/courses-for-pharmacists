@@ -72,7 +72,7 @@ class Component extends React.Component {
               </div>
               :
               <form className={styles.addCartForm} onSubmit={(e) => this.handleSubmit(e, _id, title, price)}>
-                <QuantityInput value={this.state.quantity} action={this.handleQuantityChange.bind(this)} />
+                <QuantityInput value={this.state.quantity} action={this.handleQuantityChange.bind(this)} text={'Ilość: '} />
                 <Button submitForm={true} text={'Dodaj do koszyka'} />
               </form>}
         </main>

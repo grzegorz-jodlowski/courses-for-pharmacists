@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import styles from './CartItem.module.scss';
 
 import { Price } from '../../common/Price/Price';
+import { QuantityInput } from '../../common/QuantityInput/QuantityInput';
 
 import { connect } from 'react-redux';
 import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../../../redux/cartRedux';
@@ -31,8 +32,8 @@ class Component extends React.Component {
     return (
       <form key={courseId} className={clsx(className, styles.root)}>
         <p className={styles.title}>{title}</p>
-        <input name="quantity" id="quantity" required className={styles.inputQuantity} type="number" value={quantity} onChange={(e) => this.handleQuantityChange(courseId, e)} />
         <textarea name="additionalInfo" id="additionalInfo" className={styles.additionalInfo} onChange={(e) => this.handleInfoChange(courseId, e)} placeholder="Miejsce na dodatkowe informacje..."></textarea>
+        <QuantityInput value={quantity} action={(e) => this.handleQuantityChange(courseId, e)} className={styles.inputQuantityPosition} />
         <button className={styles.removeButton} onClick={(e) => this.handleRemove(courseId, e)}></button>
         <Price price={price * quantity} text={''} />
       </form>

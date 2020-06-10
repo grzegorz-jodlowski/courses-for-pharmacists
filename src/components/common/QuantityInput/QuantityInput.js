@@ -7,9 +7,9 @@ import styles from './QuantityInput.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
-const Component = ({ className, children, value, action }) => (
+const Component = ({ className, children, value, action, text }) => (
   <label htmlFor="quantity" className={clsx(className, styles.root)}>
-    {'Ilość: '}
+    {text}
     <input name="quantity" id="quantity" required className={styles.input} type="number" value={value} onChange={action} />
   </label>
 );
@@ -18,6 +18,7 @@ Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   value: PropTypes.string,
+  text: PropTypes.string,
   action: PropTypes.func,
 };
 
