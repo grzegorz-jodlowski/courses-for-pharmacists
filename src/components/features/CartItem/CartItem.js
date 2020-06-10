@@ -33,8 +33,8 @@ class Component extends React.Component {
     return (
       <form key={courseId} className={clsx(className, styles.root)}>
         <p className={styles.title}>{title}</p>
-        <textarea name="additionalInfo" id="additionalInfo" className={styles.additionalInfo} onChange={(e) => this.handleInfoChange(courseId, e)} placeholder="Miejsce na dodatkowe informacje..."></textarea>
-        <QuantityInput value={quantity} action={(e) => this.handleQuantityChange(courseId, e)} className={styles.inputQuantityPosition} />
+        <textarea name="additionalInfo" id={`additionalInfo${courseId}`} className={styles.additionalInfo} onChange={(e) => this.handleInfoChange(courseId, e)} placeholder="Miejsce na dodatkowe informacje..."></textarea>
+        <QuantityInput value={quantity} action={(e) => this.handleQuantityChange(courseId, e)} className={styles.inputQuantityPosition} id={courseId} />
         <RemoveButton action={(e) => this.handleRemove(courseId, e)} className={styles.removeButton} />
         <Price price={price * quantity} text={''} />
       </form>
