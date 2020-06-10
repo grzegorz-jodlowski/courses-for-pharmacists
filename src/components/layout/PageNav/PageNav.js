@@ -52,7 +52,9 @@ class Component extends React.Component {
               :
               <NavButton action={this.handleMenuClick.bind(this)} text={'Zaloguj'} path={'login'} />}
           </div>
-          <button onClick={this.handleMenuClick.bind(this)} className={styles.hamburger}>&#9776;</button>
+          <button onClick={this.handleMenuClick.bind(this)} className={styles.hamburger}>
+            {isOpen ? <i className={clsx(styles.icon, 'fas fa-times')}></i> : <i className={clsx(styles.icon, 'fas fa-bars')}></i>}
+          </button>
         </div>
       </nav>
     );

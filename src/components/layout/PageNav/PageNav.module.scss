@@ -33,10 +33,12 @@
   border: none;
   background-color: transparent;
   font-size: 3rem;
+  width: 80px;
   margin-right: 2rem;
   padding: 0 2rem;
   display: none;
   outline-color: $color-secondary;
+  transition: $transition;
 
   @media (max-width: $breakpoint-s) {
     display: block;
