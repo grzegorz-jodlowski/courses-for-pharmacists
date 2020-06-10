@@ -1,0 +1,27 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  margin: 4rem 6rem;
+
+  @media (max-width: $breakpoint-m) {
+    margin: 4rem 2rem;
+  }
+  @media (max-width: $breakpoint-s) {
+    margin: 4rem 0;
+  }
+}
+
+.headers {
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+
+.itemsRow {
+  display: grid;
+  grid-template-columns: 1fr 70px 70px;
+  padding-bottom: 2rem;
+
+  @media (max-width: $breakpoint-s) {
+    grid-template-columns: 1fr 55px 55px;
+  }
+}

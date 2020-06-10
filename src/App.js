@@ -14,7 +14,7 @@ import { Terms } from './components/views/Terms/Terms';
 import { Login } from './components/views/Login/Login';
 import { NotFound } from './components/views/NotFound/NotFound';
 import { CoursePanel } from './components/views/CoursePanel/CoursePanel';
-import { Summary } from './components/views/Summary/Summary';
+import { SummaryPage } from './components/views/SummaryPage/SummaryPage';
 
 import { connect } from 'react-redux';
 import { getAll, fetchCourses } from './redux/coursesRedux';
@@ -37,7 +37,7 @@ class Component extends React.Component {
           <Route exact path={`${process.env.PUBLIC_URL}/courses`} component={MyCourses} />
           <Route exact path={`${process.env.PUBLIC_URL}/panel/:_id`} component={CoursePanel} />
           <Route exact path={`${process.env.PUBLIC_URL}/cart`} component={Cart} />
-          <Route exact path={`${process.env.PUBLIC_URL}/summary`} component={Summary} />
+          <Route exact path={`${process.env.PUBLIC_URL}/summary`} component={SummaryPage} />
           <Route exact path={`${process.env.PUBLIC_URL}/contact`} component={Contact} />
           <Route exact path={`${process.env.PUBLIC_URL}/privacy`} component={Privacy} />
           <Route exact path={`${process.env.PUBLIC_URL}/terms`} component={Terms} />

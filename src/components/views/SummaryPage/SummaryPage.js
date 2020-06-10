@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import styles from './Summary.module.scss';
+import styles from './SummaryPage.module.scss';
 
 import { Title } from '../../common/Title/Title';
-import { Price } from '../../common/Price/Price';
 import { Button } from '../../common/Button/Button';
-import { SummaryItem } from '../../features/SummaryItem/SummaryItem';
+import { Summary } from '../../features/Summary/Summary';
 
 import { connect } from 'react-redux';
 import { addProducts } from '../../../redux/orderRedux';
@@ -26,7 +25,7 @@ class Component extends React.Component {
 
 
   render() {
-    const { className, children, products } = this.props;
+    const { className, products } = this.props;
 
     let orderValue = 0;
 
@@ -40,25 +39,13 @@ class Component extends React.Component {
 
         {products.length > 0
           ?
-          <div className={styles.summary}>
-            <div className={clsx(styles.itemsRow, styles.headers)}>
-              <div>
-                Nazwa
-              </div>
-              <div>
-                Ilość
-              </div>
-              <div>
-                Cena
-              </div>
-            </div>
-            {products.map(product => <SummaryItem key={product.courseId} summaryItem={product} className={styles.itemsRow} />)}
-            <Price price={orderValue} text={'Do zapłaty: '} />
+          <div>
+            <Summary products={products} orderValue={orderValue} />
+            <Button action={this.handleOrder.bind(this)} text={'Zamawiam i płacę'} path={'summary'} />
           </div>
           :
           <Title>Brak pozycji zamówienia</Title>
         }
-        <Button action={this.handleOrder.bind(this)} text={'Zamawiam i płacę'} path={'summary'} />
       </div>
 
     );
@@ -86,8 +73,8 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as Summary,
-  Container as Summary,
-  Component as SummaryComponent, //for tests
+  // Component as SummaryPage,
+  Container as SummaryPage,
+  Component as SummaryPageComponent, //for tests
 };
 
