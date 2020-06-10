@@ -10,51 +10,39 @@ import { Price } from '../../common/Price/Price';
 import { CartItem } from '../../features/CartItem/CartItem';
 
 import { connect } from 'react-redux';
-import { addProducts } from '../../../redux/orderRedux';
+// import { addProducts } from '../../../redux/orderRedux';
 
-class Component extends React.Component {
+const Component = ({ className, cart }) => {
 
-  handleSummary() {
-    const { addProducts, cart } = this.props;
+  let cartValue = 0;
+  cart.forEach(({ quantity, price }) => {
+    cartValue += (quantity * price);
+  });
 
-    addProducts(cart);
-  }
+  return (
+    <main className={clsx(className, styles.root, 'container')} >
+      <Title decoration={true} >Koszyk</Title>
 
-  render() {
-    const { className, cart } = this.props;
-
-    let cartValue = 0;
-
-    cart.forEach(({ quantity, price }) => {
-      cartValue += (quantity * price);
-    });
-
-    return (
-      <main className={clsx(className, styles.root, 'container')} >
-        <Title decoration={true} >Koszyk</Title>
-
-        {cart.length > 0
-          ?
-          <div>
-            {cart.map(cartItem =>
-              <CartItem key={cartItem.courseId} cartItem={cartItem} />
-            )}
-            <Price price={cartValue} text={'Do zapłaty: '} />
-            <Button action={this.handleSummary.bind(this)} text={'Do podsumowania'} path={'summary'} />
-          </div>
-          :
-          <Title>Koszyk jest pusty</Title>
-        }
-      </main>
-    );
-  }
-}
+      {cart.length > 0
+        ?
+        <div>
+          {cart.map(cartItem =>
+            <CartItem key={cartItem.courseId} cartItem={cartItem} />
+          )}
+          <Price price={cartValue} text={'Do zapłaty: '} />
+          <Button text={'Do podsumowania'} path={'summary'} />
+        </div>
+        :
+        <Title>Koszyk jest pusty</Title>
+      }
+    </main>
+  );
+};
 
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   cart: PropTypes.array,
-  addProducts: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -62,7 +50,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addProducts: cart => dispatch(addProducts(cart)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
