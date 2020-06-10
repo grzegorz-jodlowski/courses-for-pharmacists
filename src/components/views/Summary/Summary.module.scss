@@ -3,3 +3,18 @@
 // .root {
 
 // }
+
+.summary {
+  margin: 4rem 6rem;
+}
+
+.headers {
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+
+.itemsRow {
+  display: grid;
+  grid-template-columns: 1fr 70px 70px;
+  padding-bottom: 2rem;
+}

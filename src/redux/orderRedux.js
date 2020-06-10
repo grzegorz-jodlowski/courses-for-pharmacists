@@ -10,6 +10,10 @@ const createActionName = name => `app/${reducerName}/${name}`;
 // /* action types */
 const ADD_PRODUCTS = createActionName('ADD_PRODUCTS');
 
+//TODO: const FETCH_START = createActionName('FETCH_START');
+// TODO: const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
+// TODO: const FETCH_ERROR = createActionName('FETCH_ERROR');
+
 // /* action creators */
 export const addProducts = payload => ({ payload, type: ADD_PRODUCTS });
 

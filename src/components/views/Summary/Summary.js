@@ -20,6 +20,10 @@ class Component extends React.Component {
     addProducts(cart);
   }
 
+  handleOrder() {
+
+  }
+
 
   render() {
     const { className, children, products } = this.props;
@@ -36,14 +40,25 @@ class Component extends React.Component {
 
         {products.length > 0
           ?
-          <div>
-            {products.map(product => <SummaryItem key={product.courseId} summaryItem={product} />)}
+          <div className={styles.summary}>
+            <div className={clsx(styles.itemsRow, styles.headers)}>
+              <div>
+                Nazwa
+              </div>
+              <div>
+                Ilość
+              </div>
+              <div>
+                Cena
+              </div>
+            </div>
+            {products.map(product => <SummaryItem key={product.courseId} summaryItem={product} className={styles.itemsRow} />)}
             <Price price={orderValue} text={'Do zapłaty: '} />
           </div>
           :
           <Title>Brak pozycji zamówienia</Title>
         }
-        {/* <Button action={this.handleOrder.bind(this)} text={'Złóż zamówienie'} path={'summary'} /> */}
+        <Button action={this.handleOrder.bind(this)} text={'Zamawiam i płacę'} path={'summary'} />
       </div>
 
     );

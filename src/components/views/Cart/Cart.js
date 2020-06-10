@@ -29,7 +29,7 @@ const Component = ({ className, cart }) => {
           {cart.map(cartItem =>
             <CartItem key={cartItem.courseId} cartItem={cartItem} />
           )}
-          <Price price={cartValue} text={'Do zapłaty: '} />
+          <Price price={cartValue} text={'Suma: '} />
           <Button text={'Do podsumowania'} path={'summary'} />
         </div>
         :

@@ -11,9 +11,21 @@ import { Title } from '../../common/Title/Title';
 
 const Component = ({ className, children, summaryItem }) => {
 
+  const { title, quantity, price, additionalInfo } = summaryItem;
   return (
     <div className={clsx(className, styles.root)}>
-      {summaryItem.title}
+      <div className={styles.title}>
+        {title}
+        <div className={styles.additionalInfo}>
+          {additionalInfo}
+        </div>
+      </div>
+      <div className={styles.quantity}>
+        {quantity}
+      </div>
+      <div className={styles.price}>
+        {price}
+      </div>
     </div>
   );
 };
