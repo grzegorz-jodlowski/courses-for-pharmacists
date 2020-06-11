@@ -24,25 +24,17 @@ class Component extends React.Component {
     error: null,
   };
 
-  handleNameChange(event) {
-    this.setState({ name: event.target.value });
-    console.log(this.state.name);
-  }
 
-  handleEmailChange(event) {
-    this.setState({ email: event.target.value });
-    console.log(this.state.email);
+  handleChange = ({ target }) => {
+    const { contact } = this.state;
+    const { value, name, type } = target;
+    if (type !== 'checkbox') {
 
-  }
-  handlePrivacyChange(event) {
-    this.setState({ privacy: !this.state.privacy });
-    console.log(this.state.privacy);
+      this.setState({ contact: { ...contact, [name]: value } }, () => console.log(this.state.contact));
+    } else {
+      this.setState({ contact: { ...contact, [name]: !contact[name] } }, () => console.log(this.state.contact));
 
-  }
-  handleTermsChange(event) {
-    this.setState({ terms: !this.state.value });
-    console.log(this.state.terms);
-
+    }
   }
 
   handleSubmit() {
@@ -50,29 +42,29 @@ class Component extends React.Component {
   }
 
   render() {
-    const { handleSubmit, handleTermsChange, handlePrivacyChange, handleEmailChange, handleNameChange } = this;
+    const { handleSubmit, handleChange } = this;
     const { className } = this.props;
-    const { name, email, privacy, terms } = this.state;
+    const { name, email, privacy, terms } = this.state.contact;
 
     return (
-      <form className={clsx(className, styles.root)}>
+      <form className={clsx(className, styles.root)} action={handleSubmit.bind(this)}>
         <label htmlFor="name">Imię <span>*</span></label>
-        <input name="name" id="name" required className={styles.inputName} type="text" value={name} onChange={handleNameChange.bind(this)} />
+        <input name="name" id="name" required className={styles.inputName} type="text" value={name} onChange={handleChange} />
         <label htmlFor="email">Email <span>*</span></label>
-        <input name="email" id="email" required className={styles.inputEmail} type="text" value={email} onChange={handleEmailChange.bind(this)} />
+        <input name="email" id="email" required className={styles.inputEmail} type="text" value={email} onChange={handleChange} />
         <label htmlFor="privacy" className={styles.labelPrivacy}>
-          <input name="privacy" id="privacy" required className={styles.inputPrivacy} type="checkbox" value={privacy} onChange={handlePrivacyChange.bind(this)} />
+          <input name="privacy" id="privacy" required className={styles.inputPrivacy} type="checkbox" value={privacy} onChange={handleChange} />
           <p>
             Wyrażam zgodę na przetwarzanie moich danych osobowych w celach i zakresie zgodnym z<Link to={`${process.env.PUBLIC_URL}/privacy`} className={styles.link}>{' Polityką prywatności.'}</Link><span>*</span>
           </p>
         </label>
         <label htmlFor="terms" className={styles.labelTerms}>
-          <input name="terms" id="terms" required className={styles.inputTerms} type="checkbox" value={terms} onChange={handleTermsChange.bind(this)} />
+          <input name="terms" id="terms" required className={styles.inputTerms} type="checkbox" value={terms} onChange={handleChange} />
           <p>
             Akceptuję <Link to={`${process.env.PUBLIC_URL}/terms`} className={styles.link}>{' regulamin zakupów '}</Link><span>*</span>
           </p>
         </label>
-        <Button action={handleSubmit.bind(this)} text={'Zamawiam i płacę'} path={'summary'} />
+        <Button submitForm={true} text={'Zamawiam i płacę'} path={'summary'} />
       </form>
     );
   }
