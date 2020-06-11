@@ -10,6 +10,7 @@ const createActionName = name => `app/${reducerName}/${name}`;
 // /* action types */
 const ADD_TO_CART = createActionName('ADD_TO_CART');
 const REMOVE_FROM_CART = createActionName('REMOVE_FROM_CART');
+const CLEAR_CART = createActionName('CLEAR_CART');
 const UPDATE_CART_ITEM_QUANTITY = createActionName('UPDATE_CART_ITEM_QUANTITY');
 const UPDATE_CART_ITEM_INFO = createActionName('UPDATE_CART_ITEM_INFO');
 
@@ -17,6 +18,7 @@ const UPDATE_CART_ITEM_INFO = createActionName('UPDATE_CART_ITEM_INFO');
 // /* action creators */
 export const addToCart = payload => ({ payload, type: ADD_TO_CART });
 export const removeFromCart = payload => ({ payload, type: REMOVE_FROM_CART });
+export const clearCart = payload => ({ payload, type: CLEAR_CART });
 export const updateCartItemQuantity = payload => ({ payload, type: UPDATE_CART_ITEM_QUANTITY });
 export const updateCartItemInfo = payload => ({ payload, type: UPDATE_CART_ITEM_INFO });
 
@@ -31,6 +33,9 @@ export default function reducer(statePart = [], action = {}) {
     }
     case REMOVE_FROM_CART: {
       return statePart.filter(({ courseId }) => courseId !== action.payload);
+    }
+    case CLEAR_CART: {
+      return [];
     }
     case UPDATE_CART_ITEM_QUANTITY: {
       return statePart.map(cartItem => {

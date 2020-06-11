@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { postOrder } from '../../../redux/orderRedux';
+import { clearCart } from '../../../redux/cartRedux';
 
 class Component extends React.Component {
 
@@ -39,7 +40,7 @@ class Component extends React.Component {
 
   handleSubmit = (e) => {
     const { contact } = this.state;
-    const { products, orderValue, success } = this.props;
+    const { products, orderValue, success, clearCart } = this.props;
     e.preventDefault();
 
     let error = null;
@@ -71,6 +72,7 @@ class Component extends React.Component {
           },
           error: null,
         });
+        clearCart();
       }
     }
     else this.setState({ error });
@@ -128,6 +130,7 @@ Component.propTypes = {
   loadingError: PropTypes.bool,
   success: PropTypes.bool,
   lastOrder: PropTypes.string,
+  clearCart: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -140,6 +143,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   postOrder: (order) => dispatch(postOrder(order)),
+  clearCart: () => dispatch(clearCart()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
