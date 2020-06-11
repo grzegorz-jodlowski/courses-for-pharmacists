@@ -43,6 +43,7 @@ class Component extends React.Component {
     e.preventDefault();
 
     let error = null;
+
     const emailPattern = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'g');
 
     if (!contact.name.length || !contact.email.length) error = `Uzupełnij imię i email`;
@@ -84,8 +85,7 @@ class Component extends React.Component {
     return (
       <form className={clsx(className, styles.root)} onSubmit={(e) => handleSubmit(e)}>
         {(!loading && !loadingError && success) && <Info variant={'success'}>{`Zamówienie o numerze ${lastOrder} zostało złożone`}</Info>}
-        {(loadingError) && <Info variant={'error'}>{loadingError}</Info>}
-        {/* //TODO: change error to human readible */}
+        {(loadingError) && <Info variant={'error'}>{'Ups... coś poszło nie tak!'}</Info>}
         {(error) && <Info variant={'warning'}>{error}</Info>}
         {(loading) && <Spinner />}
         {(!loading && products.length > 0) &&

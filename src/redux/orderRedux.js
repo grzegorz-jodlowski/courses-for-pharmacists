@@ -25,22 +25,17 @@ export const postError = payload => ({ payload, type: POST_ERROR });
 export const postOrder = (order) => {
   return (dispatch, getState) => {
     dispatch(postStarted());
-    console.log('postStarted');
-    console.log(' : postOrder -> order', order);
 
     Axios
       .post(`${api.url}/${api.orders}`, order)
       .then(res => {
         dispatch(postSuccess(res.data));
-        console.log(' : postOrder -> res.data', res.data);
       })
       .catch(err => {
         dispatch(postError(err.message || true));
-        console.log(' : postOrder -> err.message', err.message);
       });
   };
 };
-
 
 /* reducer */
 export default function reducer(statePart = {}, action = {}) {
