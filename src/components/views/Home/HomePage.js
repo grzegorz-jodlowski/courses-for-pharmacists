@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import styles from './Homepage.module.scss';
+import styles from './HomePage.module.scss';
 
 import { Hero } from '../../features/Hero/Hero';
 import { CoursesCards } from '../../features/CoursesCards/CoursesCards';
@@ -38,8 +38,8 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as Homepage,
-  Container as Homepage,
-  Component as HomepageComponent, //for tests
+  // Component as HomePage,
+  Container as HomePage,
+  Component as HomePageComponent, //for tests
 };
 

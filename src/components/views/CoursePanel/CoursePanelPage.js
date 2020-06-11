@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import styles from './CoursePanel.module.scss';
+import styles from './CoursePanelPage.module.scss';
 
 import { Title } from '../../common/Title/Title';
 import { Spinner } from '../../common/Spinner/Spinner';
@@ -41,8 +41,8 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as CoursePanel,
-  Container as CoursePanel,
-  Component as CoursePanelComponent, //for tests
+  // Component as CoursePanelPage,
+  Container as CoursePanelPage,
+  Component as CoursePanelPageComponent, //for tests
 };
 

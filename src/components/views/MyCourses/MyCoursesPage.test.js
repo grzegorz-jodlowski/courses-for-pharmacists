@@ -5,6 +5,6 @@ import { MyCoursesComponent } from './MyCourses';
 describe('Component MyCourses', () => {
   it('Should render without crashing', () => {
     const component = shallow(< MyCoursesComponent />);
-  expect(component).toBeTruthy();
-});
+    expect(component).toBeTruthy();
+  });
 });

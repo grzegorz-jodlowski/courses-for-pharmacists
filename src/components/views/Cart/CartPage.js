@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import styles from './Cart.module.scss';
+import styles from './CartPage.module.scss';
 
 import { Button } from '../../common/Button/Button';
 import { Title } from '../../common/Title/Title';
@@ -55,8 +55,8 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as Cart,
-  Container as Cart,
-  Component as CartComponent, //for tests
+  // Component as CartPage,
+  Container as CartPage,
+  Component as CartPageComponent, //for tests
 };
 

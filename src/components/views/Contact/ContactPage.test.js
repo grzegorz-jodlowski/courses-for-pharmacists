@@ -5,6 +5,6 @@ import { ContactComponent } from './Contact';
 describe('Component Contact', () => {
   it('Should render without crashing', () => {
     const component = shallow(< ContactComponent />);
-  expect(component).toBeTruthy();
-});
+    expect(component).toBeTruthy();
+  });
 });

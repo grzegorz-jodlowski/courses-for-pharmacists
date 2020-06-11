@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import styles from './Terms.module.scss';
+import styles from './PrivacyPage.module.scss';
 
 import { Title } from '../../common/Title/Title';
 
@@ -11,7 +11,7 @@ import { Title } from '../../common/Title/Title';
 
 const Component = ({ className, children }) => (
   <main className={clsx(className, styles.root, 'container')}>
-    <Title decoration={true} >Regulamin</Title>
+    <Title decoration={true} >Polityka prywatności</Title>
     {children}
   </main>
 );
@@ -32,8 +32,8 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as Terms,
-  // Container as Terms,
-  Component as TermsComponent, //for tests
+  Component as PrivacyPage,
+  // Container as PrivacyPage,
+  Component as PrivacyPageComponent, //for tests
 };
 

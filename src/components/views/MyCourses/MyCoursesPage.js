@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import styles from './MyCourses.module.scss';
+import styles from './MyCoursesPage.module.scss';
 
-import { Login } from '../Login/Login';
+import { LoginPage } from '../Login/LoginPage';
 import { CoursesCards } from '../../features/CoursesCards/CoursesCards';
 import { Spinner } from '../../common/Spinner/Spinner';
 import { Title } from '../../common/Title/Title';
@@ -23,7 +23,7 @@ const Component = ({ className, courses, loading, loadingError, isLogged, user }
       </main>
     );
   } else {
-    return <Login />;
+    return <LoginPage />;
   }
 };
 
@@ -51,8 +51,8 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as MyCourses,
-  Container as MyCourses,
-  Component as MyCoursesComponent, //for tests
+  // Component as MyCoursesPage,
+  Container as MyCoursesPage,
+  Component as MyCoursesPageComponent, //for tests
 };
 

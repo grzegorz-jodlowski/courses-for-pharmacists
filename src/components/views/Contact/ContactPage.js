@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import styles from './Login.module.scss';
+import styles from './ContactPage.module.scss';
 
 import { Title } from '../../common/Title/Title';
 
@@ -11,7 +11,7 @@ import { Title } from '../../common/Title/Title';
 
 const Component = ({ className, children }) => (
   <main className={clsx(className, styles.root, 'container')}>
-    <Title decoration={true} >Logowanie</Title>
+    <Title decoration={true} >Kontakt</Title>
     {children}
   </main>
 );
@@ -32,8 +32,8 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as Login,
-  // Container as Login,
-  Component as LoginComponent, //for tests
+  Component as ContactPage,
+  // Container as ContactPage,
+  Component as ContactPageComponent, //for tests
 };
 

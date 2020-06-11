@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import styles from './NotFound.module.scss';
+import styles from './NotFoundPage.module.scss';
 
 import { Button } from '../../common/Button/Button';
 import { Title } from '../../common/Title/Title';
@@ -35,8 +35,8 @@ Component.propTypes = {
 // const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  Component as NotFound,
-  // Container as NotFound,
-  Component as NotFoundComponent, //for tests
+  Component as NotFoundPage,
+  // Container as NotFoundPage,
+  Component as NotFoundPageComponent, //for tests
 };
 

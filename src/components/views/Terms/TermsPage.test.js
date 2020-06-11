@@ -5,6 +5,6 @@ import { TermsComponent } from './Terms';
 describe('Component Terms', () => {
   it('Should render without crashing', () => {
     const component = shallow(< TermsComponent />);
-  expect(component).toBeTruthy();
-});
+    expect(component).toBeTruthy();
+  });
 });
