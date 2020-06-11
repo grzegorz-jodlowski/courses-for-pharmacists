@@ -34,6 +34,7 @@ class Component extends React.Component {
     } else {
       this.setState({ contact: { ...contact, [name]: !contact[name] } });
     }
+    this.setState({ error: null });
   }
 
   handleSubmit = (e) => {
@@ -42,13 +43,12 @@ class Component extends React.Component {
     e.preventDefault();
 
     let error = null;
+    const emailPattern = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'g');
 
     if (!contact.name.length || !contact.email.length) error = `Uzupełnij imię i email`;
     else if (!contact.privacy || !contact.terms) error = `Musisz zaakceptować zgody`;
     else if (contact.name.length > 50 || contact.name.length < 5) error = `Imię może zawierać 5-50 znaków`;
-
-    // TODO: email validation
-    console.log(' : handleSubmit -> error', error);
+    else if (!emailPattern.test(contact.email)) error = `Nieprawidłowy adres email`;
 
     if (!error) {
       const order = {
@@ -79,11 +79,14 @@ class Component extends React.Component {
     const { handleSubmit, handleChange } = this;
     const { className, loading, loadingError, success, products, lastOrder } = this.props;
     const { name, email, privacy, terms } = this.state.contact;
+    const { error } = this.state;
 
     return (
       <form className={clsx(className, styles.root)} onSubmit={(e) => handleSubmit(e)}>
         {(!loading && !loadingError && success) && <Info variant={'success'}>{`Zamówienie o numerze ${lastOrder} zostało złożone`}</Info>}
         {(loadingError) && <Info variant={'error'}>{loadingError}</Info>}
+        {/* //TODO: change error to human readible */}
+        {(error) && <Info variant={'warning'}>{error}</Info>}
         {(loading) && <Spinner />}
         {(!loading && products.length > 0) &&
           (
