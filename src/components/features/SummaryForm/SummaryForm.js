@@ -51,7 +51,7 @@ class Component extends React.Component {
 
     if (!error) {
       const order = {
-        status: 'pending',
+        status: 'ordered',
         value: orderValue,
         products,
         contact,

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
   value: { type: Number },
-  status: { type: String, required: [true, 'Status required'], enum: ['draft', 'pending', 'ordered'] },
+  status: { type: String, required: [true, 'Status required'], enum: ['draft', 'ordered', 'closed'] },
   products: { type: Array },
   contact: { type: Object },
 
