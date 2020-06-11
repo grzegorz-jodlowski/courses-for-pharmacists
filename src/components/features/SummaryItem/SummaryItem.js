@@ -4,8 +4,6 @@ import clsx from 'clsx';
 
 import styles from './SummaryItem.module.scss';
 
-import { Title } from '../../common/Title/Title';
-
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 

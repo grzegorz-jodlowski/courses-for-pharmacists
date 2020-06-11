@@ -4,7 +4,6 @@ import clsx from 'clsx';
 
 import styles from './SummaryForm.module.scss';
 
-import { Title } from '../../common/Title/Title';
 import { Button } from '../../common/Button/Button';
 import { Spinner } from '../../common/Spinner/Spinner';
 import { Info } from '../../common/Info/Info';
@@ -78,15 +77,15 @@ class Component extends React.Component {
 
   render() {
     const { handleSubmit, handleChange } = this;
-    const { className, loading, loadingError, success } = this.props;
+    const { className, loading, loadingError, success, products, lastOrder } = this.props;
     const { name, email, privacy, terms } = this.state.contact;
 
     return (
       <form className={clsx(className, styles.root)} onSubmit={(e) => handleSubmit(e)}>
-        {(!loading && !loadingError && success) && <Info variant={'success'}>Zamówienie zostało złożone</Info>}
+        {(!loading && !loadingError && success) && <Info variant={'success'}>{`Zamówienie o numerze ${lastOrder} zostało złożone`}</Info>}
         {(loadingError) && <Info variant={'error'}>{loadingError}</Info>}
         {(loading) && <Spinner />}
-        {(!loading && !success) &&
+        {(!loading && products.length > 0) &&
           (
             <div className={styles.wrapper}>
 
@@ -125,6 +124,7 @@ Component.propTypes = {
   loading: PropTypes.bool,
   loadingError: PropTypes.bool,
   success: PropTypes.bool,
+  lastOrder: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
@@ -132,6 +132,7 @@ const mapStateToProps = state => ({
   loading: state.order.loading.active,
   loadingError: state.order.loading.error,
   success: state.order.loading.success,
+  lastOrder: state.order.lastOrder,
 });
 
 const mapDispatchToProps = dispatch => ({
