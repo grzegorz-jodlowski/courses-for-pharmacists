@@ -22,13 +22,14 @@ export const postSuccess = payload => ({ payload, type: POST_SUCCESS });
 export const postError = payload => ({ payload, type: POST_ERROR });
 
 /* thunk creators */
-export const postOrder = () => {
+export const postOrder = (order) => {
   return (dispatch, getState) => {
     dispatch(postStarted());
-    console.log(' : przed AXIOS');
+    console.log('postStarted');
+    console.log(' : postOrder -> order', order);
 
     Axios
-      .post(`${api.url}/${api.orders}`)
+      .post(`${api.url}/${api.orders}`, order)
       .then(res => {
         dispatch(postSuccess(res.data));
         console.log(' : postOrder -> res.data', res.data);
