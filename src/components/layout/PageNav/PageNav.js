@@ -17,42 +17,45 @@ class Component extends React.Component {
 
   hamburgerMenuBreakpoint = 768;
 
-  handleMenuClick(e) {
-    const path = e.target.href && e.target.href.split('/').pop();
-    if (window.innerWidth <= this.hamburgerMenuBreakpoint) {
-      this.setState(prevState => ({ isOpen: !prevState.isOpen }));
-    }
-    if (path === 'logout') {
-      this.props.updateLoginStatus(path);
-    }
-  }
+  handleMenuClick = ({ target }) => {
+    const { href, src } = target;
 
-  handleLogoClick(e) {
-    const logoPath = e.target.src && e.target.src.split('/').pop();
-    if (logoPath && window.innerWidth <= this.hamburgerMenuBreakpoint) {
-      this.state.isOpen && this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+    if (src) {
+      const logoPath = src && src.split('/').pop();
+      if (logoPath && window.innerWidth <= this.hamburgerMenuBreakpoint) {
+        this.state.isOpen && this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+      }
+    } else {
+      const path = href && href.split('/').pop();
+      if (window.innerWidth <= this.hamburgerMenuBreakpoint) {
+        this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+      }
+      if (path === 'logout') {
+        this.props.updateLoginStatus(path);
+      }
     }
   }
 
   render() {
+    const { handleMenuClick } = this;
     const { isOpen } = this.state;
     const { isLogged } = this.props;
 
     return (
       <nav className={clsx(this.className, styles.root)} >
         <div className={styles.wrapper}>
-          <Logo action={this.handleLogoClick.bind(this)} />
+          <Logo action={handleMenuClick} />
           <div className={isOpen ? clsx(styles.buttons, styles.menuOpen) : clsx(styles.buttons)}>
-            <NavButton action={this.handleMenuClick.bind(this)} text={'Moje kursy'} path={'courses'} />
-            <NavButton action={this.handleMenuClick.bind(this)} text={'Koszyk'} path={'cart'} />
-            <NavButton action={this.handleMenuClick.bind(this)} text={'Kontakt'} path={'contact'} />
+            <NavButton action={handleMenuClick} text={'Moje kursy'} path={'courses'} />
+            <NavButton action={handleMenuClick} text={'Koszyk'} path={'cart'} />
+            <NavButton action={handleMenuClick} text={'Kontakt'} path={'contact'} />
             {isLogged
               ?
-              <NavButton action={this.handleMenuClick.bind(this)} text={'Wyloguj'} path={'logout'} />
+              <NavButton action={handleMenuClick} text={'Wyloguj'} path={'logout'} />
               :
-              <NavButton action={this.handleMenuClick.bind(this)} text={'Zaloguj'} path={'login'} />}
+              <NavButton action={handleMenuClick} text={'Zaloguj'} path={'login'} />}
           </div>
-          <button onClick={this.handleMenuClick.bind(this)} className={styles.hamburger}>
+          <button onClick={handleMenuClick} className={styles.hamburger}>
             {isOpen ? <i className={clsx(styles.icon, 'fas fa-times')}></i> : <i className={clsx(styles.icon, 'fas fa-bars')}></i>}
           </button>
         </div>
