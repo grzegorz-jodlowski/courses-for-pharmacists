@@ -20,9 +20,9 @@ export const initialState = {
     contact: {
       name: '',
       email: '',
+      privacy: null,
+      terms: null,
     },
-    privacy: null,
-    terms: null,
     products: [],
   },
   user: {

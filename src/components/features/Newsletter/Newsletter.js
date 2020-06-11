@@ -21,10 +21,10 @@ class Component extends React.Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = (e) => {
     alert(`Imię: ${this.state.name}, Email: ${this.state.email}`);
     this.setState({ name: '', email: '' });
-    event.preventDefault();
+    e.preventDefault();
   }
 
   render() {

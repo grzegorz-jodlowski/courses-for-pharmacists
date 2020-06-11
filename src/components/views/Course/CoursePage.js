@@ -34,7 +34,7 @@ class Component extends React.Component {
     }
   }
 
-  handleSubmit = (event, courseId, title, price) => {
+  handleSubmit = (e, courseId, title, price) => {
     const { addToCart } = this.props;
     const { quantity } = this.state;
 
@@ -49,12 +49,12 @@ class Component extends React.Component {
     addToCart(cartItem);
 
     this.setState({ quantity: 1 });
-    event.preventDefault();
+    e.preventDefault();
   }
 
   render() {
     const { handleChange, handleSubmit } = this;
-    const { className, course, cart, user, isLogged, loading, loadingError, } = this.props;
+    const { className, course, cart, user, isLogged, loading, loadingError } = this.props;
     const { quantity } = this.state;
     const { title, price, _id } = course;
 

@@ -29,16 +29,44 @@ class Component extends React.Component {
     const { contact } = this.state;
     const { value, name, type } = target;
     if (type !== 'checkbox') {
-
-      this.setState({ contact: { ...contact, [name]: value } }, () => console.log(this.state.contact));
+      this.setState({ contact: { ...contact, [name]: value } });
     } else {
-      this.setState({ contact: { ...contact, [name]: !contact[name] } }, () => console.log(this.state.contact));
-
+      this.setState({ contact: { ...contact, [name]: !contact[name] } });
     }
   }
 
-  handleSubmit() {
+  handleSubmit = (e) => {
+    const { contact } = this.state;
+    e.preventDefault();
 
+    let error = null;
+
+    if (!contact.name.length || !contact.email.length) error = `Uzupełnij imię i email`;
+    else if (!contact.privacy || !contact.terms) error = `Musisz zaakceptować zgody`;
+    else if (contact.name.length > 50) error = `Imię nie może być dłuższe niż 50 znaków`;
+
+    // TODO: email validation
+    console.log(' : handleSubmit -> error', error);
+
+    if (!error) {
+      const order = {
+        status: 'pending',
+        contact,
+      };
+      console.log(' : handleSubmit -> formData', order);
+      // this.props.submitOrder(formData);
+
+      this.setState({
+        contact: {
+          name: '',
+          email: '',
+          privacy: false,
+          terms: false,
+        },
+        error: null,
+      });
+    }
+    else this.setState({ error });
   }
 
   render() {
@@ -47,9 +75,11 @@ class Component extends React.Component {
     const { name, email, privacy, terms } = this.state.contact;
 
     return (
-      <form className={clsx(className, styles.root)} action={handleSubmit.bind(this)}>
+      <form className={clsx(className, styles.root)} onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="name">Imię <span>*</span></label>
         <input name="name" id="name" required className={styles.inputName} type="text" value={name} onChange={handleChange} />
+        {/* // TODO: email validation */}
+
         <label htmlFor="email">Email <span>*</span></label>
         <input name="email" id="email" required className={styles.inputEmail} type="text" value={email} onChange={handleChange} />
         <label htmlFor="privacy" className={styles.labelPrivacy}>
