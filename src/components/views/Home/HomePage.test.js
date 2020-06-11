@@ -5,6 +5,6 @@ import { HomepageComponent } from './Homepage';
 describe('Component Homepage', () => {
   it('Should render without crashing', () => {
     const component = shallow(< HomepageComponent />);
-  expect(component).toBeTruthy();
-});
+    expect(component).toBeTruthy();
+  });
 });
