@@ -16,33 +16,32 @@ class Component extends React.Component {
     email: '',
   };
 
-  handleNameChange(event) {
-    this.setState({ name: event.target.value });
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({ [name]: value });
   }
 
-  handleEmailChange(event) {
-    this.setState({ email: event.target.value });
-  }
-
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     alert(`Imię: ${this.state.name}, Email: ${this.state.email}`);
     this.setState({ name: '', email: '' });
     event.preventDefault();
   }
 
   render() {
+    const { handleSubmit, handleChange } = this;
+    const { name, email } = this.state;
+
 
     return (
       <section className={clsx(styles.root)} >
         <Title decoration={true}>Zapisz się na newsletter i odbierz darmowe rozdziały oferowanych kursów!</Title>
 
-        <form className={styles.form} onSubmit={this.handleSubmit.bind(this)}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <label htmlFor="name">Imię <span>*</span></label>
-          <input name="name" id="name" required className={styles.inputName} type="text" value={this.state.name} onChange={this.handleNameChange.bind(this)} />
+          <input name="name" id="name" required className={styles.inputName} type="text" value={name} onChange={handleChange} />
           <label htmlFor="email">Email <span>*</span></label>
-          <input name="email" id="email" required className={styles.inputEmail} type="text" value={this.state.email} onChange={this.handleEmailChange.bind(this)} />
+          <input name="email" id="email" required className={styles.inputEmail} type="text" value={email} onChange={handleChange} />
           <p className={styles.disclaimer} >Zapisując się na newsletter wyrażasz zgodę na przesyłanie informacji o produktach, nowościach i promocjach ze strony Kursy dla Farmaceutów.</p>
-
           <Button submitForm={true} text={'Zapisz mnie i wyślij rozdziały!'} />
         </form>
       </section>
