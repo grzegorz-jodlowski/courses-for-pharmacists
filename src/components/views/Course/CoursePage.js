@@ -80,7 +80,7 @@ class Component extends React.Component {
               </div>
               :
               <form className={styles.addCartForm} onSubmit={(e) => handleSubmit(e, _id, title, price)}>
-                <QuantityInput value={quantity} action={handleChange} text={'Ilość: '} />
+                <QuantityInput value={Number(quantity)} action={handleChange} text={'Ilość: '} />
                 <Button submitForm={true} text={'Dodaj do koszyka'} />
               </form>}
         </main>
