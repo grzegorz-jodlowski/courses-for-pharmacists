@@ -1,10 +1,15 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-  value: { type: Number },
+  value: { type: Number, required: true },
   status: { type: String, required: [true, 'Status required'], enum: ['draft', 'ordered', 'closed'] },
   products: { type: Array },
   contact: { type: Object },
+  email: {
+    type: String,
+    required: [true, 'Email required'],
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
+  },
 
   // contact: new mongoose.Schema({
   //   email: {

@@ -6,6 +6,8 @@ import styles from './SummaryForm.module.scss';
 
 import { Title } from '../../common/Title/Title';
 import { Button } from '../../common/Button/Button';
+import { Spinner } from '../../common/Spinner/Spinner';
+import { Info } from '../../common/Info/Info';
 
 import { Link } from 'react-router-dom';
 
@@ -37,14 +39,14 @@ class Component extends React.Component {
 
   handleSubmit = (e) => {
     const { contact } = this.state;
-    const { products, orderValue } = this.props;
+    const { products, orderValue, success } = this.props;
     e.preventDefault();
 
     let error = null;
 
     if (!contact.name.length || !contact.email.length) error = `Uzupełnij imię i email`;
     else if (!contact.privacy || !contact.terms) error = `Musisz zaakceptować zgody`;
-    else if (contact.name.length > 50) error = `Imię nie może być dłuższe niż 50 znaków`;
+    else if (contact.name.length > 50 || contact.name.length < 5) error = `Imię może zawierać 5-50 znaków`;
 
     // TODO: email validation
     console.log(' : handleSubmit -> error', error);
@@ -56,49 +58,59 @@ class Component extends React.Component {
         products,
         contact,
       };
-      // console.log(' : handleSubmit -> formData', order);
+
       this.props.postOrder(order);
 
-      //TODO: if succes setState to default
-      this.setState({
-        contact: {
-          name: '',
-          email: '',
-          privacy: false,
-          terms: false,
-        },
-        error: null,
-      });
+      if (success) {
+        this.setState({
+          contact: {
+            name: '',
+            email: '',
+            privacy: false,
+            terms: false,
+          },
+          error: null,
+        });
+      }
     }
     else this.setState({ error });
   }
 
   render() {
     const { handleSubmit, handleChange } = this;
-    const { className } = this.props;
+    const { className, loading, loadingError, success } = this.props;
     const { name, email, privacy, terms } = this.state.contact;
 
     return (
       <form className={clsx(className, styles.root)} onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="name">Imię <span>*</span></label>
-        <input name="name" id="name" required className={styles.inputName} type="text" value={name} onChange={handleChange} />
-        {/* // TODO: email validation */}
+        {(!loading && !loadingError && success) && <Info variant={'success'}>Zamówienie zostało złożone</Info>}
+        {(loadingError) && <Info variant={'error'}>{loadingError}</Info>}
+        {(loading) && <Spinner />}
+        {(!loading && !success) &&
+          (
+            <div className={styles.wrapper}>
 
-        <label htmlFor="email">Email <span>*</span></label>
-        <input name="email" id="email" required className={styles.inputEmail} type="text" value={email} onChange={handleChange} />
-        <label htmlFor="privacy" className={styles.labelPrivacy}>
-          <input name="privacy" id="privacy" required className={styles.inputPrivacy} type="checkbox" checked={privacy} value={privacy} onChange={handleChange} />
-          <p>
-            Wyrażam zgodę na przetwarzanie moich danych osobowych w celach i zakresie zgodnym z<Link to={`${process.env.PUBLIC_URL}/privacy`} className={styles.link}>{' Polityką prywatności.'}</Link><span>*</span>
-          </p>
-        </label>
-        <label htmlFor="terms" className={styles.labelTerms}>
-          <input name="terms" id="terms" required className={styles.inputTerms} type="checkbox" checked={terms} value={terms} onChange={handleChange} />
-          <p>
-            Akceptuję <Link to={`${process.env.PUBLIC_URL}/terms`} className={styles.link}>{' regulamin zakupów '}</Link><span>*</span>
-          </p>
-        </label>
-        <Button submitForm={true} text={'Zamawiam i płacę'} path={'summary'} />
+              <label htmlFor="name">Imię <span>*</span></label>
+              <input name="name" id="name" required className={styles.inputName} type="text" value={name} onChange={handleChange} />
+
+              <label htmlFor="email">Email <span>*</span></label>
+              <input name="email" id="email" required className={styles.inputEmail} type="text" value={email} onChange={handleChange} />
+              <label htmlFor="privacy" className={styles.labelPrivacy}>
+                <input name="privacy" id="privacy" required className={styles.inputPrivacy} type="checkbox" checked={privacy} value={privacy} onChange={handleChange} />
+                <p>
+                  Wyrażam zgodę na przetwarzanie moich danych osobowych w celach i zakresie zgodnym z<Link to={`${process.env.PUBLIC_URL}/privacy`} className={styles.link}>{' Polityką prywatności.'}</Link><span>*</span>
+                </p>
+              </label>
+              <label htmlFor="terms" className={styles.labelTerms}>
+                <input name="terms" id="terms" required className={styles.inputTerms} type="checkbox" checked={terms} value={terms} onChange={handleChange} />
+                <p>
+                  Akceptuję <Link to={`${process.env.PUBLIC_URL}/terms`} className={styles.link}>{' regulamin zakupów '}</Link><span>*</span>
+                </p>
+              </label>
+              <Button submitForm={true} text={'Zamawiam i płacę'} path={'summary'} />
+            </div>
+
+          )}
       </form>
     );
   }
@@ -110,10 +122,16 @@ Component.propTypes = {
   orderValue: PropTypes.number,
   postOrder: PropTypes.func,
   products: PropTypes.array,
+  loading: PropTypes.bool,
+  loadingError: PropTypes.bool,
+  success: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
   products: state.order.products,
+  loading: state.order.loading.active,
+  loadingError: state.order.loading.error,
+  success: state.order.loading.success,
 });
 
 const mapDispatchToProps = dispatch => ({

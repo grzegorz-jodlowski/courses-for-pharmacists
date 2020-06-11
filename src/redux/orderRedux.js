@@ -58,6 +58,7 @@ export default function reducer(statePart = {}, action = {}) {
         loading: {
           active: true,
           error: false,
+          success: false,
         },
       };
     }
@@ -75,6 +76,7 @@ export default function reducer(statePart = {}, action = {}) {
         loading: {
           active: false,
           error: false,
+          success: true,
         },
       };
     }
@@ -84,6 +86,7 @@ export default function reducer(statePart = {}, action = {}) {
         loading: {
           active: false,
           error: action.payload,
+          success: false,
         },
       };
     }
