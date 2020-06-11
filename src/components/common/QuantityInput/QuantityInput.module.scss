@@ -12,4 +12,9 @@
   background-color: transparent;
   border-radius: $radius;
   padding-left: 12px;
+
+  @media (max-width: $breakpoint-xs) {
+    padding-left: 0;
+    width: 35px;
+  }
 }
