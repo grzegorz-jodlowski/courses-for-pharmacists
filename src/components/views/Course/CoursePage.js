@@ -22,32 +22,40 @@ class Component extends React.Component {
 
   componentDidMount() {
     const { fetchCourseDetails, match } = this.props;
+
     fetchCourseDetails(match.params._id);
   }
 
-  handleQuantityChange(event) {
-    if (event.target.value >= 1) {
-      this.setState({ quantity: event.target.value });
+  handleChange = ({ target }) => {
+    const { value, name } = target;
+
+    if (value >= 1) {
+      this.setState({ [name]: value });
     }
   }
 
-  handleSubmit(event, id, title, price) {
+  handleSubmit = (event, courseId, title, price) => {
+    const { addToCart } = this.props;
+    const { quantity } = this.state;
+
     const cartItem = {
-      quantity: this.state.quantity,
-      courseId: id,
+      quantity,
+      courseId,
       title,
       price,
       additionalInfo: '',
     };
 
-    this.props.addToCart(cartItem);
+    addToCart(cartItem);
 
     this.setState({ quantity: 1 });
     event.preventDefault();
   }
 
   render() {
-    const { className, course, cart, user, isLogged, loading, loadingError } = this.props;
+    const { handleChange, handleSubmit } = this;
+    const { className, course, cart, user, isLogged, loading, loadingError, } = this.props;
+    const { quantity } = this.state;
     const { title, price, _id } = course;
 
 
@@ -71,8 +79,8 @@ class Component extends React.Component {
                 <Button text={'Przejdź do koszyka'} path={'cart'} />
               </div>
               :
-              <form className={styles.addCartForm} onSubmit={(e) => this.handleSubmit(e, _id, title, price)}>
-                <QuantityInput value={this.state.quantity} action={this.handleQuantityChange.bind(this)} text={'Ilość: '} />
+              <form className={styles.addCartForm} onSubmit={(e) => handleSubmit(e, _id, title, price)}>
+                <QuantityInput value={quantity} action={handleChange} text={'Ilość: '} />
                 <Button submitForm={true} text={'Dodaj do koszyka'} />
               </form>}
         </main>
