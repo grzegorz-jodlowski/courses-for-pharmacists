@@ -1,27 +1,50 @@
+import Axios from 'axios';
+import { api } from '../settings';
 
-// /* selectors */
+/* selectors */
 export const getOrder = (state) => state.order;
 
 
-// /* action name creator */
+/* action name creator */
 const reducerName = 'order';
 const createActionName = name => `app/${reducerName}/${name}`;
 
-// /* action types */
-const ADD_PRODUCTS = createActionName('ADD_PRODUCTS');
+/* action types */
+const FETCH_PRODUCTS_FROM_CART = createActionName('FETCH_PRODUCTS_FROM_CART');
+const POST_START = createActionName('POST_START');
+const POST_SUCCESS = createActionName('POST_SUCCESS');
+const POST_ERROR = createActionName('POST_ERROR');
 
-//TODO: const FETCH_START = createActionName('FETCH_START');
-// TODO: const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
-// TODO: const FETCH_ERROR = createActionName('FETCH_ERROR');
+/* action creators */
+export const fetchProductsFromCart = payload => ({ payload, type: FETCH_PRODUCTS_FROM_CART });
+export const postStarted = payload => ({ payload, type: POST_START });
+export const postSuccess = payload => ({ payload, type: POST_SUCCESS });
+export const postError = payload => ({ payload, type: POST_ERROR });
 
-// /* action creators */
-export const addProducts = payload => ({ payload, type: ADD_PRODUCTS });
+/* thunk creators */
+export const postOrder = () => {
+  return (dispatch, getState) => {
+    dispatch(postStarted());
+    console.log(' : przed AXIOS');
+
+    Axios
+      .post(`${api.url}/${api.orders}`)
+      .then(res => {
+        dispatch(postSuccess(res.data));
+        console.log(' : postOrder -> res.data', res.data);
+      })
+      .catch(err => {
+        dispatch(postError(err.message || true));
+        console.log(' : postOrder -> err.message', err.message);
+      });
+  };
+};
 
 
 /* reducer */
 export default function reducer(statePart = {}, action = {}) {
   switch (action.type) {
-    case ADD_PRODUCTS: {
+    case FETCH_PRODUCTS_FROM_CART: {
       return {
         ...statePart,
         products: action.payload,

@@ -24,6 +24,10 @@ export const initialState = {
       terms: null,
     },
     products: [],
+    loading: {
+      active: false,
+      error: false,
+    },
   },
   user: {
     id: '1',
