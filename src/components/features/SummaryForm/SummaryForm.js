@@ -44,7 +44,7 @@ class Component extends React.Component {
 
     let error = null;
 
-    const emailPattern = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'g');
+    const emailPattern = new RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'g');
 
     if (!contact.name.length || !contact.email.length) error = `Uzupełnij imię i email`;
     else if (!contact.privacy || !contact.terms) error = `Musisz zaakceptować zgody`;

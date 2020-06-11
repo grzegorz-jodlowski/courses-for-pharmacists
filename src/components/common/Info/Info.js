@@ -14,17 +14,14 @@ const Component = ({ className, children, variant }) => {
       return <div className={clsx(className, styles.root, styles.success)}>
         {children}
       </div>;
-      break;
     case 'warning':
       return <div className={clsx(className, styles.root, styles.warning)}>
         {children}
       </div>;
-      break;
     case 'error':
       return <div className={clsx(className, styles.root, styles.error)}>
         {children}
       </div>;
-      break;
     default:
       return <div className={clsx(className, styles.root)}>
         {children}
