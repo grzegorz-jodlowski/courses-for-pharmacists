@@ -23,7 +23,8 @@ label span {
 .inputName,
 .inputEmail {
   width: 60%;
-  height: 2.5rem;
+  padding: 1rem;
+
   @media (max-width: $breakpoint-xs) {
     width: 100%;
   }
