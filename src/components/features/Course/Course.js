@@ -34,7 +34,7 @@ const Component = ({ className, children, course }) => {
       </article>
     </section>
   );
-}
+};
 
 Component.propTypes = {
   children: PropTypes.node,
