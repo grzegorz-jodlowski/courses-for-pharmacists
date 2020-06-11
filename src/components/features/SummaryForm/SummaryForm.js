@@ -87,13 +87,13 @@ class Component extends React.Component {
         <label htmlFor="email">Email <span>*</span></label>
         <input name="email" id="email" required className={styles.inputEmail} type="text" value={email} onChange={handleChange} />
         <label htmlFor="privacy" className={styles.labelPrivacy}>
-          <input name="privacy" id="privacy" required className={styles.inputPrivacy} type="checkbox" value={privacy} onChange={handleChange} />
+          <input name="privacy" id="privacy" required className={styles.inputPrivacy} type="checkbox" checked={privacy} value={privacy} onChange={handleChange} />
           <p>
             Wyrażam zgodę na przetwarzanie moich danych osobowych w celach i zakresie zgodnym z<Link to={`${process.env.PUBLIC_URL}/privacy`} className={styles.link}>{' Polityką prywatności.'}</Link><span>*</span>
           </p>
         </label>
         <label htmlFor="terms" className={styles.labelTerms}>
-          <input name="terms" id="terms" required className={styles.inputTerms} type="checkbox" value={terms} onChange={handleChange} />
+          <input name="terms" id="terms" required className={styles.inputTerms} type="checkbox" checked={terms} value={terms} onChange={handleChange} />
           <p>
             Akceptuję <Link to={`${process.env.PUBLIC_URL}/terms`} className={styles.link}>{' regulamin zakupów '}</Link><span>*</span>
           </p>

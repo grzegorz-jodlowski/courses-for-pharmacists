@@ -48,9 +48,46 @@ export default function reducer(statePart = {}, action = {}) {
     case FETCH_PRODUCTS_FROM_CART: {
       return {
         ...statePart,
+        status: 'draft',
         products: action.payload,
       };
     }
+    case POST_START: {
+      return {
+        ...statePart,
+        loading: {
+          active: true,
+          error: false,
+        },
+      };
+    }
+    case POST_SUCCESS: {
+      return {
+        lastOrder: action.payload._id,
+        status: 'draft',
+        contact: {
+          name: '',
+          email: '',
+          privacy: null,
+          terms: null,
+        },
+        products: [],
+        loading: {
+          active: false,
+          error: false,
+        },
+      };
+    }
+    case POST_ERROR: {
+      return {
+        ...statePart,
+        loading: {
+          active: false,
+          error: action.payload,
+        },
+      };
+    }
+
     default:
       return statePart;
   }
