@@ -13,29 +13,32 @@ import { removeFromCart, updateCartItemQuantity, updateCartItemInfo } from '../.
 
 class Component extends React.Component {
 
-  handleQuantityChange(id, e) {
-    this.props.updateCartItemQuantity({ id, quantity: e.target.value });
+  handleChange = ({ target }, id) => {
+    const { value, name } = target;
+    const { updateCartItemQuantity, updateCartItemInfo } = this.props;
+
+    name === 'quantity' && updateCartItemQuantity({ id, [name]: value });
+    name === 'additionalInfo' && updateCartItemInfo({ id, [name]: value });
   }
 
-  handleInfoChange(id, e) {
-    this.props.updateCartItemInfo({ id, additionalInfo: e.target.value });
-  }
+  handleRemove = (id) => {
+    const { removeFromCart } = this.props;
 
-  handleRemove(id, e) {
-    e.preventDefault();
-    this.props.removeFromCart(id);
+    removeFromCart(id);
   }
 
   render() {
+    const { handleChange, handleRemove } = this;
+
     const { className, cartItem } = this.props;
     const { quantity, courseId, title, price } = cartItem;
 
     return (
       <form key={courseId} className={clsx(className, styles.root)}>
         <p className={styles.title}>{title}</p>
-        <textarea name="additionalInfo" id={`additionalInfo${courseId}`} className={styles.additionalInfo} onChange={(e) => this.handleInfoChange(courseId, e)} placeholder="Miejsce na dodatkowe informacje..."></textarea>
-        <QuantityInput value={quantity} action={(e) => this.handleQuantityChange(courseId, e)} className={styles.inputQuantityPosition} id={courseId} />
-        <RemoveButton action={(e) => this.handleRemove(courseId, e)} className={styles.removeButton} />
+        <textarea name="additionalInfo" id={`additionalInfo${courseId}`} className={styles.additionalInfo} onChange={(e) => handleChange(e, courseId)} placeholder="Miejsce na dodatkowe informacje..."></textarea>
+        <QuantityInput value={quantity} action={(e) => handleChange(e, courseId)} className={styles.inputQuantityPosition} id={courseId} />
+        <RemoveButton action={() => handleRemove(courseId)} className={styles.removeButton} />
         <Price price={price * quantity} text={''} />
       </form>
     );
