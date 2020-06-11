@@ -62,6 +62,8 @@ class Component extends React.Component {
 
       this.props.postOrder(order);
 
+      clearCart();
+
       if (success) {
         this.setState({
           contact: {
@@ -72,7 +74,6 @@ class Component extends React.Component {
           },
           error: null,
         });
-        clearCart();
       }
     }
     else this.setState({ error });
