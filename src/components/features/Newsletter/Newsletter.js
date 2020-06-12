@@ -11,6 +11,7 @@ import { Button } from '../../common/Button/Button';
 import { Title } from '../../common/Title/Title';
 import { Info } from '../../common/Info/Info';
 import { Spinner } from '../../common/Spinner/Spinner';
+import { Modal } from '../../common/Modal/Modal';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
@@ -81,6 +82,7 @@ class Component extends React.Component {
 
     return (
       <section className={clsx(styles.root)} >
+        {/* <Modal /> */}
         {(!loading && !postError && success) && <Info variant={'success'}>{`Zapiasno do newsletter`}</Info>}
         {(loading) && <Spinner />}
         {(!loading && !success) &&
