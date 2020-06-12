@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import Axios from 'axios';
+
+import { api } from '../../../settings';
 
 import styles from './Newsletter.module.scss';
 
@@ -22,9 +25,20 @@ class Component extends React.Component {
   }
 
   handleSubmit = (e) => {
-    alert(`Imię: ${this.state.name}, Email: ${this.state.email}`);
-    this.setState({ name: '', email: '' });
+    const { name, email } = this.state;
+
     e.preventDefault();
+
+
+    Axios
+      .post(`${api.url}/${api.newsletter}`, { name, email })
+      .then(res => {
+        console.log(' : handleSubmit -> res.data', res.data);
+        this.setState({ name: '', email: '' });
+      })
+      .catch(err => {
+        console.log(' : handleSubmit -> err.message', err.message);
+      });
   }
 
   render() {
