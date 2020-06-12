@@ -25,7 +25,13 @@
   justify-content: space-between;
 
   @media (max-width: $breakpoint-s) {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 8rem;
+    right: -100vw;
+    width: 100%;
+    background-color: #fff;
+    text-align: center;
   }
 }
 
@@ -57,14 +63,12 @@
   animation: fadeIn 0.5s linear;
 }
 
-.menuOpen {
-  display: block;
-  position: absolute;
-  top: 8rem;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
-  text-align: center;
+.left {
+  animation: left 0.5s linear both;
+}
+
+.right {
+  animation: right 0.5s linear both;
 }
 
 @keyframes fadeIn {
@@ -74,5 +78,23 @@
 
   to {
     opacity: 1;
+  }
+}
+@keyframes left {
+  from {
+    right: -100vw;
+  }
+
+  to {
+    right: 0;
+  }
+}
+@keyframes right {
+  from {
+    right: 0;
+  }
+
+  to {
+    right: -100vw;
   }
 }
