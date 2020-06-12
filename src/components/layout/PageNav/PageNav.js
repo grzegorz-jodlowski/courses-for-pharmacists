@@ -12,7 +12,7 @@ import { updateLoginStatus } from '../../../redux/loginRedux';
 
 class Component extends React.Component {
   state = {
-    isOpen: false,
+    isOpen: null,
   }
 
   hamburgerMenuBreakpoint = 768;
@@ -45,7 +45,7 @@ class Component extends React.Component {
       <nav className={clsx(this.className, styles.root)} >
         <div className={styles.wrapper}>
           <Logo action={handleMenuClick} />
-          <div className={isOpen ? clsx(styles.buttons, styles.left) : clsx(styles.buttons, styles.right)}>
+          <div className={isOpen === null ? clsx(styles.buttons) : isOpen ? clsx(styles.buttons, styles.left) : clsx(styles.buttons, styles.right)}>
             <NavButton action={handleMenuClick} text={'Moje kursy'} path={'courses'} />
             <NavButton action={handleMenuClick} text={'Koszyk'} path={'cart'} />
             <NavButton action={handleMenuClick} text={'Kontakt'} path={'contact'} />
