@@ -1,11 +1,5 @@
 @import "../../../styles/settings.scss";
 
-*,
-*:before,
-*:after {
-  transform: translate3d(0, 0, 0);
-}
-
 .root {
   width: 300px;
   height: 300px;

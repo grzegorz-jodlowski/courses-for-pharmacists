@@ -11,8 +11,8 @@ const Component = ({ className, children, decoration }) => (
   <div>
     <h2 className={clsx(className, styles.root)}>
       {children}
+      {decoration && <div className={styles.underscore}></div>}
     </h2>
-    {decoration && <div className={styles.underscore}></div>}
   </div>
 );
 
