@@ -56,7 +56,8 @@ class Component extends React.Component {
               <NavButton action={handleMenuClick} text={'Zaloguj'} path={'login'} />}
           </div>
           <button onClick={handleMenuClick} className={styles.hamburger}>
-            {isOpen ? <i className={clsx(styles.icon, 'fas fa-times')}></i> : <i className={clsx(styles.icon, 'fas fa-bars')}></i>}
+            {isOpen && <i className={clsx(styles.fadeIn, 'fas fa-times')}></i>}
+            {!isOpen && <i className={clsx(styles.fadeIn, 'fas fa-bars')}></i>}
           </button>
         </div>
       </nav>

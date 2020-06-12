@@ -38,11 +38,23 @@
   padding: 0 2rem;
   display: none;
   outline-color: $color-secondary;
-  transition: $transition;
+  cursor: pointer;
+  position: relative;
 
   @media (max-width: $breakpoint-s) {
     display: block;
   }
+
+  & > * {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 0.5s linear;
 }
 
 .menuOpen {
@@ -53,4 +65,14 @@
   width: 100%;
   background-color: #fff;
   text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
