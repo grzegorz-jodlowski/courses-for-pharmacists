@@ -18,11 +18,11 @@ const UPDATE_CART_ITEM_INFO = createActionName('UPDATE_CART_ITEM_INFO');
 
 // /* action creators */
 export const addToCartRedux = payload => ({ payload, type: ADD_TO_CART });
-export const removeFromCart = payload => ({ payload, type: REMOVE_FROM_CART });
-export const clearCart = payload => ({ payload, type: CLEAR_CART });
+export const removeFromCartRedux = payload => ({ payload, type: REMOVE_FROM_CART });
+export const clearCartRedux = payload => ({ payload, type: CLEAR_CART });
 export const updateCart = payload => ({ payload, type: UPDATE_CART });
-export const updateCartItemQuantity = payload => ({ payload, type: UPDATE_CART_ITEM_QUANTITY });
-export const updateCartItemInfo = payload => ({ payload, type: UPDATE_CART_ITEM_INFO });
+export const updateCartItemQuantityRedux = payload => ({ payload, type: UPDATE_CART_ITEM_QUANTITY });
+export const updateCartItemInfoRedux = payload => ({ payload, type: UPDATE_CART_ITEM_INFO });
 
 // /* thunk creators */
 
@@ -37,7 +37,35 @@ export const addToCart = (cartItem) => {
   return (dispatch, getState) => {
     dispatch(addToCartRedux(cartItem));
     const { cart } = getState();
-    console.log(' : addToCart -> state', cart);
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+};
+
+export const removeFromCart = (cartId) => {
+  return (dispatch, getState) => {
+    dispatch(removeFromCartRedux(cartId));
+    const { cart } = getState();
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+};
+export const clearCart = () => {
+  return (dispatch, getState) => {
+    dispatch(clearCartRedux());
+    const { cart } = getState();
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+};
+export const updateCartItemQuantity = (obj) => {
+  return (dispatch, getState) => {
+    dispatch(updateCartItemQuantityRedux(obj));
+    const { cart } = getState();
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+};
+export const updateCartItemInfo = (obj) => {
+  return (dispatch, getState) => {
+    dispatch(updateCartItemInfoRedux(obj));
+    const { cart } = getState();
     localStorage.setItem('cart', JSON.stringify(cart));
   };
 };
