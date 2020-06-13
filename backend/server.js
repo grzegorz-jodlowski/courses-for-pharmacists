@@ -53,9 +53,10 @@ app.use('/api', newsletterRoutes);
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['email', 'profile'] }));
 
-app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/user/no-permission' }),
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    res.redirect('/user/logged');
+    res.redirect('http://localhost:3000');
+    // res.sendFile(path.join(__dirname, '../build/index.html'));
   }
 );
 
