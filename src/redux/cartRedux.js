@@ -1,3 +1,4 @@
+import { fetchProductsFromCart } from './orderRedux';
 
 // /* selectors */
 export const getCart = (state) => state.cart;
@@ -30,6 +31,8 @@ export const updateCartItemInfoRedux = payload => ({ payload, type: UPDATE_CART_
 export const fatchCartFromLocalStorage = () => {
   return (dispatch, getState) => {
     dispatch(updateCart(JSON.parse(localStorage.getItem('cart'))));
+    const { cart } = getState();
+    dispatch(fetchProductsFromCart(cart));
   };
 };
 
