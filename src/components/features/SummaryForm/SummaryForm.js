@@ -7,12 +7,12 @@ import styles from './SummaryForm.module.scss';
 import { Button } from '../../common/Button/Button';
 import { Spinner } from '../../common/Spinner/Spinner';
 import { Info } from '../../common/Info/Info';
+import { Modal } from '../../common/Modal/Modal';
 
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { postOrder } from '../../../redux/orderRedux';
-import { clearCart } from '../../../redux/cartRedux';
+import { postOrder, clearSuccess } from '../../../redux/orderRedux';
 
 class Component extends React.Component {
 
@@ -40,7 +40,7 @@ class Component extends React.Component {
 
   handleSubmit = (e) => {
     const { contact } = this.state;
-    const { products, orderValue, success, clearCart } = this.props;
+    const { products, orderValue, success, postOrder } = this.props;
     e.preventDefault();
 
     let error = null;
@@ -60,11 +60,10 @@ class Component extends React.Component {
         contact,
       };
 
-      this.props.postOrder(order);
-
-      clearCart();
+      postOrder(order);
 
       if (success) {
+
         this.setState({
           contact: {
             name: '',
@@ -81,13 +80,13 @@ class Component extends React.Component {
 
   render() {
     const { handleSubmit, handleChange } = this;
-    const { className, loading, loadingError, success, products, lastOrder } = this.props;
+    const { className, loading, loadingError, success, products, lastOrder, clearSuccess } = this.props;
     const { name, email, privacy, terms } = this.state.contact;
     const { error } = this.state;
 
     return (
       <form className={clsx(className, styles.root)} onSubmit={(e) => handleSubmit(e)}>
-        {(!loading && !loadingError && success) && <Info variant={'success'}>{`Zamówienie o numerze ${lastOrder} zostało złożone`}</Info>}
+        {(!loading && !loadingError && success) && <Modal variant={'success'} text={`Zamówienie o numerze ${lastOrder} zostało złożone`} close={clearSuccess} />}
         {(loadingError) && <Info variant={'error'}>{'Ups... coś poszło nie tak!'}</Info>}
         {(error) && <Info variant={'warning'}>{error}</Info>}
         {(loading) && <Spinner />}
@@ -131,7 +130,7 @@ Component.propTypes = {
   loadingError: PropTypes.bool,
   success: PropTypes.bool,
   lastOrder: PropTypes.string,
-  clearCart: PropTypes.func,
+  clearSuccess: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -144,7 +143,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   postOrder: (order) => dispatch(postOrder(order)),
-  clearCart: () => dispatch(clearCart()),
+  clearSuccess: () => dispatch(clearSuccess()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
