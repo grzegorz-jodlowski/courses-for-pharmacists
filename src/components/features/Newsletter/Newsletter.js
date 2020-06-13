@@ -32,6 +32,7 @@ class Component extends React.Component {
     this.setState({ [name]: value });
   }
 
+
   handleSubmit = (e) => {
     const { name, email } = this.state;
 
@@ -75,14 +76,19 @@ class Component extends React.Component {
     }
   }
 
+  clearSuccess = () => {
+
+    this.setState({ success: false });
+  }
+
   render() {
-    const { handleSubmit, handleChange } = this;
+    const { handleSubmit, handleChange, clearSuccess } = this;
     const { name, email, loading, postError, validationError, success } = this.state;
 
 
     return (
       <section className={clsx(styles.root)} >
-        <Modal variant={'success'} text={'Zapisano do newslettera'} />
+        {/* <Modal variant={'success'} text={'Zapisano do newslettera'} close={clearSuccess} /> */}
         {(!loading && !postError && success) && <Info variant={'success'}>{`Zapiasno do newsletter`}</Info>}
         {(loading) && <Spinner />}
         {(!loading && !success) &&
