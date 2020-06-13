@@ -11,6 +11,7 @@ const session = require('express-session');
 const coursesRoutes = require('./routes/courses.routes');
 const ordersRoutes = require('./routes/orders.routes');
 const newsletterRoutes = require('./routes/newsletter.routes');
+// const authRoutes = require('./routes/auth.routes');
 
 const app = express();
 
@@ -38,6 +39,7 @@ passport.deserializeUser((obj, deserialize) => {
 });
 
 /* MIDDLEWARE */
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -46,13 +48,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api', coursesRoutes);
 app.use('/api', ordersRoutes);
 app.use('/api', newsletterRoutes);
+// app.use('/api', authRoutes);
 
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['email', 'profile'] }));
 
-// app.get('/auth/google/callback', (req, res) => {
-//   res.send(`I'm back from Google!`);
-// });
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/user/no-permission' }),
+  (req, res) => {
+    res.redirect('/user/logged');
+  }
+);
 
 /* API ERROR PAGES */
 app.use('/api', (req, res) => {

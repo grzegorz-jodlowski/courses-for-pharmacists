@@ -19,15 +19,18 @@ import { SummaryPage } from './components/views/Summary/SummaryPage';
 import { connect } from 'react-redux';
 import { getAll, fetchCourses } from './redux/coursesRedux';
 import { fatchCartFromLocalStorage } from './redux/cartRedux';
+import { fetchLogin } from './redux/loginRedux';
 
 class Component extends React.Component {
 
   componentDidMount() {
-    const { fetchCourses, courses, fatchCartFromLocalStorage } = this.props;
+    const { fetchCourses, courses, fatchCartFromLocalStorage, fetchLogin } = this.props;
     if (courses.length === 0) {
       fetchCourses();
     }
     fatchCartFromLocalStorage();
+    fetchLogin();
+
   }
 
   render() {
@@ -57,6 +60,7 @@ Component.propTypes = {
   courses: PropTypes.array,
   fetchCourses: PropTypes.func,
   fatchCartFromLocalStorage: PropTypes.func,
+  fetchLogin: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -66,6 +70,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchCourses: () => dispatch(fetchCourses()),
   fatchCartFromLocalStorage: () => dispatch(fatchCartFromLocalStorage()),
+  fetchLogin: () => dispatch(fetchLogin()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
