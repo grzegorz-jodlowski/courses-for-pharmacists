@@ -1,68 +1,98 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+<a href="https://online-pharmacy-site.herokuapp.com/"><img src="public/logo.jpg" title="courses-for-pharmacist" alt="snippet of courses for pharmacist website"></a>
+</p>
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `yarn start`
+# <p align="center">💊 Courses for Pharmacist website</p>
+<p align="center">Project for mastering React, Express and MongoDB</p>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+</br>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Table of Contents
 
-### `yarn test`
+- [What's this project about?](#ab)
+- [Technologies used](#tech)
+- [What I learned?](#what)
+- [Interesting code snippet](#inter)
+- [Installation and quick start](#install)
+- [Website (on Heroku)](#si)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+</br>
 
-### `yarn build`
+## <a name="ab"></a>What's this project about?
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+T
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+</br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## <a name="tech"></a>Technologies used
+- HTML
+- CSS
+- SCSS
+- JavaScript
+- React
+- React Router
+- Redux
+- Axios
+- Thunk
+- Express
+- MongoDB
+- MongoDB Atlas
+- Mongoose
+- GIT
 
-### `yarn eject`
+</br>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## <a name="what"></a>What I learned?
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- c
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+</br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## <a name="inter"></a>Interesting code snippet (for me of course 😉)
+- t:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
 
-### Code Splitting
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+</br>
 
-### Analyzing the Bundle Size
+## <a name="install"></a>Installation and quick start
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+- use the package manager [npm](https://www.npmjs.com/get-npm) or [yarn](https://classic.yarnpkg.com/en/) to install dependencies:
 
-### Making a Progressive Web App
+```bash
+npm install // yarn install
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+or
 
-### Advanced Configuration
+npm i // yarn
+```
+- run server with nodemon (after nodemon installation) and run watch mode to constantly refreshing react client:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+```bash
+npm start
 
-### Deployment
+or
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+yarn start
+```
 
-### `yarn build` fails to minify
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<br/>
+
+
+## <a name="si"></a>Website (on Heroku)
+[Courses for Pharmacist](https://online-pharmacy-site.herokuapp.com/)
+- if the page loads slowly, wait a moment, the server is waking up because it is hosted on a free platform Heroku.
+
+</br>
+</br>
+
+  *final project at the end of the 9-month [Web Developer Plus](https://kodilla.com/pl/bootcamp/webdeveloper/?type=wdp&editionId=309) course organized by [Kodilla](https://drive.google.com/file/d/1AZGDMtjhsHbrtXhRSIlRKKc3RCxQk6YY/view?usp=sharing)
+
+
