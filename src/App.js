@@ -45,6 +45,7 @@ class Component extends React.Component {
           <Route exact path={`${process.env.PUBLIC_URL}/terms`} component={TermsPage} />
           <Route exact path={`${process.env.PUBLIC_URL}/login`} component={LoginPage} />
           <Route exact path={`${process.env.PUBLIC_URL}/logout`} component={HomePage} />
+          <Route exact path={`${process.env.PUBLIC_URL}/auth/google/callback`} component={HomePage} />
           <Route exact path={`${process.env.PUBLIC_URL}*`} component={NotFoundPage} />
         </Switch>
       </MainLayout>

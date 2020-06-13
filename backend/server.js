@@ -3,6 +3,9 @@ const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const session = require('express-session');
 
 
 const coursesRoutes = require('./routes/courses.routes');
@@ -10,6 +13,29 @@ const ordersRoutes = require('./routes/orders.routes');
 const newsletterRoutes = require('./routes/newsletter.routes');
 
 const app = express();
+
+// configure passport provider options
+passport.use(new GoogleStrategy({
+  clientID: process.env.clientID,
+  clientSecret: process.env.clientSecret,
+  callbackURL: process.env.callbackURL,
+}, (accessToken, refreshToken, profile, done) => {
+  done(null, profile);
+}));
+
+app.use(session({ secret: 'anything' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// serialize user when saving to session
+passport.serializeUser((user, serialize) => {
+  serialize(null, user);
+});
+
+// deserialize user when reading from session
+passport.deserializeUser((obj, deserialize) => {
+  deserialize(null, obj);
+});
 
 /* MIDDLEWARE */
 app.use(cors());
@@ -20,6 +46,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api', coursesRoutes);
 app.use('/api', ordersRoutes);
 app.use('/api', newsletterRoutes);
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['email', 'profile'] }));
+
+// app.get('/auth/google/callback', (req, res) => {
+//   res.send(`I'm back from Google!`);
+// });
 
 /* API ERROR PAGES */
 app.use('/api', (req, res) => {

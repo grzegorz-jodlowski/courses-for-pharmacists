@@ -18,7 +18,7 @@ const Component = ({ className, children, isLogged }) => {
         :
         <div>
           <Title>Zaloguj się żeby uzyskać dostęp do swoich kursów</Title>
-          <a className={clsx(styles.loginBtn, styles.loginBtnGoogle)} href="/auth/google">
+          <a className={clsx(styles.loginBtn, styles.loginBtnGoogle)} href="http://localhost:8000/auth/google">
             Login with Google
           </a>
         </div>
