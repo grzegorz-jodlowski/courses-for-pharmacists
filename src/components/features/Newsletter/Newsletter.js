@@ -88,8 +88,7 @@ class Component extends React.Component {
 
     return (
       <section className={clsx(styles.root)} >
-        {/* <Modal variant={'success'} text={'Zapisano do newslettera'} close={clearSuccess} /> */}
-        {(!loading && !postError && success) && <Info variant={'success'}>{`Zapiasno do newsletter`}</Info>}
+        {(!loading && !postError && success) && <Modal variant={'success'} text={'Zapisano do newslettera'} close={clearSuccess} />}
         {(loading) && <Spinner />}
         {(!loading && !success) &&
           (
