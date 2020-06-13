@@ -10,7 +10,7 @@ import { Info } from '../../common/Info/Info';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children, text, variant, close }) => (
-  <div className={clsx(className, styles.root)}>
+  <div className={clsx(className, styles.root)} onClick={close}>
     <div className={styles.modal}>
       <Info variant={'success'}>{text}</Info>
       <div className={styles.close} onClick={close}><i className={'fas fa-times'}></i></div>
