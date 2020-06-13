@@ -11,20 +11,43 @@ const createActionName = name => `app/${reducerName}/${name}`;
 const ADD_TO_CART = createActionName('ADD_TO_CART');
 const REMOVE_FROM_CART = createActionName('REMOVE_FROM_CART');
 const CLEAR_CART = createActionName('CLEAR_CART');
+const UPDATE_CART = createActionName('UPDATE_CART');
 const UPDATE_CART_ITEM_QUANTITY = createActionName('UPDATE_CART_ITEM_QUANTITY');
 const UPDATE_CART_ITEM_INFO = createActionName('UPDATE_CART_ITEM_INFO');
 
 
 // /* action creators */
-export const addToCart = payload => ({ payload, type: ADD_TO_CART });
+export const addToCartRedux = payload => ({ payload, type: ADD_TO_CART });
 export const removeFromCart = payload => ({ payload, type: REMOVE_FROM_CART });
 export const clearCart = payload => ({ payload, type: CLEAR_CART });
+export const updateCart = payload => ({ payload, type: UPDATE_CART });
 export const updateCartItemQuantity = payload => ({ payload, type: UPDATE_CART_ITEM_QUANTITY });
 export const updateCartItemInfo = payload => ({ payload, type: UPDATE_CART_ITEM_INFO });
+
+// /* thunk creators */
+
+
+export const fatchCartFromLocalStorage = () => {
+  return (dispatch, getState) => {
+    dispatch(updateCart(JSON.parse(localStorage.getItem('cart'))));
+  };
+};
+
+export const addToCart = (cartItem) => {
+  return (dispatch, getState) => {
+    dispatch(addToCartRedux(cartItem));
+    const { cart } = getState();
+    console.log(' : addToCart -> state', cart);
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+};
 
 /* reducer */
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
+    case UPDATE_CART: {
+      return action.payload;
+    }
     case ADD_TO_CART: {
       return [
         ...statePart,
