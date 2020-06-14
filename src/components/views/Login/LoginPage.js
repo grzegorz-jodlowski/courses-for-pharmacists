@@ -12,61 +12,63 @@ import { Info } from '../../common/Info/Info';
 import { connect } from 'react-redux';
 import { updateLoginStatus } from '../../../redux/loginRedux';
 
-const Component = ({ className, children, isLogged, updateLoginStatus }) => {
+class Component extends React.Component {
 
-  const loginSuccess = (response) => {
+  loginSuccess = (response) => {
     console.log(response);
     console.log('Zalogowano');
-    updateLoginStatus('login');
+    this.props.updateLoginStatus('login');
 
   };
-  const loginError = (response) => {
+  loginError = (response) => {
     console.log(response);
     console.log('Nie udało się zalogować');
 
   };
-  const logout = (response) => {
+  logout = (response) => {
     console.log('Wylogowano');
-    updateLoginStatus('logout');
+    this.props.updateLoginStatus('logout');
 
   };
+  render() {
+    const { loginSuccess, loginError, logout } = this;
+    const { className, isLogged } = this.props;
 
-  return (
-    <main className={clsx(className, styles.root, 'container')}>
-      {isLogged ?
-        <div>
-          <Info variant={'success'} >Jesteś zalogowany</Info>
-          <GoogleLogout
-            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-            render={renderProps => (
-              <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Kliknij żeby wylogować</button>
-            )}
-            buttonText="Logout"
-            onLogoutSuccess={logout}
-          // isSignedIn={false}
-          >
-          </GoogleLogout>
-        </div>
-        :
-        <div>
-          <Title>Zaloguj się żeby uzyskać dostęp do swoich kursów</Title>
-          <GoogleLogin
-            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-            render={renderProps => (
-              <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Zaloguj się z Google</button>
-            )}
-            buttonText="Login"
-            onSuccess={loginSuccess}
-            onFailure={loginError}
-            cookiePolicy={'single_host_origin'}
-          // isSignedIn={true}
-          />
+    return (
+      <main className={clsx(className, styles.root, 'container')}>
+        {isLogged ?
+          <div>
+            <Info variant={'success'} >Jesteś zalogowany</Info>
+            <GoogleLogout
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              render={renderProps => (
+                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Kliknij żeby wylogować</button>
+              )}
+              buttonText="Logout"
+              onLogoutSuccess={logout}
+            >
+            </GoogleLogout>
+          </div>
+          :
+          <div>
+            <Title>Zaloguj się żeby uzyskać dostęp do swoich kursów</Title>
+            <GoogleLogin
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              render={renderProps => (
+                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Zaloguj się z Google</button>
+              )}
+              buttonText="Login"
+              onSuccess={loginSuccess}
+              onFailure={loginError}
+              cookiePolicy={'single_host_origin'}
+            // isSignedIn={true}
+            />
+          </div>
+        }
+      </main>
+    );
+  }
 
-
-        </div>
-      }
-    </main>
-  );
 };
 
 Component.propTypes = {
