@@ -32,8 +32,8 @@ export const initialState = {
     },
   },
   user: {
-    id: '1',
-    courses: ['5edce4fc61ce708dd5a364ba', '5edce9b0677f8af3ddc60406'],
+    // id: '1',
+    // courses: ['5edce4fc61ce708dd5a364ba', '5edce9b0677f8af3ddc60406'],
   },
   isLogged: false,
   courses: {

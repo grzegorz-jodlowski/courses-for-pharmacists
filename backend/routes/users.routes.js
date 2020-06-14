@@ -3,12 +3,19 @@ const router = express.Router();
 
 const User = require('../models/user.model');
 
-router.get('/users/:id', async (req, res) => {
+router.get('/users', async (req, res) => {
   try {
-    const result = await User
-      .findById(req.params.id);
-    if (!result) res.status(404).json({ course: 'Not found' });
-    else res.json(result);
+    const user = await User.findOne({ email: req.body.email });
+
+    if (user) {
+      console.log(' : user', user);
+    } else {
+      console.log(' : req.body', req.body);
+    }
+
+
+    // if (!result) res.status(404).json({ course: 'Not found' });
+    // else res.json(result);
   }
   catch (err) {
     res.status(500).json(err);

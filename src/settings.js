@@ -3,5 +3,5 @@ export const api = {
   courses: 'courses',
   orders: 'orders',
   newsletter: 'newsletter',
-  auth: 'auth',
+  users: 'users',
 };

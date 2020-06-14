@@ -6,6 +6,7 @@ import coursesReducer from './coursesRedux';
 import loginReducer from './loginRedux';
 import cartReducer from './cartRedux';
 import orderReducer from './orderRedux';
+import userReducer from './userRedux';
 import { initialState } from './initialState';
 
 // define reducers
@@ -14,6 +15,7 @@ const reducers = {
   isLogged: loginReducer,
   cart: cartReducer,
   order: orderReducer,
+  user: userReducer,
 };
 
 // add blank reducers for initial state properties without reducers
