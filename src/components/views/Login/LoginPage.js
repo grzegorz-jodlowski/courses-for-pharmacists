@@ -10,13 +10,14 @@ import { Title } from '../../common/Title/Title';
 import { Info } from '../../common/Info/Info';
 
 import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
+import { updateLoginStatus } from '../../../redux/loginRedux';
 
-const Component = ({ className, children, isLogged }) => {
+const Component = ({ className, children, isLogged, updateLoginStatus }) => {
 
   const loginSuccess = (response) => {
     console.log(response);
     console.log('Zalogowano');
+    updateLoginStatus('login');
 
   };
   const loginError = (response) => {
@@ -26,6 +27,8 @@ const Component = ({ className, children, isLogged }) => {
   };
   const logout = (response) => {
     console.log('Wylogowano');
+    updateLoginStatus('logout');
+
   };
 
   return (
@@ -70,6 +73,7 @@ Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   isLogged: PropTypes.bool,
+  updateLoginStatus: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -77,6 +81,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  updateLoginStatus: log => dispatch(updateLoginStatus(log)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
