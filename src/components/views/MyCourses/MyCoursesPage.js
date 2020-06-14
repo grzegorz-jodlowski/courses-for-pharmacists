@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 const Component = ({ className, courses, loading, loadingError, isLogged, user }) => {
 
   if (isLogged) {
-    const userCourses = courses.filter(course => user.courses.includes(course._id) ? course : null);
+    const userCourses = user.courses ? courses.filter(course => user.courses.includes(course._id) ? course : null) : [];
 
     return (
       <main className={clsx(className, styles.root, 'container')}>
