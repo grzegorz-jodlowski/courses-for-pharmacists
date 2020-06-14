@@ -13,10 +13,9 @@ router.post('/orders', async (req, res) => {
     const user = await User.findOne({ email: req.body.contact.email });
 
     if (user) {
-      //update user
-
-
-      console.log(' : user', user);
+      //update user courses
+      const newCourses = [...user.courses, ...req.body.products.map(({ courseId }) => courseId)];
+      await User.updateOne({ email: req.body.contact.email }, { courses: newCourses });
     } else {
       //add new user
       const email = req.body.contact.email;
