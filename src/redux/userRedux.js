@@ -1,6 +1,8 @@
 import Axios from 'axios';
 import { api } from '../settings';
 
+import { addToCart, clearCart } from './cartRedux';
+
 /* selectors */
 export const getUser = (state) => state.user;
 
@@ -14,7 +16,7 @@ const CLEAR_USER = createActionName('CLEAR_USER');
 
 /* action creators */
 export const fetchUserRedux = payload => ({ payload, type: FETCH_USER });
-export const clearUser = payload => ({ payload, type: CLEAR_USER });
+export const clearUserRedux = payload => ({ payload, type: CLEAR_USER });
 
 // /* thunk creators */
 export const fetchUser = id => {
@@ -27,10 +29,20 @@ export const fetchUser = id => {
           courses: res.data.courses,
           cart: res.data.cart,
         }));
+        res.data.cart.forEach(cartItem => {
+          dispatch(addToCart(cartItem));
+        });
       })
       .catch(err => {
         console.log(' : fetchUser -> err.message', err.message);
       });
+  };
+};
+
+export const clearUser = () => {
+  return (dispatch, getState) => {
+    dispatch(clearUserRedux());
+    dispatch(clearCart());
   };
 };
 

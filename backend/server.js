@@ -4,8 +4,6 @@ const path = require('path');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-
-
 const coursesRoutes = require('./routes/courses.routes');
 const ordersRoutes = require('./routes/orders.routes');
 const newsletterRoutes = require('./routes/newsletter.routes');
