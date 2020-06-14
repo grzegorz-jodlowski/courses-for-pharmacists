@@ -35,6 +35,9 @@ const Component = ({ className, children, isLogged }) => {
           <Info variant={'success'} >Jesteś zalogowany</Info>
           <GoogleLogout
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            render={renderProps => (
+              <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Kliknij żeby wylogować</button>
+            )}
             buttonText="Logout"
             onLogoutSuccess={logout}
           // isSignedIn={false}
@@ -47,7 +50,7 @@ const Component = ({ className, children, isLogged }) => {
           <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             render={renderProps => (
-              <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Login with Google</button>
+              <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Zaloguj się z Google</button>
             )}
             buttonText="Login"
             onSuccess={loginSuccess}
