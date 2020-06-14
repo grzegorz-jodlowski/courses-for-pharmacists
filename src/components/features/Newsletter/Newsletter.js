@@ -53,7 +53,6 @@ class Component extends React.Component {
       Axios
         .post(`${api.url}/${api.newsletter}`, { name, email })
         .then(res => {
-          console.log(' : handleSubmit -> res.data', res.data);
           this.setState({
             name: '',
             email: '',
@@ -64,7 +63,6 @@ class Component extends React.Component {
           });
         })
         .catch(err => {
-          console.log(' : handleSubmit -> err.message', err.message);
           this.setState({
             postError: true,
             loading: false,

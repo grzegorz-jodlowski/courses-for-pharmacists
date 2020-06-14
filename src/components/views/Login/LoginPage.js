@@ -21,8 +21,7 @@ class Component extends React.Component {
   loginSuccess = (response) => {
     const { updateLoginStatus, fetchUser } = this.props;
 
-    console.log(response);
-    console.log(response.profileObj.email);
+    // console.log(response);
     console.log('Zalogowano');
     updateLoginStatus('login');
     fetchUser(response.profileObj.email);
