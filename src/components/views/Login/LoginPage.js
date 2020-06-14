@@ -14,34 +14,25 @@ import { connect } from 'react-redux';
 
 const Component = ({ className, children, isLogged }) => {
 
-  const responseGoogle = (response) => {
+  const loginSuccess = (response) => {
     console.log(response);
+    console.log('Zalogowano');
+
+  };
+  const loginError = (response) => {
+    console.log(response);
+    console.log('Nie udało się zalogować');
+
   };
   const logout = (response) => {
     console.log('Wylogowano');
   };
 
-  const client = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-  console.log(' : Component -> client', client);
   return (
     <main className={clsx(className, styles.root, 'container')}>
       {isLogged ?
-        <Info variant={'success'} >Jesteś zalogowany</Info>
-        :
         <div>
-          <Title>Zaloguj się żeby uzyskać dostęp do swoich kursów</Title>
-          {/* <a className={clsx(styles.loginBtn, styles.loginBtnGoogle)} href="http://localhost:8000/auth/google">
-            Login with Google
-          </a> */}
-          <GoogleLogin
-            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-            buttonText="Login"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={'single_host_origin'}
-          // isSignedIn={true}
-          />
-
+          <Info variant={'success'} >Jesteś zalogowany</Info>
           <GoogleLogout
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             buttonText="Logout"
@@ -49,6 +40,22 @@ const Component = ({ className, children, isLogged }) => {
           // isSignedIn={false}
           >
           </GoogleLogout>
+        </div>
+        :
+        <div>
+          <Title>Zaloguj się żeby uzyskać dostęp do swoich kursów</Title>
+          <GoogleLogin
+            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            render={renderProps => (
+              <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Login with Google</button>
+            )}
+            buttonText="Login"
+            onSuccess={loginSuccess}
+            onFailure={loginError}
+            cookiePolicy={'single_host_origin'}
+          // isSignedIn={true}
+          />
+
 
         </div>
       }
