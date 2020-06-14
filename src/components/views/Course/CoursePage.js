@@ -64,7 +64,7 @@ class Component extends React.Component {
     } else {
 
       const isCourseInCart = cart.some(({ courseId }) => courseId === _id);
-      const isCourseAlreadyBought = user.courses.some(course => course === _id);
+      const isCourseAlreadyBought = user.courses ? user.courses.some(course => course === _id) : [];
 
       return (
         <main className={clsx(className, styles.root, 'container')}>
