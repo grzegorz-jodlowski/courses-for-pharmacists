@@ -17,8 +17,6 @@ export const fetchUserRedux = payload => ({ payload, type: FETCH_USER });
 // /* thunk creators */
 export const fetchUser = id => {
   return (dispatch, getState) => {
-    // dispatch(fetchStarted());
-    // const state = getState();
     Axios
       .get(`${api.url}/${api.users}/${id}`)
       .then(res => {
