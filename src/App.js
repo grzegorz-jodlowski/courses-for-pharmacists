@@ -19,17 +19,15 @@ import { SummaryPage } from './components/views/Summary/SummaryPage';
 import { connect } from 'react-redux';
 import { getAll, fetchCourses } from './redux/coursesRedux';
 import { fatchCartFromLocalStorage } from './redux/cartRedux';
-import { fetchLogin } from './redux/loginRedux';
 
 class Component extends React.Component {
 
   componentDidMount() {
-    const { fetchCourses, courses, fatchCartFromLocalStorage, fetchLogin } = this.props;
+    const { fetchCourses, courses, fatchCartFromLocalStorage } = this.props;
     if (courses.length === 0) {
       fetchCourses();
     }
     fatchCartFromLocalStorage();
-    fetchLogin();
 
   }
 
@@ -48,7 +46,6 @@ class Component extends React.Component {
           <Route exact path={`${process.env.PUBLIC_URL}/terms`} component={TermsPage} />
           <Route exact path={`${process.env.PUBLIC_URL}/login`} component={LoginPage} />
           <Route exact path={`${process.env.PUBLIC_URL}/logout`} component={HomePage} />
-          <Route exact path={`${process.env.PUBLIC_URL}/auth/google/callback`} component={HomePage} />
           <Route exact path={`${process.env.PUBLIC_URL}*`} component={NotFoundPage} />
         </Switch>
       </MainLayout>
@@ -60,7 +57,6 @@ Component.propTypes = {
   courses: PropTypes.array,
   fetchCourses: PropTypes.func,
   fatchCartFromLocalStorage: PropTypes.func,
-  fetchLogin: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -70,7 +66,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchCourses: () => dispatch(fetchCourses()),
   fatchCartFromLocalStorage: () => dispatch(fatchCartFromLocalStorage()),
-  fetchLogin: () => dispatch(fetchLogin()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

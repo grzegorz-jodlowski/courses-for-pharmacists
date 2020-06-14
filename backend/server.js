@@ -11,7 +11,6 @@ const session = require('express-session');
 const coursesRoutes = require('./routes/courses.routes');
 const ordersRoutes = require('./routes/orders.routes');
 const newsletterRoutes = require('./routes/newsletter.routes');
-// const authRoutes = require('./routes/auth.routes');
 
 const app = express();
 
@@ -48,15 +47,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api', coursesRoutes);
 app.use('/api', ordersRoutes);
 app.use('/api', newsletterRoutes);
-// app.use('/api', authRoutes);
 
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['email', 'profile'] }));
 
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    res.redirect('http://localhost:3000');
-    // res.sendFile(path.join(__dirname, '../build/index.html'));
+    res.redirect('/logged');
   }
 );
 
