@@ -49,7 +49,8 @@ class Component extends React.Component {
           <div>
             <Info variant={'success'} >Jesteś zalogowany</Info>
             <GoogleLogout
-              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              // clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              clientId='980498933049-e369765i28cv4aff5slma8qeaec2ru7e.apps.googleusercontent.com'
               render={renderProps => (
                 <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Kliknij żeby wylogować</button>
               )}
@@ -62,7 +63,8 @@ class Component extends React.Component {
           <div>
             <Title>Zaloguj się żeby uzyskać dostęp do swoich kursów</Title>
             <GoogleLogin
-              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              // clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              clientId='980498933049-e369765i28cv4aff5slma8qeaec2ru7e.apps.googleusercontent.com'
               render={renderProps => (
                 <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Zaloguj się z Google</button>
               )}
