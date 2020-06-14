@@ -9,6 +9,7 @@ import { NavButton } from '../../common/NavButton/NavButton';
 
 import { connect } from 'react-redux';
 import { updateLoginStatus } from '../../../redux/loginRedux';
+import { clearUser } from '../../../redux/userRedux';
 
 class Component extends React.Component {
   state = {
@@ -31,7 +32,10 @@ class Component extends React.Component {
         this.setState(prevState => ({ isOpen: !prevState.isOpen }));
       }
       if (path === 'logout') {
-        this.props.updateLoginStatus(path);
+        const { updateLoginStatus, clearUser } = this.props;
+
+        updateLoginStatus(path);
+        clearUser();
       }
     }
   }
@@ -70,6 +74,7 @@ Component.propTypes = {
   className: PropTypes.string,
   isLogged: PropTypes.bool,
   updateLoginStatus: PropTypes.func,
+  clearUser: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -78,6 +83,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateLoginStatus: log => dispatch(updateLoginStatus(log)),
+  clearUser: () => dispatch(clearUser()),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

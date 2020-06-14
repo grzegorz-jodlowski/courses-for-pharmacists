@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Nieprawidłowy adres email'],
   },
   courses: { type: Array },
+  cart: { type: Array },
 });
 
 module.exports = mongoose.model('User', userSchema);

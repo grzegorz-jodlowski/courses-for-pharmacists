@@ -10,9 +10,11 @@ const createActionName = name => `app/${reducerName}/${name}`;
 
 /* action types */
 const FETCH_USER = createActionName('FETCH_USER');
+const CLEAR_USER = createActionName('CLEAR_USER');
 
 /* action creators */
 export const fetchUserRedux = payload => ({ payload, type: FETCH_USER });
+export const clearUser = payload => ({ payload, type: CLEAR_USER });
 
 // /* thunk creators */
 export const fetchUser = id => {
@@ -23,6 +25,7 @@ export const fetchUser = id => {
         dispatch(fetchUserRedux({
           id: res.data.email,
           courses: res.data.courses,
+          cart: res.data.cart,
         }));
       })
       .catch(err => {
@@ -36,6 +39,9 @@ export default function reducer(statePart = {}, action = {}) {
   switch (action.type) {
     case FETCH_USER: {
       return action.payload;
+    }
+    case CLEAR_USER: {
+      return {};
     }
     default:
       return statePart;
