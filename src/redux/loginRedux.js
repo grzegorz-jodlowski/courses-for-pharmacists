@@ -1,5 +1,5 @@
-import Axios from 'axios';
-import { api } from '../settings';
+// import Axios from 'axios';
+// import { api } from '../settings';
 
 /* selectors */
 export const getLoginState = (state) => state.isLogged;
