@@ -11,6 +11,7 @@ import { Info } from '../../common/Info/Info';
 
 import { connect } from 'react-redux';
 import { updateLoginStatus } from '../../../redux/loginRedux';
+import { fetchUser } from '../../../redux/userRedux';
 
 class Component extends React.Component {
   state = {
@@ -18,11 +19,13 @@ class Component extends React.Component {
   }
 
   loginSuccess = (response) => {
-    const { updateLoginStatus } = this.props;
+    const { updateLoginStatus, fetchUser } = this.props;
 
     console.log(response);
+    console.log(response.profileObj.email);
     console.log('Zalogowano');
     updateLoginStatus('login');
+    fetchUser(response.profileObj.email);
   };
   loginError = (response) => {
     console.log(response);
@@ -82,6 +85,7 @@ Component.propTypes = {
   className: PropTypes.string,
   isLogged: PropTypes.bool,
   updateLoginStatus: PropTypes.func,
+  fetchUser: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -90,6 +94,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateLoginStatus: log => dispatch(updateLoginStatus(log)),
+  fetchUser: email => dispatch(fetchUser(email)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

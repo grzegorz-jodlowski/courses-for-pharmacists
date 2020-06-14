@@ -15,18 +15,19 @@ const FETCH_USER = createActionName('FETCH_USER');
 export const fetchUserRedux = payload => ({ payload, type: FETCH_USER });
 
 // /* thunk creators */
-export const fetchUser = () => {
+export const fetchUser = id => {
   return (dispatch, getState) => {
     // dispatch(fetchStarted());
     // const state = getState();
     Axios
-      .get(`${api.url}/${api.users}`)
+      .get(`${api.url}/${api.users}/${id}`)
       .then(res => {
-        // dispatch(fetchSuccess(res.data));
-        console.log(' : fetchUser -> res.data', res.data);
+        dispatch(fetchUserRedux({
+          id: res.data.email,
+          courses: res.data.courses,
+        }));
       })
       .catch(err => {
-        // dispatch(fetchError(err.message || true));
         console.log(' : fetchUser -> err.message', err.message);
       });
   };
