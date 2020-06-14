@@ -13,26 +13,32 @@ import { connect } from 'react-redux';
 import { updateLoginStatus } from '../../../redux/loginRedux';
 
 class Component extends React.Component {
+  state = {
+    error: null,
+  }
 
   loginSuccess = (response) => {
+    const { updateLoginStatus } = this.props;
+
     console.log(response);
     console.log('Zalogowano');
-    this.props.updateLoginStatus('login');
-
+    updateLoginStatus('login');
   };
   loginError = (response) => {
     console.log(response);
     console.log('Nie udało się zalogować');
-
+    this.setState({ error: true });
   };
   logout = (response) => {
-    console.log('Wylogowano');
-    this.props.updateLoginStatus('logout');
+    const { updateLoginStatus } = this.props;
 
+    console.log('Wylogowano');
+    updateLoginStatus('logout');
   };
   render() {
     const { loginSuccess, loginError, logout } = this;
     const { className, isLogged } = this.props;
+    const { error } = this.state;
 
     return (
       <main className={clsx(className, styles.root, 'container')}>
@@ -63,13 +69,13 @@ class Component extends React.Component {
               cookiePolicy={'single_host_origin'}
             // isSignedIn={true}
             />
+            {error && <Info variant={'error'}>Nie udało się zalogować</Info>}
           </div>
         }
       </main>
     );
   }
-
-};
+}
 
 Component.propTypes = {
   children: PropTypes.node,
