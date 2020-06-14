@@ -61,8 +61,20 @@ export const addToCart = (cartItem) => {
 export const removeFromCart = (cartId) => {
   return (dispatch, getState) => {
     dispatch(removeFromCartRedux(cartId));
-    const { cart } = getState();
+    const { cart, isLogged, user } = getState();
     localStorage.setItem('cart', JSON.stringify(cart));
+
+    if (isLogged) {
+      Axios
+        .put(`${api.url}/${api.users}/${user.id}`, cart)
+        .then(res => {
+          console.log(' : addToCart -> res.data', res.data);
+        })
+        .catch(err => {
+          console.log(' : addToCart -> err.message', err.message);
+        });
+
+    }
   };
 };
 export const clearCart = () => {
@@ -75,15 +87,37 @@ export const clearCart = () => {
 export const updateCartItemQuantity = (obj) => {
   return (dispatch, getState) => {
     dispatch(updateCartItemQuantityRedux(obj));
-    const { cart } = getState();
+    const { cart, isLogged, user } = getState();
     localStorage.setItem('cart', JSON.stringify(cart));
+
+    if (isLogged) {
+      Axios
+        .put(`${api.url}/${api.users}/${user.id}`, cart)
+        .then(res => {
+          console.log(' : addToCart -> res.data', res.data);
+        })
+        .catch(err => {
+          console.log(' : addToCart -> err.message', err.message);
+        });
+    }
   };
 };
 export const updateCartItemInfo = (obj) => {
   return (dispatch, getState) => {
     dispatch(updateCartItemInfoRedux(obj));
-    const { cart } = getState();
+    const { cart, isLogged, user } = getState();
     localStorage.setItem('cart', JSON.stringify(cart));
+
+    if (isLogged) {
+      Axios
+        .put(`${api.url}/${api.users}/${user.id}`, cart)
+        .then(res => {
+          console.log(' : addToCart -> res.data', res.data);
+        })
+        .catch(err => {
+          console.log(' : addToCart -> err.message', err.message);
+        });
+    }
   };
 };
 
