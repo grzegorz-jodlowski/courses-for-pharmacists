@@ -1,3 +1,6 @@
+import Axios from 'axios';
+import { api } from '../settings';
+
 import { fetchProductsFromCart } from './orderRedux';
 
 // /* selectors */
@@ -39,8 +42,19 @@ export const fatchCartFromLocalStorage = () => {
 export const addToCart = (cartItem) => {
   return (dispatch, getState) => {
     dispatch(addToCartRedux(cartItem));
-    const { cart } = getState();
+    const { cart, isLogged, user } = getState();
     localStorage.setItem('cart', JSON.stringify(cart));
+
+    if (isLogged) {
+      Axios
+        .put(`${api.url}/${api.users}/${user.id}`, cart)
+        .then(res => {
+          console.log(' : addToCart -> res.data', res.data);
+        })
+        .catch(err => {
+          console.log(' : addToCart -> err.message', err.message);
+        });
+    }
   };
 };
 
