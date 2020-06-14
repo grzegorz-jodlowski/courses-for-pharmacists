@@ -9,7 +9,7 @@ require('dotenv').config();
 const coursesRoutes = require('./routes/courses.routes');
 const ordersRoutes = require('./routes/orders.routes');
 const newsletterRoutes = require('./routes/newsletter.routes');
-const userRoutes = require('./routes/user.routes');
+const usersRoutes = require('./routes/users.routes');
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api', coursesRoutes);
 app.use('/api', ordersRoutes);
 app.use('/api', newsletterRoutes);
-app.use('/api', userRoutes);
+app.use('/api', usersRoutes);
 
 
 /* API ERROR PAGES */
