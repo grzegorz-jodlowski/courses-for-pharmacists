@@ -128,10 +128,22 @@ export default function reducer(statePart = [], action = {}) {
       return action.payload;
     }
     case ADD_TO_CART: {
-      return [
-        ...statePart,
-        action.payload,
-      ];
+      const isItemInCart = statePart.some(cartItem => cartItem.courseId === action.payload.courseId);
+
+      return isItemInCart
+        ? statePart.map(cartItem => cartItem.courseId === action.payload.courseId
+          ?
+          {
+            ...action.payload,
+            quantity: Number(action.payload.quantity) + Number(cartItem.quantity),
+          }
+          :
+          cartItem)
+        :
+        [
+          ...statePart,
+          action.payload,
+        ];
     }
     case REMOVE_FROM_CART: {
       return statePart.filter(({ courseId }) => courseId !== action.payload);
