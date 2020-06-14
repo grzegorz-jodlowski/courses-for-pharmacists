@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import GoogleLogin from 'react-google-login';
+import { GoogleLogout } from 'react-google-login';
 
 import styles from './LoginPage.module.scss';
 
@@ -11,6 +13,16 @@ import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
 
 const Component = ({ className, children, isLogged }) => {
+
+  const responseGoogle = (response) => {
+    console.log(response);
+  };
+  const logout = (response) => {
+    console.log('Wylogowano');
+  };
+
+  const client = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+  console.log(' : Component -> client', client);
   return (
     <main className={clsx(className, styles.root, 'container')}>
       {isLogged ?
@@ -18,9 +30,26 @@ const Component = ({ className, children, isLogged }) => {
         :
         <div>
           <Title>Zaloguj się żeby uzyskać dostęp do swoich kursów</Title>
-          <a className={clsx(styles.loginBtn, styles.loginBtnGoogle)} href="http://localhost:8000/auth/google">
+          {/* <a className={clsx(styles.loginBtn, styles.loginBtnGoogle)} href="http://localhost:8000/auth/google">
             Login with Google
-          </a>
+          </a> */}
+          <GoogleLogin
+            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            buttonText="Login"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
+          // isSignedIn={true}
+          />
+
+          <GoogleLogout
+            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            buttonText="Logout"
+            onLogoutSuccess={logout}
+          // isSignedIn={false}
+          >
+          </GoogleLogout>
+
         </div>
       }
     </main>
