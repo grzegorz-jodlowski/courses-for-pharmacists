@@ -10,7 +10,6 @@ import { Price } from '../../common/Price/Price';
 import { CartItem } from '../../features/CartItem/CartItem';
 
 import { connect } from 'react-redux';
-// import { addProducts } from '../../../redux/orderRedux';
 
 const Component = ({ className, cart }) => {
 
@@ -19,19 +18,20 @@ const Component = ({ className, cart }) => {
     cartValue += (quantity * price);
   });
 
+  const getMappedCart = (cart) => cart.map(cartItem =>
+    <CartItem key={cartItem.courseId} cartItem={cartItem} />
+  );
+
   return (
     <main className={clsx(className, styles.root, 'container')} >
-      <Title decoration={true} >Koszyk</Title>
-
-      {cart.length > 0
+      <Title decoration={true}>Koszyk</Title>
+      {cart.length
         ?
-        <div>
-          {cart.map(cartItem =>
-            <CartItem key={cartItem.courseId} cartItem={cartItem} />
-          )}
+        <>
+          {getMappedCart(cart)}
           <Price price={cartValue} text={'Suma: '} />
           <Button text={'Do podsumowania'} path={'summary'} />
-        </div>
+        </>
         :
         <Title>Koszyk jest pusty</Title>
       }
@@ -49,13 +49,9 @@ const mapStateToProps = state => ({
   cart: state.cart,
 });
 
-const mapDispatchToProps = dispatch => ({
-});
-
-const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps)(Component);
 
 export {
-  // Component as CartPage,
   Container as CartPage,
   Component as CartPageComponent, //for tests
 };
