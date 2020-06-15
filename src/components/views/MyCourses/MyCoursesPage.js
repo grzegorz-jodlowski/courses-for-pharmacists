@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 const Component = ({ className, courses, loading, loadingError, isLogged, user }) => {
 
   if (isLogged) {
-    const userCourses = user.courses ? courses.filter(course => user.courses.includes(course._id) ? course : null) : [];
+    const userCourses = user.courses ? courses.filter(course => user.courses.includes(course._id)) : [];
 
     return (
       <main className={clsx(className, styles.root, 'container')}>
@@ -45,13 +45,9 @@ const mapStateToProps = state => ({
   loadingError: state.courses.loading.error,
 });
 
-const mapDispatchToProps = dispatch => ({
-});
-
-const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps)(Component);
 
 export {
-  // Component as MyCoursesPage,
   Container as MyCoursesPage,
   Component as MyCoursesPageComponent, //for tests
 };
