@@ -80,8 +80,19 @@ export const removeFromCart = (cartId) => {
 export const clearCart = () => {
   return (dispatch, getState) => {
     dispatch(clearCartRedux());
-    const { cart } = getState();
+    const { cart, isLogged, user } = getState();
     localStorage.setItem('cart', JSON.stringify(cart));
+
+    if (isLogged) {
+      Axios
+        .put(`${api.url}/${api.users}/${user.id}`, cart)
+        .then(res => {
+          console.log(' : addToCart -> res.data', res.data);
+        })
+        .catch(err => {
+          console.log(' : addToCart -> err.message', err.message);
+        });
+    }
   };
 };
 export const updateCartItemQuantity = (obj) => {
