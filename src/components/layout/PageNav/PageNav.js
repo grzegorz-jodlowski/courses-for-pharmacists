@@ -46,22 +46,21 @@ class Component extends React.Component {
     const { isLogged } = this.props;
 
     return (
-      <nav className={clsx(this.className, styles.root)} >
+      <nav className={clsx(this.className, styles.root)}>
         <div className={styles.wrapper}>
           <Logo action={handleMenuClick} />
           <div className={isOpen === null ? clsx(styles.buttons) : isOpen ? clsx(styles.buttons, styles.left) : clsx(styles.buttons, styles.right)}>
             <NavButton action={handleMenuClick} text={'Moje kursy'} path={'courses'} />
             <NavButton action={handleMenuClick} text={'Koszyk'} path={'cart'} cartVariant />
             <NavButton action={handleMenuClick} text={'Kontakt'} path={'contact'} />
-            {isLogged
-              ?
-              <NavButton action={handleMenuClick} text={'Wyloguj'} path={'logout'} />
-              :
-              <NavButton action={handleMenuClick} text={'Zaloguj'} path={'login'} />}
+            <NavButton
+              action={handleMenuClick}
+              text={isLogged ? 'Wyloguj' : 'Zaloguj'}
+              path={isLogged ? 'logout' : 'login'}
+            />
           </div>
           <button onClick={handleMenuClick} className={styles.hamburger}>
-            {isOpen && <i className={clsx(styles.fadeIn, 'fas fa-times')}></i>}
-            {!isOpen && <i className={clsx(styles.fadeIn, 'fas fa-bars')}></i>}
+            <i className={isOpen ? clsx(styles.fadeIn, 'fas fa-times') : clsx(styles.fadeIn, 'fas fa-bars')}></i>
           </button>
         </div>
       </nav>
@@ -89,7 +88,6 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as PageNav,
   Container as PageNav,
   Component as PageNavComponent, //for tests
 };
