@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import GoogleLogin from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
 import { GoogleLogout } from 'react-google-login';
 
 import styles from './LoginPage.module.scss';
@@ -21,21 +21,18 @@ class Component extends React.Component {
   loginSuccess = (response) => {
     const { updateLoginStatus, fetchUser } = this.props;
 
-    // console.log(response);
-    console.log('Zalogowano');
     updateLoginStatus('login');
     fetchUser(response.profileObj.email);
   };
   loginError = (response) => {
-    console.log(response);
-    console.log('Nie udało się zalogować');
+    const { clearUser } = this.props;
+
     this.setState({ error: true });
-    this.props.clearUser();
+    clearUser();
   };
   logout = (response) => {
     const { updateLoginStatus, clearUser } = this.props;
 
-    console.log('Wylogowano');
     updateLoginStatus('logout');
     clearUser();
   };
@@ -47,36 +44,35 @@ class Component extends React.Component {
     return (
       <main className={clsx(className, styles.root, 'container')}>
         {isLogged ?
-          <div>
+          <>
             <Info variant={'success'} >Jesteś zalogowany</Info>
             <GoogleLogout
               // clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               clientId='980498933049-e369765i28cv4aff5slma8qeaec2ru7e.apps.googleusercontent.com'
-              render={renderProps => (
-                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Kliknij żeby wylogować</button>
+              render={({ onClick, disabled }) => (
+                <button onClick={onClick} disabled={disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Kliknij żeby wylogować</button>
               )}
               buttonText="Logout"
               onLogoutSuccess={logout}
             >
             </GoogleLogout>
-          </div>
+          </>
           :
-          <div>
+          <>
             <Title>Zaloguj się żeby uzyskać dostęp do swoich kursów</Title>
             <GoogleLogin
               // clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               clientId='980498933049-e369765i28cv4aff5slma8qeaec2ru7e.apps.googleusercontent.com'
-              render={renderProps => (
-                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Zaloguj się z Google</button>
+              render={({ onClick, disabled }) => (
+                <button onClick={onClick} disabled={disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Zaloguj się z Google</button>
               )}
               buttonText="Login"
               onSuccess={loginSuccess}
               onFailure={loginError}
               cookiePolicy={'single_host_origin'}
-            // isSignedIn={true}
             />
             {error && <Info variant={'error'}>Nie udało się zalogować</Info>}
-          </div>
+          </>
         }
       </main>
     );
@@ -105,7 +101,6 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as LoginPage,
   Container as LoginPage,
   Component as LoginPageComponent, //for tests
 };
