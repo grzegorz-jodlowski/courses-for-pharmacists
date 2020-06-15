@@ -29,7 +29,7 @@ class Component extends React.Component {
   handleChange = ({ target }) => {
     const { value, name } = target;
 
-    if (value >= 1) {
+    if (value > 0) {
       this.setState({ [name]: value });
     }
   }
@@ -73,7 +73,7 @@ class Component extends React.Component {
           {isCourseAlreadyBought && isLogged ?
             <Button text={'Przejdź do panelu kursu'} path={`panel/${_id}`} />
             :
-            isCourseInCart ?
+            (isCourseInCart ?
               <div className={styles.toCart} >
                 <Info variant={'success'}>Kurs jest w koszyku</Info>
                 <Button text={'Przejdź do koszyka'} path={'cart'} />
@@ -82,7 +82,7 @@ class Component extends React.Component {
               <form className={styles.addCartForm} onSubmit={(e) => handleSubmit(e, _id, title, price)}>
                 <QuantityInput value={Number(quantity)} action={handleChange} text={'Ilość: '} />
                 <Button submitForm={true} text={'Dodaj do koszyka'} />
-              </form>}
+              </form>)}
         </main>
       );
     }
@@ -119,7 +119,6 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as CoursePage,
   Container as CoursePage,
   Component as CoursePageComponent, //for tests
 };
