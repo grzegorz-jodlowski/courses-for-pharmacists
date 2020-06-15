@@ -32,7 +32,7 @@ export const updateCartItemInfoRedux = payload => ({ payload, type: UPDATE_CART_
 // /* thunk creators */
 
 
-export const fatchCartFromLocalStorage = () => {
+export const fetchCartFromLocalStorage = () => {
   return (dispatch, getState) => {
     dispatch(updateCart(JSON.parse(localStorage.getItem('cart')) || []));
     const { cart } = getState();
