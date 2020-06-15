@@ -1,6 +1,8 @@
 // import Axios from 'axios';
 // import { api } from '../settings';
 
+import { initialState } from './initialState';
+
 /* selectors */
 export const getLoginState = (state) => state.isLogged;
 
@@ -16,7 +18,7 @@ export const updateLoginStatus = payload => ({ payload, type: UPDATE_LOGIN_STATU
 
 
 /* reducer */
-export default function reducer(statePart = [], action = {}) {
+export default function reducer(statePart = initialState.isLogged, action = {}) {
   switch (action.type) {
     case UPDATE_LOGIN_STATUS:
       switch (action.payload) {

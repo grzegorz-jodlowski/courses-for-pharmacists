@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import { api } from '../settings';
+import { initialState } from './initialState';
 
 // /* selectors */
 export const getAll = ({ courses }) => courses.data;
@@ -57,7 +58,7 @@ export const fetchCourseDetails = id => {
 
 
 /* reducer */
-export default function reducer(statePart = [], action = {}) {
+export default function reducer(statePart = initialState.courses, action = {}) {
   switch (action.type) {
     case FETCH_START: {
       return {

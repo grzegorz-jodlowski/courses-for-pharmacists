@@ -2,6 +2,7 @@ import Axios from 'axios';
 import { api } from '../settings';
 
 import { addToCart, clearCart } from './cartRedux';
+import { initialState } from './initialState';
 
 /* selectors */
 export const getUser = (state) => state.user;
@@ -47,7 +48,7 @@ export const clearUser = () => {
 };
 
 /* reducer */
-export default function reducer(statePart = {}, action = {}) {
+export default function reducer(statePart = initialState.user, action = {}) {
   switch (action.type) {
     case FETCH_USER: {
       return action.payload;

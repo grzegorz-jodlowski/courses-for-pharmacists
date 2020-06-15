@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { api } from '../settings';
 import { clearCart } from './cartRedux';
+import { initialState } from './initialState';
 
 
 /* selectors */
@@ -43,7 +44,7 @@ export const postOrder = (order) => {
 };
 
 /* reducer */
-export default function reducer(statePart = {}, action = {}) {
+export default function reducer(statePart = initialState.order, action = {}) {
   switch (action.type) {
     case FETCH_PRODUCTS_FROM_CART: {
       return {

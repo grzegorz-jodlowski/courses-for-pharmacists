@@ -30,7 +30,6 @@ const combinedReducers = combineReducers(reducers);
 // create store
 const store = createStore(
   combinedReducers,
-  initialState,
   composeWithDevTools(
     applyMiddleware(thunk)
   )
