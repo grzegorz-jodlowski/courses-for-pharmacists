@@ -98,7 +98,6 @@ export default function reducer(statePart = initialState.courses, action = {}) {
         },
       };
     }
-
     default:
       return statePart;
   }

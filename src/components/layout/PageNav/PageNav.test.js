@@ -5,6 +5,6 @@ import { PageNavComponent } from './PageNav';
 describe('Component PageNav', () => {
   it('Should render without crashing', () => {
     const component = shallow(< PageNavComponent />);
-  expect(component).toBeTruthy();
-});
+    expect(component).toBeTruthy();
+  });
 });

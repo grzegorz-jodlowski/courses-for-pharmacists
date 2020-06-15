@@ -12,8 +12,8 @@ import { CartItem } from '../../features/CartItem/CartItem';
 import { connect } from 'react-redux';
 
 const Component = ({ className, cart }) => {
-
   let cartValue = 0;
+
   cart.forEach(({ quantity, price }) => {
     cartValue += (quantity * price);
   });
@@ -40,7 +40,6 @@ const Component = ({ className, cart }) => {
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   cart: PropTypes.array,
 };

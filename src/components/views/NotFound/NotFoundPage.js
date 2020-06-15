@@ -8,10 +8,7 @@ import { Button } from '../../common/Button/Button';
 import { Title } from '../../common/Title/Title';
 import { Face } from '../../common/Face/Face';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
-
-const Component = ({ className, children }) => (
+const Component = ({ className }) => (
   <main className={clsx(className, styles.root, 'container')}>
     <Face />
     <Title >Ups! Nie znalazłem tej strony!</Title>
@@ -20,23 +17,11 @@ const Component = ({ className, children }) => (
 );
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
 };
 
-// const mapStateToProps = state => ({
-//   concerts: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
-
 export {
   Component as NotFoundPage,
-  // Container as NotFoundPage,
   Component as NotFoundPageComponent, //for tests
 };
 

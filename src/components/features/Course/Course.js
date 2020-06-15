@@ -1,20 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { Carousel } from 'react-responsive-carousel';
 
 import styles from './Course.module.scss';
 
 import { lengthToHoursMinutes } from '../../../utils/lengthToHoursMinutes';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
-
-const Component = ({ className, children, course }) => {
+const Component = ({ className, course }) => {
   const { title, image, price, chapters, length, gallery, description } = course;
 
   return (
-    <section className={clsx(className, styles.root)}>
+    <section className={className}>
       <img src={`/img/${image}`} alt={`Miniatura kursu: ${title}`} className={styles.image} />
       <div className={styles.info}>
         <h2 className={styles.title}>{title}</h2>
@@ -37,24 +33,12 @@ const Component = ({ className, children, course }) => {
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   course: PropTypes.object,
 };
 
-// const mapStateToProps = state => ({
-//   concerts: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
-
 export {
   Component as Course,
-  // Container as Course,
   Component as CourseComponent, //for tests
 };
 

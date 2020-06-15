@@ -3,10 +3,8 @@ import { api } from '../settings';
 import { clearCart } from './cartRedux';
 import { initialState } from './initialState';
 
-
 /* selectors */
 export const getOrder = (state) => state.order;
-
 
 /* action name creator */
 const reducerName = 'order';
@@ -101,7 +99,6 @@ export default function reducer(statePart = initialState.order, action = {}) {
         },
       };
     }
-
     default:
       return statePart;
   }

@@ -32,13 +32,9 @@ const mapStateToProps = state => ({
   loadingError: state.courses.loading.error,
 });
 
-const mapDispatchToProps = dispatch => ({
-});
-
-const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps)(Component);
 
 export {
-  // Component as HomePage,
   Container as HomePage,
   Component as HomePageComponent, //for tests
 };

@@ -46,7 +46,6 @@ class Component extends React.Component {
 }
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   cartItem: PropTypes.object,
   removeFromCart: PropTypes.func,
@@ -54,19 +53,15 @@ Component.propTypes = {
   updateCartItemInfo: PropTypes.func,
 };
 
-const mapStateToProps = state => ({
-});
-
 const mapDispatchToProps = dispatch => ({
   removeFromCart: id => dispatch(removeFromCart(id)),
   updateCartItemQuantity: ({ id, quantity }) => dispatch(updateCartItemQuantity({ id, quantity })),
   updateCartItemInfo: ({ id, additionalInfo }) => dispatch(updateCartItemInfo({ id, additionalInfo })),
 });
 
-const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(null, mapDispatchToProps)(Component);
 
 export {
-  // Component as CartItem,
   Container as CartItem,
   Component as CartItemComponent, //for tests
 };

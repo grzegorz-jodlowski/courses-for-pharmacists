@@ -28,7 +28,6 @@ const Component = ({ className, courses, loading, loadingError, isLogged, user }
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   isLogged: PropTypes.bool,
   user: PropTypes.object,

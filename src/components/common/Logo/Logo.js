@@ -6,10 +6,7 @@ import styles from './Logo.module.scss';
 
 import { Link } from 'react-router-dom';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
-
-const Component = ({ className, children, action }) => (
+const Component = ({ className, action }) => (
   <Link to={`${process.env.PUBLIC_URL}/`} onClick={action}>
     <div className={clsx(className, styles.root)}>
       <img src="img/logo.png" alt="Logo Kursy dla Farmaceutów" className={styles.logo} />
@@ -18,24 +15,12 @@ const Component = ({ className, children, action }) => (
 );
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   action: PropTypes.func,
 };
 
-// const mapStateToProps = state => ({
-//   concerts: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
-
 export {
   Component as Logo,
-  // Container as Logo,
   Component as LogoComponent, //for tests
 };
 

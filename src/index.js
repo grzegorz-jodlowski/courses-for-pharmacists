@@ -8,7 +8,6 @@ import * as serviceWorker from './serviceWorker';
 import './styles/normalize.scss';
 import './styles/global.scss';
 
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

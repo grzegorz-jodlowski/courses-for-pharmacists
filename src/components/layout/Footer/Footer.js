@@ -8,11 +8,7 @@ import { Link } from 'react-router-dom';
 
 import { Copyright } from '../../common/Copyright/Copyright';
 
-
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
-
-const Component = ({ className, children }) => (
+const Component = ({ className }) => (
   <footer className={clsx(className, styles.root)}>
     <p>
       <Copyright />
@@ -30,23 +26,11 @@ const Component = ({ className, children }) => (
 );
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
 };
 
-// const mapStateToProps = state => ({
-//   concerts: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
-
 export {
   Component as Footer,
-  // Container as Footer,
   Component as FooterComponent, //for tests
 };
 

@@ -35,13 +35,9 @@ const mapStateToProps = state => ({
   courses: state.courses.data,
 });
 
-const mapDispatchToProps = dispatch => ({
-});
-
-const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect(mapStateToProps)(Component);
 
 export {
-  // Component as CoursePanelPage,
   Container as CoursePanelPage,
   Component as CoursePanelPageComponent, //for tests
 };

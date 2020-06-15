@@ -23,11 +23,13 @@ class Component extends React.Component {
 
     if (src) {
       const logoPath = src && src.split('/').pop();
+
       if (logoPath && window.innerWidth <= this.hamburgerMenuBreakpoint) {
         this.state.isOpen && this.setState(prevState => ({ isOpen: !prevState.isOpen }));
       }
     } else {
       const path = href && href.split('/').pop();
+
       if (window.innerWidth <= this.hamburgerMenuBreakpoint) {
         this.setState(prevState => ({ isOpen: !prevState.isOpen }));
       }
@@ -60,7 +62,7 @@ class Component extends React.Component {
             />
           </div>
           <button onClick={handleMenuClick} className={styles.hamburger}>
-            <i className={isOpen ? clsx(styles.fadeIn, 'fas fa-times') : clsx(styles.fadeIn, 'fas fa-bars')}></i>
+            <i className={clsx(styles.fadeIn, isOpen ? 'fas fa-times' : 'fas fa-bars')}></i>
           </button>
         </div>
       </nav>
@@ -69,7 +71,6 @@ class Component extends React.Component {
 }
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   isLogged: PropTypes.bool,
   updateLoginStatus: PropTypes.func,

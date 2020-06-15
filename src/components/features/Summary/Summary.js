@@ -7,10 +7,7 @@ import styles from './Summary.module.scss';
 import { Price } from '../../common/Price/Price';
 import { SummaryItem } from '../SummaryItem/SummaryItem';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
-
-const Component = ({ className, children, products, orderValue }) => (
+const Component = ({ className, products, orderValue }) => (
   <div className={clsx(className, styles.root)}>
     <div className={clsx(styles.itemsRow, styles.headers)}>
       <div>Nazwa</div>
@@ -23,25 +20,13 @@ const Component = ({ className, children, products, orderValue }) => (
 );
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   products: PropTypes.array,
   orderValue: PropTypes.number,
 };
 
-// const mapStateToProps = state => ({
-//   concerts: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
-
 export {
   Component as Summary,
-  // Container as Summary,
   Component as SummaryComponent, //for tests
 };
 

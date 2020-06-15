@@ -7,7 +7,6 @@ import { initialState } from './initialState';
 // /* selectors */
 export const getCart = (state) => state.cart;
 
-
 // /* action name creator */
 const reducerName = 'cart';
 const createActionName = name => `app/${reducerName}/${name}`;
@@ -20,7 +19,6 @@ const UPDATE_CART = createActionName('UPDATE_CART');
 const UPDATE_CART_ITEM_QUANTITY = createActionName('UPDATE_CART_ITEM_QUANTITY');
 const UPDATE_CART_ITEM_INFO = createActionName('UPDATE_CART_ITEM_INFO');
 
-
 // /* action creators */
 export const addToCartRedux = payload => ({ payload, type: ADD_TO_CART });
 export const removeFromCartRedux = payload => ({ payload, type: REMOVE_FROM_CART });
@@ -30,8 +28,6 @@ export const updateCartItemQuantityRedux = payload => ({ payload, type: UPDATE_C
 export const updateCartItemInfoRedux = payload => ({ payload, type: UPDATE_CART_ITEM_INFO });
 
 // /* thunk creators */
-
-
 export const fetchCartFromLocalStorage = () => {
   return (dispatch, getState) => {
     dispatch(updateCart(JSON.parse(localStorage.getItem('cart')) || []));
@@ -74,7 +70,6 @@ export const removeFromCart = (cartId) => {
         .catch(err => {
           console.log(' : addToCart -> err.message', err.message);
         });
-
     }
   };
 };
@@ -96,6 +91,7 @@ export const clearCart = () => {
     }
   };
 };
+
 export const updateCartItemQuantity = (obj) => {
   return (dispatch, getState) => {
     dispatch(updateCartItemQuantityRedux(obj));
@@ -114,6 +110,7 @@ export const updateCartItemQuantity = (obj) => {
     }
   };
 };
+
 export const updateCartItemInfo = (obj) => {
   return (dispatch, getState) => {
     dispatch(updateCartItemInfoRedux(obj));

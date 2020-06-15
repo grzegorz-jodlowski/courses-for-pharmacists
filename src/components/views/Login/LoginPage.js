@@ -42,7 +42,7 @@ class Component extends React.Component {
     const { error } = this.state;
 
     return (
-      <main className={clsx(className, styles.root, 'container')}>
+      <main className={clsx(className, 'container')}>
         {isLogged ?
           <>
             <Info variant={'success'} >Jesteś zalogowany</Info>
@@ -72,15 +72,13 @@ class Component extends React.Component {
               cookiePolicy={'single_host_origin'}
             />
             {error && <Info variant={'error'}>Nie udało się zalogować</Info>}
-          </>
-        }
+          </>}
       </main>
     );
   }
 }
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   isLogged: PropTypes.bool,
   updateLoginStatus: PropTypes.func,

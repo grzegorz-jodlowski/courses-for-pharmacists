@@ -62,7 +62,6 @@ class Component extends React.Component {
     if (loading || loadingError) {
       return <Spinner />;
     } else {
-
       const isCourseInCart = cart.some(({ courseId }) => courseId === _id);
       const isCourseAlreadyBought = user.courses ? user.courses.some(course => course === _id) : [];
 
@@ -89,7 +88,6 @@ class Component extends React.Component {
   }
 }
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   match: PropTypes.object,
   course: PropTypes.object,

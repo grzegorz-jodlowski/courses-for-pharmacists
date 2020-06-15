@@ -6,9 +6,6 @@ import styles from './PrivacyPage.module.scss';
 
 import { Title } from '../../common/Title/Title';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
-
 const Component = ({ className, children }) => (
   <main className={clsx(className, styles.root, 'container')}>
     <Title decoration={true} >Polityka prywatności</Title>
@@ -21,19 +18,8 @@ Component.propTypes = {
   className: PropTypes.string,
 };
 
-// const mapStateToProps = state => ({
-//   concerts: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
-
 export {
   Component as PrivacyPage,
-  // Container as PrivacyPage,
   Component as PrivacyPageComponent, //for tests
 };
 

@@ -24,11 +24,11 @@ class Component extends React.Component {
 
   componentDidMount() {
     const { fetchCourses, courses, fetchCartFromLocalStorage } = this.props;
+
     if (!courses.length) {
       fetchCourses();
     }
     fetchCartFromLocalStorage();
-
   }
 
   render() {
@@ -71,7 +71,6 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as App,
   Container as App,
   Component as AppComponent, //for tests
 };

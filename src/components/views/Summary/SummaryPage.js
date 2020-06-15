@@ -34,13 +34,11 @@ class Component extends React.Component {
         {products.length > 0 ? <Summary products={products} orderValue={orderValue} /> : <Title>Brak pozycji zamówienia</Title>}
         <SummaryForm orderValue={orderValue} />
       </div>
-
     );
   }
 }
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   products: PropTypes.array,
   fetchProductsFromCart: PropTypes.func,
@@ -60,7 +58,6 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as SummaryPage,
   Container as SummaryPage,
   Component as SummaryPageComponent, //for tests
 };

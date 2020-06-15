@@ -6,10 +6,7 @@ import styles from './Button.module.scss';
 
 import { Link } from 'react-router-dom';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
-
-const Component = ({ className, children, path, text, action, submitForm }) => {
+const Component = ({ className, path, text, action, submitForm }) => {
 
   return (
     submitForm ?
@@ -21,7 +18,6 @@ const Component = ({ className, children, path, text, action, submitForm }) => {
 };
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   path: PropTypes.string,
   text: PropTypes.string,
@@ -29,19 +25,8 @@ Component.propTypes = {
   submitForm: PropTypes.bool,
 };
 
-// const mapStateToProps = state => ({
-//   concerts: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
-
 export {
   Component as Button,
-  // Container as Button,
   Component as ButtonComponent, //for tests
 };
 

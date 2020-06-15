@@ -1,5 +1,3 @@
-// import Axios from 'axios';
-// import { api } from '../settings';
 
 import { initialState } from './initialState';
 
@@ -15,7 +13,6 @@ const UPDATE_LOGIN_STATUS = createActionName('UPDATE_LOGIN_STATUS');
 
 /* action creators */
 export const updateLoginStatus = payload => ({ payload, type: UPDATE_LOGIN_STATUS });
-
 
 /* reducer */
 export default function reducer(statePart = initialState.isLogged, action = {}) {

@@ -15,7 +15,6 @@ import { connect } from 'react-redux';
 import { postOrder, clearSuccess } from '../../../redux/orderRedux';
 
 class Component extends React.Component {
-
   state = {
     contact: {
       name: '',
@@ -25,7 +24,6 @@ class Component extends React.Component {
     },
     error: null,
   };
-
 
   handleChange = ({ target }) => {
     const { contact } = this.state;
@@ -63,7 +61,6 @@ class Component extends React.Component {
       postOrder(order);
 
       if (success) {
-
         this.setState({
           contact: {
             name: '',
@@ -91,30 +88,25 @@ class Component extends React.Component {
         {(error) && <Info variant={'warning'}>{error}</Info>}
         {(loading) && <Spinner />}
         {(!loading && products.length > 0) &&
-          (
-            <div className={styles.wrapper}>
-
-              <label htmlFor="name">Imię <span>*</span></label>
-              <input name="name" id="name" required className={styles.inputName} type="text" value={name} onChange={handleChange} />
-
-              <label htmlFor="email">Email <span>*</span></label>
-              <input name="email" id="email" required className={styles.inputEmail} type="text" value={email} onChange={handleChange} />
-              <label htmlFor="privacy" className={styles.labelPrivacy}>
-                <input name="privacy" id="privacy" required className={styles.inputPrivacy} type="checkbox" checked={privacy} value={privacy} onChange={handleChange} />
-                <p>
-                  Wyrażam zgodę na przetwarzanie moich danych osobowych w celach i zakresie zgodnym z<Link to={`${process.env.PUBLIC_URL}/privacy`} className={styles.link}>{' Polityką prywatności.'}</Link><span>*</span>
-                </p>
-              </label>
-              <label htmlFor="terms" className={styles.labelTerms}>
-                <input name="terms" id="terms" required className={styles.inputTerms} type="checkbox" checked={terms} value={terms} onChange={handleChange} />
-                <p>
-                  Akceptuję <Link to={`${process.env.PUBLIC_URL}/terms`} className={styles.link}>{' regulamin zakupów '}</Link><span>*</span>
-                </p>
-              </label>
-              <Button submitForm={true} text={'Zamawiam i płacę'} path={'summary'} />
-            </div>
-
-          )}
+          (<div className={styles.wrapper}>
+            <label htmlFor="name">Imię <span>*</span></label>
+            <input name="name" id="name" required className={styles.inputName} type="text" value={name} onChange={handleChange} />
+            <label htmlFor="email">Email <span>*</span></label>
+            <input name="email" id="email" required className={styles.inputEmail} type="text" value={email} onChange={handleChange} />
+            <label htmlFor="privacy" className={styles.labelPrivacy}>
+              <input name="privacy" id="privacy" required className={styles.inputPrivacy} type="checkbox" checked={privacy} value={privacy} onChange={handleChange} />
+              <p>
+                Wyrażam zgodę na przetwarzanie moich danych osobowych w celach i zakresie zgodnym z<Link to={`${process.env.PUBLIC_URL}/privacy`} className={styles.link}>{' Polityką prywatności.'}</Link><span>*</span>
+              </p>
+            </label>
+            <label htmlFor="terms" className={styles.labelTerms}>
+              <input name="terms" id="terms" required className={styles.inputTerms} type="checkbox" checked={terms} value={terms} onChange={handleChange} />
+              <p>
+                Akceptuję <Link to={`${process.env.PUBLIC_URL}/terms`} className={styles.link}>{' regulamin zakupów '}</Link><span>*</span>
+              </p>
+            </label>
+            <Button submitForm={true} text={'Zamawiam i płacę'} path={'summary'} />
+          </div>)}
       </form>
     );
   }
@@ -149,7 +141,6 @@ const mapDispatchToProps = dispatch => ({
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export {
-  // Component as SummaryForm,
   Container as SummaryForm,
   Component as SummaryFormComponent, //for tests
 };

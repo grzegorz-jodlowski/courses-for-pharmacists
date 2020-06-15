@@ -4,9 +4,6 @@ import clsx from 'clsx';
 
 import styles from './Info.module.scss';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
-
 const Component = ({ className, children, variant }) => {
 
   switch (variant) {
@@ -35,19 +32,8 @@ Component.propTypes = {
   variant: PropTypes.string,
 };
 
-// const mapStateToProps = state => ({
-//   concerts: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
-
 export {
   Component as Info,
-  // Container as Info,
   Component as InfoComponent, //for tests
 };
 

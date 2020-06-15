@@ -4,10 +4,7 @@ import clsx from 'clsx';
 
 import styles from './Face.module.scss';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/ExampleRedux';
-
-const Component = ({ className, children }) => (
+const Component = ({ className }) => (
   <section className={clsx(className, styles.root)}>
     <div className={styles.band}>
       <div className={styles.red}></div>
@@ -21,23 +18,11 @@ const Component = ({ className, children }) => (
 );
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
 };
 
-// const mapStateToProps = state => ({
-//   concerts: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
-
 export {
   Component as Face,
-  // Container as Face,
   Component as FaceComponent, //for tests
 };
 
