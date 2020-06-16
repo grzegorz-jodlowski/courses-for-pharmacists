@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-var cacheName = 'app-name';
+var cacheName = 'online-pharmacy';
 var filesToCache = [
   '/',
 ];
