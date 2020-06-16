@@ -20,18 +20,24 @@ class Component extends React.Component {
 
   loginSuccess = (response) => {
     const { updateLoginStatus, fetchUser } = this.props;
+    console.log('variables', process.env.REACT_APP_GOOGLE_CLIENT_ID);
+
 
     updateLoginStatus('login');
     fetchUser(response.profileObj.email);
   };
   loginError = (response) => {
     const { clearUser } = this.props;
+    console.log('variables', process.env.REACT_APP_GOOGLE_CLIENT_ID);
+
 
     this.setState({ error: true });
     clearUser();
   };
   logout = (response) => {
     const { updateLoginStatus, clearUser } = this.props;
+    console.log('variables', process.env.REACT_APP_GOOGLE_CLIENT_ID);
+
 
     updateLoginStatus('logout');
     clearUser();
@@ -47,8 +53,8 @@ class Component extends React.Component {
           <>
             <Info variant={'success'} >Jesteś zalogowany</Info>
             <GoogleLogout
-              // clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-              clientId='980498933049-e369765i28cv4aff5slma8qeaec2ru7e.apps.googleusercontent.com'
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              // clientId='980498933049-e369765i28cv4aff5slma8qeaec2ru7e.apps.googleusercontent.com'
               render={({ onClick, disabled }) => (
                 <button onClick={onClick} disabled={disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Kliknij żeby wylogować</button>
               )}
@@ -61,8 +67,8 @@ class Component extends React.Component {
           <>
             <Title>Zaloguj się żeby uzyskać dostęp do swoich kursów</Title>
             <GoogleLogin
-              // clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-              clientId='980498933049-e369765i28cv4aff5slma8qeaec2ru7e.apps.googleusercontent.com'
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              // clientId='980498933049-e369765i28cv4aff5slma8qeaec2ru7e.apps.googleusercontent.com'
               render={({ onClick, disabled }) => (
                 <button onClick={onClick} disabled={disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Zaloguj się z Google</button>
               )}
