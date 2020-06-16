@@ -36,7 +36,7 @@ app.use('*', (req, res) => {
 });
 
 /* MONGOOSE */
-mongoose.connect((process.env.NODE_ENV === 'production') ? `mongodb+srv://gjodlowski:${process.env.onlinePharmacy}@cluster0-rm7fq.gcp.mongodb.net/onlinePharmacy?retryWrites=true&w=majority` : 'mongodb://localhost:27017/onlinePharmacy', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect((process.env.NODE_ENV === 'production') ? `mongodb+srv://${process.env.dbName}:${process.env.onlinePharmacy}@cluster0-rm7fq.gcp.mongodb.net/onlinePharmacy?retryWrites=true&w=majority` : 'mongodb://localhost:27017/onlinePharmacy', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.once('open', () => {
