@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://online-pharmacy-site.herokuapp.com/"><img src="public/logo.jpg" title="courses-for-pharmacist" alt="snippet of courses for pharmacist website"></a>
+<a href="https://online-pharmacy-site.herokuapp.com/"><img src="public/logo.jpg" title="courses-for-pharmacist" alt="snippet of courses for pharmacist website."></a>
 </p>
 
 
@@ -22,7 +22,7 @@
 
 ## <a name="ab"></a>What's this project about?
 
-T
+This is a project of an application offering online courses for pharmacists. On the website you can buy access to the course, subscribe to the newsletter or save your cart to your user account. Login has been implemented by logging with your google account. After purchase, all information is saved in the database. The basket for a given user is available after logging in on all devices. An important functionality is saving the courses added to the cart in the localStorage, thanks to which it is available even after refreshing the page. The application has been adapted to PWA standards, which means that it can be added to the smartphone's start screen and partly used offline.
 
 </br>
 
@@ -46,17 +46,91 @@ T
 
 ## <a name="what"></a>What I learned?
 
-- c
+- create a login system using a google account in the React application (npm package [React Google Login](https://www.npmjs.com/package/react-google-login)),
+- adapt the application to the requirements of PWA (Progressive Web App),
+- publish the application using the Firebase service,
+- save temporary data (e.g. shopping cart) in the backend using a user session,
+- use the browser's memory to store application data (Cookies, localStorage, sessionStorage),
+- perform website audits in browser devtools,
+- use environment variables on the frontend side of the application,
+- yagni principle ([You aren't gonna need it](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)).
 
 
 
 </br>
 
 ## <a name="inter"></a>Interesting code snippet (for me of course 😉)
-- t:
+- login using google (react client):
 
 ```js
+...
 
+import { GoogleLogin } from 'react-google-login';
+import { GoogleLogout } from 'react-google-login';
+
+class Component extends React.Component {
+
+...
+
+loginSuccess = (response) => {
+  const { updateLoginStatus, fetchUser } = this.props;
+
+  updateLoginStatus('login');
+  fetchUser(response.profileObj.email);
+  };
+
+loginError = () => {
+  const { clearUser } = this.props;
+
+  this.setState({ error: true });
+  clearUser();
+};
+
+logout = () => {
+  const { updateLoginStatus, clearUser } = this.props;
+
+  updateLoginStatus('logout');
+  clearUser();
+};
+
+render() {
+
+...
+
+  <GoogleLogout
+    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+    render={({ onClick, disabled }) => (
+      <button
+        onClick={onClick}
+        disabled={disabled}
+        className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Kliknij żeby wylogować
+      </button>
+    )}
+    buttonText="Logout"
+    onLogoutSuccess={logout}
+  >
+  </GoogleLogout>
+
+...
+
+  <GoogleLogin
+    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+    render={({ onClick, disabled }) => (
+      <button
+        onClick={onClick}
+        disabled={disabled}
+        className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Zaloguj się z Google
+      </button>
+    )}
+    buttonText="Login"
+    onSuccess={loginSuccess}
+    onFailure={loginError}
+    cookiePolicy={'single_host_origin'}
+  />
+
+...
+
+}
 ```
 
 </br>
@@ -93,6 +167,6 @@ yarn start
 </br>
 </br>
 
-  *final project at the end of the 9-month [Web Developer Plus](https://kodilla.com/pl/bootcamp/webdeveloper/?type=wdp&editionId=309) course organized by [Kodilla](https://drive.google.com/file/d/1AZGDMtjhsHbrtXhRSIlRKKc3RCxQk6YY/view?usp=sharing)
+  *final individual project at the end of the 9-month [Web Developer Plus](https://kodilla.com/pl/bootcamp/webdeveloper/?type=wdp&editionId=309) course organized by [Kodilla](https://drive.google.com/file/d/1AZGDMtjhsHbrtXhRSIlRKKc3RCxQk6YY/view?usp=sharing)
 
 
