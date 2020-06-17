@@ -9,6 +9,7 @@ import { CoursesCards } from '../../features/CoursesCards/CoursesCards';
 import { Newsletter } from '../../features/Newsletter/Newsletter';
 import { Search } from '../../features/Search/Search';
 import { Spinner } from '../../common/Spinner/Spinner';
+import { Info } from '../../common/Info/Info';
 
 import { connect } from 'react-redux';
 
@@ -16,7 +17,10 @@ const Component = ({ className, courses, loading, loadingError }) => (
   <main className={clsx(className, styles.root, 'container')}>
     <Hero />
     <Search />
-    {loading || loadingError ? <Spinner /> : <CoursesCards courses={courses} />}
+    {loading || loadingError ? <Spinner />
+      : courses.length ?
+        <CoursesCards courses={courses} />
+        : <Info className={styles.info} variant='warning'>Brak pasujących kursów</Info>}
     <Newsletter />
   </main>
 );
