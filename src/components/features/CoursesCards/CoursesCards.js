@@ -7,7 +7,7 @@ import styles from './CoursesCards.module.scss';
 import { CourseCard } from '../CourseCard/CourseCard';
 
 const Component = ({ courses, className }) => (
-  <section className={clsx(className, styles.root)} id="CourseCard">
+  <section className={clsx(className, styles.root)}>
     {courses.map(course => <CourseCard key={course._id} course={course} />)}
   </section>
 );

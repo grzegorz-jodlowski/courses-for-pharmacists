@@ -19,4 +19,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-unregister();
+register();

@@ -19,8 +19,7 @@ class Component extends React.Component {
     const { handleChange } = this;
     const { className, searchString } = this.props;
     return (
-
-      <div className={clsx(className, styles.root)}>
+      <div className={clsx(className, styles.root)} id="search">
         <input
           type='text'
           placeholder='Szukaj...'
