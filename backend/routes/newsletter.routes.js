@@ -5,9 +5,15 @@ const Newsletter = require('../models/newsletter.model');
 
 router.post('/newsletter', async (req, res) => {
   try {
-    const newNewsletter = new Newsletter(req.body);
-    await newNewsletter.save();
-    res.json({ message: 'Zapisano do newslettera' });
+    const { email, name } = req.body;
+
+    if (!email || !name) {
+      throw new Error('Dane nieprawidłowe');
+    } else {
+      const newNewsletter = new Newsletter(req.body);
+      await newNewsletter.save();
+      res.json({ message: 'Zapisano do newslettera' });
+    }
   } catch (error) {
     res.status(500).json({ message: error });
   }
