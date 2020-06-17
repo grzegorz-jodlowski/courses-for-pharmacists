@@ -16,12 +16,14 @@ const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_COURSE_SUCCESS = createActionName('FETCH_COURSE_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
+const FILTER_COURSES = createActionName('FILTER_COURSES');
 
 // /* action creators */
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchCourseSuccess = payload => ({ payload, type: FETCH_COURSE_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
+export const filterCourses = payload => ({ payload, type: FILTER_COURSES });
 
 // /* thunk creators */
 export const fetchCourses = () => {
@@ -33,6 +35,7 @@ export const fetchCourses = () => {
         .get(`${api.url}/${api.courses}`)
         .then(res => {
           dispatch(fetchSuccess(res.data));
+          dispatch(filterCourses(''));
         })
         .catch(err => {
           dispatch(fetchError(err.message || true));
@@ -96,6 +99,13 @@ export default function reducer(statePart = initialState.courses, action = {}) {
           active: false,
           error: action.payload,
         },
+      };
+    }
+    case FILTER_COURSES: {
+      const filteredCourses = statePart.data.filter(course => (new RegExp(action.payload, 'i').test(course.title)));
+      return {
+        ...statePart,
+        displayedCourses: filteredCourses,
       };
     }
     default:

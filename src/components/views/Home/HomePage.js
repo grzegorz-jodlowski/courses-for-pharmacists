@@ -29,7 +29,7 @@ Component.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  courses: state.courses.data,
+  courses: state.courses.displayedCourses,
   loading: state.courses.loading.active,
   loadingError: state.courses.loading.error,
 });

@@ -6,11 +6,13 @@ import styles from './Search.module.scss';
 
 import { connect } from 'react-redux';
 import { changeSearchString } from '../../../redux/searchRedux';
+import { filterCourses } from '../../../redux/coursesRedux';
 
 class Component extends React.Component {
 
   handleChange = (event) => {
     this.props.changeSearchString(event.target.value);
+    this.props.filterCourses(event.target.value);
   }
 
   render() {
@@ -34,6 +36,7 @@ Component.propTypes = {
   className: PropTypes.string,
   searchString: PropTypes.string,
   changeSearchString: PropTypes.func,
+  filterCourses: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -42,6 +45,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   changeSearchString: newSearchString => dispatch(changeSearchString(newSearchString)),
+  filterCourses: newSearchString => dispatch(filterCourses(newSearchString)),
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
