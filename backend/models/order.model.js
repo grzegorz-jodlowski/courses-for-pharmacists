@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const orderSchema = new mongoose.Schema({
   value: { type: Number, required: true },
   status: { type: String, required: [true, 'Status required'], enum: ['draft', 'ordered', 'closed'] },
-  products: { type: Array },
+  products: { type: Array, required: true },
   contact: {
     email: {
       type: String,
