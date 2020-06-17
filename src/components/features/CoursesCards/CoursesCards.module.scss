@@ -5,7 +5,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 3rem;
   grid-row-gap: 3rem;
-  padding-top: 6rem;
+  padding-top: 4rem;
 
   @media (max-width: $breakpoint-m) {
     grid-template-columns: 1fr 1fr;
