@@ -7,6 +7,7 @@ import loginReducer from './loginRedux';
 import cartReducer from './cartRedux';
 import orderReducer from './orderRedux';
 import userReducer from './userRedux';
+import searchReducer from './searchRedux';
 import { initialState } from './initialState';
 
 // define reducers
@@ -16,6 +17,7 @@ const reducers = {
   cart: cartReducer,
   order: orderReducer,
   user: userReducer,
+  searchString: searchReducer,
 };
 
 // add blank reducers for initial state properties without reducers

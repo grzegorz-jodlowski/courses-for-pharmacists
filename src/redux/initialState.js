@@ -18,6 +18,7 @@ export const initialState = {
   },
   user: {},
   isLogged: false,
+  searchString: '',
   courses: {
     currentCourse: {},
     data: [],
