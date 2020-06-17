@@ -7,6 +7,7 @@ import styles from './HomePage.module.scss';
 import { Hero } from '../../features/Hero/Hero';
 import { CoursesCards } from '../../features/CoursesCards/CoursesCards';
 import { Newsletter } from '../../features/Newsletter/Newsletter';
+import { Search } from '../../features/Search/Search';
 import { Spinner } from '../../common/Spinner/Spinner';
 
 import { connect } from 'react-redux';
@@ -14,6 +15,7 @@ import { connect } from 'react-redux';
 const Component = ({ className, courses, loading, loadingError }) => (
   <main className={clsx(className, styles.root, 'container')}>
     <Hero />
+    <Search />
     {loading || loadingError ? <Spinner /> : <CoursesCards courses={courses} />}
     <Newsletter />
   </main>
