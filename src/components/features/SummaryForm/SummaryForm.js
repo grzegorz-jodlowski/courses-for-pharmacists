@@ -47,7 +47,7 @@ class Component extends React.Component {
 
     if (!contact.name.length || !contact.email.length) error = `Uzupełnij imię i email`;
     else if (!contact.privacy || !contact.terms) error = `Musisz zaakceptować zgody`;
-    else if (contact.name.length > 50 || contact.name.length < 5) error = `Imię może zawierać 5-50 znaków`;
+    else if (contact.name.length > 50 || contact.name.length < 2) error = `Imię może zawierać 2-50 znaków`;
     else if (!emailPattern.test(contact.email)) error = `Nieprawidłowy adres email`;
 
     if (!error) {

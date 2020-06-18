@@ -6,7 +6,7 @@ const newsletterSchema = new mongoose.Schema({
     required: [true, 'Wymagany adres email'],
     match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Nieprawidłowy adres email'],
   },
-  name: { type: String, required: [true, 'Imię wymagane'], minlength: 5, maxlength: 50 },
+  name: { type: String, required: [true, 'Imię wymagane'], minlength: 2, maxlength: 50 },
 });
 
 module.exports = mongoose.model('Newsletter', newsletterSchema);

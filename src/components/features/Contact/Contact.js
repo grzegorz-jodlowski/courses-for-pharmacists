@@ -33,7 +33,7 @@ class Component extends React.Component {
     const emailPattern = new RegExp(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'g');
 
     if (!name.length || !email.length || !message.length) error = `Uzupełnij imię, email i wiadomość`;
-    else if (name.length > 50 || name.length < 5) error = `Imię może zawierać 5-50 znaków`;
+    else if (name.length > 50 || name.length < 2) error = `Imię może zawierać 2-50 znaków`;
     else if (message.length < 10) error = `Wiadomość nie może być krótsza niż 10 znaków`;
     else if (!emailPattern.test(email)) error = `Nieprawidłowy adres email`;
 
