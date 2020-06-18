@@ -61,13 +61,17 @@ class Component extends React.Component {
         })
         .catch(err => {
           this.setState({
+            validationError: null,
             postError: true,
             loading: false,
             success: false,
           });
         });
     } else {
-      this.setState({ validationError: error });
+      this.setState({
+        validationError: error,
+        postError: false,
+      });
     }
   }
 
