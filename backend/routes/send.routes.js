@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer');
 const transport = {
   host: 'smtp.poczta.onet.pl',
   port: 465,
+  secure: true,
   auth: {
     user: process.env.emailSenderAddress,
     pass: process.env.emailSenderPassword,
