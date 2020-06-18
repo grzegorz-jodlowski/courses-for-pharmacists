@@ -9,6 +9,7 @@ const coursesRoutes = require('./routes/courses.routes');
 const ordersRoutes = require('./routes/orders.routes');
 const newsletterRoutes = require('./routes/newsletter.routes');
 const usersRoutes = require('./routes/users.routes');
+const messagesRoutes = require('./routes/messages.routes');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use('/api', coursesRoutes);
 app.use('/api', ordersRoutes);
 app.use('/api', newsletterRoutes);
 app.use('/api', usersRoutes);
+app.use('/api', messagesRoutes);
 
 
 /* API ERROR PAGES */
