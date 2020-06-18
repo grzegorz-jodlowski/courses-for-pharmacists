@@ -4,4 +4,5 @@ export const api = {
   orders: 'orders',
   newsletter: 'newsletter',
   users: 'users',
+  messages: 'messages',
 };
