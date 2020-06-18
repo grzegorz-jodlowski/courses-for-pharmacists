@@ -5,6 +5,6 @@ import { {{ pascalCase name }}Component } from './{{pascalCase name}}';
 describe('Component {{pascalCase name}}', () => {
   it('Should render without crashing', () => {
     const component = shallow(< {{ pascalCase name }}Component />);
-  expect(component).toBeTruthy();
-});
+    expect(component).toBeTruthy();
+  });
 });
