@@ -22,7 +22,7 @@
 
 ## <a name="ab"></a>What's this project about?
 
-This is a project of an application offering online courses for pharmacists. On the website you can buy access to the course, subscribe to the newsletter or save your cart to your user account. Login has been implemented by logging with your google account. After purchase, all information is saved in the database. The basket for a given user is available after logging in on all devices. Courses filtering is possible thanks to implementing real time search bar. An important functionality is saving the courses added to the cart in the localStorage, thanks to which it is available even after refreshing the page. The application has been adapted to PWA standards, which means that it can be added to the smartphone's start screen and partly used offline.
+This is a project of an application offering online courses for pharmacists. On the website you can buy access to the course, subscribe to the newsletter or save your cart to your user account. Login has been implemented by logging with your google account. After purchase, all information is saved in the database. The basket for a given user is available after logging in on all devices. Courses filtering is possible thanks to implementing real time search bar. In addition, you can send an email to the website owner via the contact form. An important functionality is saving the courses added to the cart in the localStorage, thanks to which it is available even after refreshing the page. The application has been adapted to PWA standards, which means that it can be added to the smartphone's start screen and partly used offline.
 
 </br>
 
@@ -40,6 +40,7 @@ This is a project of an application offering online courses for pharmacists. On 
 - MongoDB
 - MongoDB Atlas
 - Mongoose
+- Nodemailer
 - GIT
 
 </br>
@@ -54,6 +55,7 @@ This is a project of an application offering online courses for pharmacists. On 
 - perform website audits in browser devtools,
 - use environment variables on the frontend side of the application,
 - create search bar with real-time search,
+- send automatic emails via the contact form using nodemailer,
 - yagni principle ([You aren't gonna need it](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)).
 
 
