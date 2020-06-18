@@ -22,6 +22,7 @@ class Component extends React.Component {
     loading: false,
     success: false,
   };
+
   handleSubmit = (e) => {
     const { name, email, message } = this.state;
 
@@ -37,21 +38,21 @@ class Component extends React.Component {
     else if (!emailPattern.test(email)) error = `Nieprawidłowy adres email`;
 
     if (!error) {
-
       this.setState({ loading: true });
 
       Axios
-        .post(`${api.url}/${api.messages}`, { name, email, message })
+        .post(`${api.url}/send`, { name, email, message })
         .then(res => {
-          this.setState({
-            name: '',
-            email: '',
-            message: '',
-            postError: false,
-            validationError: null,
-            loading: false,
-            success: true,
-          });
+          if (res.data.status === 'success') {
+            this.resetForm();
+            this.setState({
+              success: true,
+            });
+          } else if (res.data.status === 'fail') {
+            new Error('Nie udało się wysłać maila');
+          } else {
+            new Error('Coś poszło nie tak...');
+          }
         })
         .catch(err => {
           this.setState({
@@ -78,6 +79,18 @@ class Component extends React.Component {
 
   clearSuccess = () => {
     this.setState({ success: false });
+  }
+
+  resetForm = () => {
+    this.setState({
+      name: '',
+      email: '',
+      message: '',
+      postError: false,
+      validationError: null,
+      loading: false,
+      success: false,
+    });
   }
 
   render() {
