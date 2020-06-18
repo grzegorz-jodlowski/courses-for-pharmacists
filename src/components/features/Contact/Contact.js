@@ -55,13 +55,17 @@ class Component extends React.Component {
         })
         .catch(err => {
           this.setState({
+            validationError: null,
             postError: true,
             loading: false,
             success: false,
           });
         });
     } else {
-      this.setState({ validationError: error });
+      this.setState({
+        validationError: error,
+        postError: false,
+      });
     }
 
 
@@ -94,7 +98,7 @@ class Component extends React.Component {
               <label htmlFor="email">Email <span>*</span></label>
               <input name="email" id="email" required className={styles.inputEmail} type="text" value={email} onChange={handleChange} />
               <label htmlFor="message">Wiadomość <span>*</span></label>
-              <textarea name="message" id="message" className={styles.inputEmail} value={message} onChange={handleChange} />
+              <textarea name="message" id="message" required className={styles.inputMessage} value={message} onChange={handleChange} />
               {(validationError) && <Info variant={'warning'}>{validationError}</Info>}
               {(postError) && <Info variant={'error'}>{'Ups... coś poszło nie tak!'}</Info>}
               <Button submitForm={true} text={'Wyślij wiadomość'} />

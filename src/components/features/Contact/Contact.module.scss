@@ -1,5 +1,37 @@
 @import "../../../styles/settings.scss";
 
-// .root {
+.root {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  padding: 0 2rem;
+}
 
-// }
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > * {
+    margin: 0.8rem 0;
+  }
+}
+
+label span {
+  color: $color-primary;
+}
+
+.inputName,
+.inputEmail,
+.inputMessage {
+  width: 60%;
+  padding: 1rem;
+
+  @media (max-width: $breakpoint-xs) {
+    width: 100%;
+  }
+}
+
+.inputMessage {
+  margin-bottom: 3rem;
+  min-height: 200px;
+}
