@@ -5,7 +5,6 @@ const nodemailer = require('nodemailer');
 const transport = {
   host: 'smtp.poczta.onet.pl',
   port: 465,
-  secure: false,
   auth: {
     user: process.env.emailSenderAddress,
     pass: process.env.emailSenderPassword,
@@ -30,12 +29,13 @@ router.post('/send', (req, res, next) => {
 
   const mail = {
     from: process.env.emailSenderAddress,
-    to: [process.env.emailSenderAddress, email],
+    to: [email, process.env.emailSenderAddress],
     subject: 'To jest automatyczna wiadomość z formularza kontaktowego',
     text: content,
   };
 
   transporter.sendMail(mail, (err, data) => {
+    console.log(' : mail', mail);
     if (err) {
       res.json({
         status: 'fail',
