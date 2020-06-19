@@ -10,9 +10,6 @@ const transport = {
     user: process.env.emailSenderAddress,
     pass: process.env.emailSenderPassword,
   },
-  tls: {
-    rejectUnauthorized: false,
-  },
 };
 
 const transporter = nodemailer.createTransport(transport);
