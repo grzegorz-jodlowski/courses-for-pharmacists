@@ -6,8 +6,8 @@ import styles from './Copyright.module.scss';
 const Component = ({ className }) => (
   <span className={className}>
     {'Copyright © '}
-    <a href="https://kursydlafarmaceutow.pl" className={styles.link}>
-      Kursy dla Farmaceutów
+    <a href="https://github.com/grzegorz-jodlowski" className={styles.link}>
+      GJ
     </a>{' '}
     {new Date().getFullYear()}
     {'. '}

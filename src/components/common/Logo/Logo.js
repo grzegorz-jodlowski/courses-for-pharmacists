@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const Component = ({ className, action }) => (
   <Link to={`${process.env.PUBLIC_URL}/`} onClick={action}>
     <div className={clsx(className, styles.root)}>
-      <img src="img/logo.png" alt="Logo Kursy dla Farmaceutów" className={styles.logo} />
+      <img src="img/logo.png" alt="Logo" className={styles.logo} />
     </div>
   </Link>
 );
