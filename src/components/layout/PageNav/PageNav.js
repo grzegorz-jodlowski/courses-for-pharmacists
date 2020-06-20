@@ -8,44 +8,18 @@ import { Logo } from '../../common/Logo/Logo';
 import { NavButton } from '../../common/NavButton/NavButton';
 
 import { connect } from 'react-redux';
-import { updateLoginStatus } from '../../../redux/loginRedux';
-import { clearUser } from '../../../redux/userRedux';
 
 class Component extends React.Component {
   state = {
     isOpen: null,
   }
 
-  hamburgerMenuBreakpoint = 768;
-
   handleMenuClick = ({ target }) => {
-    const { href, src } = target;
-
-    if (src) {
-      const logoPath = src && src.split('/').pop();
-
-      if (logoPath && window.innerWidth <= this.hamburgerMenuBreakpoint) {
-        this.state.isOpen && this.setState(prevState => ({ isOpen: !prevState.isOpen }));
-      }
-    } else {
-      const path = href && href.split('/').pop();
-
-      if (window.innerWidth <= this.hamburgerMenuBreakpoint) {
-        this.setState(prevState => ({ isOpen: !prevState.isOpen }));
-      }
-      if (path === 'logout') {
-        const { updateLoginStatus, clearUser } = this.props;
-
-        updateLoginStatus(path);
-        clearUser();
-      }
-    }
   }
 
   render() {
     const { handleMenuClick } = this;
     const { isOpen } = this.state;
-    const { isLogged } = this.props;
 
     return (
       <nav className={clsx(this.className, styles.root)}>
@@ -55,11 +29,7 @@ class Component extends React.Component {
             <NavButton action={handleMenuClick} text={'Moje kursy'} path={'courses'} />
             <NavButton action={handleMenuClick} text={'Koszyk'} path={'cart'} cartVariant />
             <NavButton action={handleMenuClick} text={'Kontakt'} path={'contact'} />
-            <NavButton
-              action={handleMenuClick}
-              text={isLogged ? 'Wyloguj' : 'Zaloguj'}
-              path={isLogged ? 'logout' : 'login'}
-            />
+            <NavButton action={handleMenuClick} text={'Zaloguj'} path={'login'} />
           </div>
           <button onClick={handleMenuClick} className={styles.hamburger}>
             <i className={clsx(styles.fadeIn, isOpen ? 'fas fa-times' : 'fas fa-bars')}></i>
@@ -72,18 +42,14 @@ class Component extends React.Component {
 
 Component.propTypes = {
   className: PropTypes.string,
-  isLogged: PropTypes.bool,
-  updateLoginStatus: PropTypes.func,
-  clearUser: PropTypes.func,
+
 };
 
 const mapStateToProps = state => ({
-  isLogged: state.isLogged,
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateLoginStatus: log => dispatch(updateLoginStatus(log)),
-  clearUser: () => dispatch(clearUser()),
+
 });
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

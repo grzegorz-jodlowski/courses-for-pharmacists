@@ -6,10 +6,7 @@ const helmet = require('helmet');
 require('dotenv').config();
 
 const coursesRoutes = require('./routes/courses.routes');
-const ordersRoutes = require('./routes/orders.routes');
-const newsletterRoutes = require('./routes/newsletter.routes');
 const usersRoutes = require('./routes/users.routes');
-const sendRoutes = require('./routes/send.routes');
 
 const app = express();
 
@@ -22,10 +19,7 @@ app.use(helmet());
 
 /* API ENDPOINTS */
 app.use('/api', coursesRoutes);
-app.use('/api', ordersRoutes);
-app.use('/api', newsletterRoutes);
 app.use('/api', usersRoutes);
-app.use('/api', sendRoutes);
 
 /* API ERROR PAGES */
 app.use('/api', (req, res) => {
@@ -39,7 +33,7 @@ app.use('*', (req, res) => {
 });
 
 /* MONGOOSE */
-mongoose.connect((process.env.NODE_ENV === 'production') ? `mongodb+srv://${process.env.dbName}:${process.env.onlinePharmacy}@cluster0-rm7fq.gcp.mongodb.net/onlinePharmacy?retryWrites=true&w=majority` : 'mongodb://localhost:27017/onlinePharmacy', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect((process.env.NODE_ENV === 'production') ? `mongodb+srv://${process.env.dbName}:${process.env.dbPass}@cluster0-rm7fq.gcp.mongodb.net/onlinePharmacy?retryWrites=true&w=majority` : 'mongodb://localhost:27017/onlinePharmacy', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.once('open', () => {

@@ -19,4 +19,5 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-register();
+//register - serwiceWorker is on, unregister -serviceWorker is off
+unregister();

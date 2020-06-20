@@ -4,38 +4,23 @@ import clsx from 'clsx';
 
 import styles from './HomePage.module.scss';
 
-import { Hero } from '../../features/Hero/Hero';
-import { CoursesCards } from '../../features/CoursesCards/CoursesCards';
-import { Newsletter } from '../../features/Newsletter/Newsletter';
-import { Search } from '../../features/Search/Search';
-import { Spinner } from '../../common/Spinner/Spinner';
-import { Info } from '../../common/Info/Info';
+import { Title } from '../../common/Title/Title';
 
 import { connect } from 'react-redux';
 
-const Component = ({ className, courses, loading, loadingError }) => (
+const Component = ({ className }) => (
   <main className={clsx(className, styles.root, 'container')}>
-    <Hero />
-    <Search />
-    {loading || loadingError ? <Spinner />
-      : courses.length ?
-        <CoursesCards courses={courses} />
-        : <Info className={styles.info} variant='warning'>Brak pasujących kursów</Info>}
-    <Newsletter />
+    <Title decoration={true} >Login</Title>
   </main>
 );
 
 Component.propTypes = {
   className: PropTypes.string,
-  courses: PropTypes.array,
-  loading: PropTypes.bool,
-  loadingError: PropTypes.bool,
+
 };
 
 const mapStateToProps = state => ({
-  courses: state.courses.displayedCourses,
-  loading: state.courses.loading.active,
-  loadingError: state.courses.loading.error,
+
 });
 
 const Container = connect(mapStateToProps)(Component);
