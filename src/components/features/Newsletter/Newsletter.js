@@ -85,21 +85,35 @@ class Component extends React.Component {
     const { name, email, loading, postError, validationError, success } = this.state;
 
     return (
-      <section className={clsx(className, styles.root)} >
-        {(!loading && !postError && success) && <Modal variant={'success'} text={'Zapisano do newslettera'} close={clearSuccess} />}
+      <section className={clsx(className, styles.root)}>
+        {(!loading && !postError && success) && <Modal variant='success' text='Zapisano do newslettera' close={clearSuccess} />}
         {(loading) && <Spinner />}
         {(!loading && !success) &&
           (<>
             <Title decoration={true}>Zapisz się na newsletter i odbierz darmowe rozdziały oferowanych kursów!</Title>
             <form className={styles.form} onSubmit={handleSubmit}>
               <label htmlFor="name">Imię <span>*</span></label>
-              <input name="name" id="name" required className={styles.inputName} type="text" value={name} onChange={handleChange} />
+              <input
+                name="name"
+                id="name"
+                required
+                className={styles.inputName}
+                type="text"
+                value={name}
+                onChange={handleChange} />
               <label htmlFor="email">Email <span>*</span></label>
-              <input name="email" id="email" required className={styles.inputEmail} type="text" value={email} onChange={handleChange} />
-              <p className={styles.disclaimer} >Zapisując się na newsletter wyrażasz zgodę na przesyłanie informacji o produktach, nowościach i promocjach ze strony Kursy dla Farmaceutów.</p>
-              {(validationError) && <Info variant={'warning'}>{validationError}</Info>}
-              {(postError) && <Info variant={'error'}>{'Ups... coś poszło nie tak!'}</Info>}
-              <Button submitForm={true} text={'Zapisz mnie i wyślij rozdziały!'} />
+              <input
+                name="email"
+                id="email"
+                required
+                className={styles.inputEmail}
+                type="text"
+                value={email}
+                onChange={handleChange} />
+              <p className={styles.disclaimer}>Zapisując się na newsletter wyrażasz zgodę na przesyłanie informacji o produktach, nowościach i promocjach ze strony Kursy dla Farmaceutów.</p>
+              {(validationError) && <Info variant='warning'>{validationError}</Info>}
+              {(postError) && <Info variant='error'>Ups... coś poszło nie tak!</Info>}
+              <Button submitForm={true} text='Zapisz mnie i wyślij rozdziały!' />
             </form>
           </>)}
       </section>

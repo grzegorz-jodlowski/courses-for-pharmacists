@@ -22,24 +22,39 @@ class Component extends React.Component {
   }
 
   handleRemove = (id) => {
-    const { removeFromCart } = this.props;
-
-    removeFromCart(id);
+    this.props.removeFromCart(id);
   }
 
   render() {
     const { handleChange, handleRemove } = this;
-
     const { className, cartItem } = this.props;
     const { quantity, courseId, title, price, additionalInfo } = cartItem;
 
     return (
       <form key={courseId} className={clsx(className, styles.root)}>
         <p className={styles.title}>{title}</p>
-        <textarea name="additionalInfo" id={`additionalInfo${courseId}`} className={styles.additionalInfo} onChange={(e) => handleChange(e, courseId)} placeholder="Miejsce na dodatkowe informacje..." value={additionalInfo}></textarea>
-        <QuantityInput value={Number(quantity)} action={(e) => handleChange(e, courseId)} className={styles.inputQuantityPosition} id={courseId} />
-        <RemoveButton action={() => handleRemove(courseId)} className={styles.removeButton} />
-        <Price price={price * quantity} text={''} />
+        <textarea
+          name='additionalInfo'
+          id={`additionalInfo${courseId}`}
+          className={styles.additionalInfo}
+          onChange={(e) => handleChange(e, courseId)}
+          placeholder='Miejsce na dodatkowe informacje...'
+          value={additionalInfo}>
+        </textarea>
+        <QuantityInput
+          value={Number(quantity)}
+          action={(e) => handleChange(e, courseId)}
+          className={styles.inputQuantityPosition}
+          id={courseId}
+        />
+        <RemoveButton
+          action={() => handleRemove(courseId)}
+          className={styles.removeButton}
+        />
+        <Price
+          price={price * quantity}
+          text=''
+        />
       </form>
     );
   }

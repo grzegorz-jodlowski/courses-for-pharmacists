@@ -28,6 +28,7 @@ class Component extends React.Component {
   handleChange = ({ target }) => {
     const { contact } = this.state;
     const { value, name, type } = target;
+
     if (type !== 'checkbox') {
       this.setState({ contact: { ...contact, [name]: value } });
     } else {
@@ -39,6 +40,7 @@ class Component extends React.Component {
   handleSubmit = (e) => {
     const { contact } = this.state;
     const { products, orderValue, success, postOrder } = this.props;
+
     e.preventDefault();
 
     let error = null;
@@ -78,34 +80,67 @@ class Component extends React.Component {
   render() {
     const { handleSubmit, handleChange } = this;
     const { className, loading, loadingError, success, products, lastOrder, clearSuccess } = this.props;
-    const { name, email, privacy, terms } = this.state.contact;
-    const { error } = this.state;
+    const { error, contact: { name, email, privacy, terms } } = this.state;
 
     return (
       <form className={clsx(className, styles.root)} onSubmit={(e) => handleSubmit(e)}>
-        {(!loading && !loadingError && success) && <Modal variant={'success'} text={`Zamówienie o numerze ${lastOrder} zostało złożone`} close={clearSuccess} />}
-        {(loadingError) && <Info variant={'error'}>{'Ups... coś poszło nie tak!'}</Info>}
-        {(error) && <Info variant={'warning'}>{error}</Info>}
+        {(!loading && !loadingError && success) && <Modal variant='success' text={`Zamówienie o numerze ${lastOrder} zostało złożone`} close={clearSuccess} />}
+        {(loadingError) && <Info variant='error'>Ups... coś poszło nie tak!</Info>}
+        {(error) && <Info variant='warning'>{error}</Info>}
         {(loading) && <Spinner />}
         {(!loading && products.length > 0) &&
           (<div className={styles.wrapper}>
             <label htmlFor="name">Imię <span>*</span></label>
-            <input name="name" id="name" required className={styles.inputName} type="text" value={name} onChange={handleChange} />
+            <input
+              name="name"
+              id="name"
+              required
+              className={styles.inputName}
+              type="text"
+              value={name}
+              onChange={handleChange}
+            />
             <label htmlFor="email">Email <span>*</span></label>
-            <input name="email" id="email" required className={styles.inputEmail} type="text" value={email} onChange={handleChange} />
+            <input
+              name="email"
+              id="email"
+              required
+              className={styles.inputEmail}
+              type="text"
+              value={email}
+              onChange={handleChange}
+            />
             <label htmlFor="privacy" className={styles.labelPrivacy}>
-              <input name="privacy" id="privacy" required className={styles.inputPrivacy} type="checkbox" checked={privacy} value={privacy} onChange={handleChange} />
+              <input
+                name="privacy"
+                id="privacy"
+                required
+                className={styles.inputPrivacy}
+                type="checkbox"
+                checked={privacy}
+                value={privacy}
+                onChange={handleChange}
+              />
               <p>
-                Wyrażam zgodę na przetwarzanie moich danych osobowych w celach i zakresie zgodnym z<Link to={`${process.env.PUBLIC_URL}/privacy`} className={styles.link}>{' Polityką prywatności.'}</Link><span>*</span>
+                Wyrażam zgodę na przetwarzanie moich danych osobowych w celach i zakresie zgodnym z <Link to={`${process.env.PUBLIC_URL}/privacy`} className={styles.link}>Polityką prywatności</Link><span>*</span>
               </p>
             </label>
             <label htmlFor="terms" className={styles.labelTerms}>
-              <input name="terms" id="terms" required className={styles.inputTerms} type="checkbox" checked={terms} value={terms} onChange={handleChange} />
+              <input
+                name="terms"
+                id="terms"
+                required
+                className={styles.inputTerms}
+                type="checkbox"
+                checked={terms}
+                value={terms}
+                onChange={handleChange}
+              />
               <p>
-                Akceptuję <Link to={`${process.env.PUBLIC_URL}/terms`} className={styles.link}>{' regulamin zakupów '}</Link><span>*</span>
+                Akceptuję <Link to={`${process.env.PUBLIC_URL}/terms`} className={styles.link}> regulamin zakupów</Link><span>*</span>
               </p>
             </label>
-            <Button submitForm={true} text={'Zamawiam i płacę'} path={'summary'} />
+            <Button submitForm={true} text='Zamawiam i płacę' path='summary' />
           </div>)}
       </form>
     );

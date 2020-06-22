@@ -11,20 +11,22 @@ import { filterCourses } from '../../../redux/coursesRedux';
 class Component extends React.Component {
 
   handleChange = (event) => {
-    this.props.changeSearchString(event.target.value);
-    this.props.filterCourses(event.target.value);
+    const { changeSearchString, filterCourses } = this.props;
+
+    changeSearchString(event.target.value);
+    filterCourses(event.target.value);
   }
 
   render() {
     const { handleChange } = this;
     const { className, searchString } = this.props;
     return (
-      <div className={clsx(className, styles.root)} id="search">
+      <div className={clsx(className, styles.root)} id='search'>
         <input
           type='text'
           placeholder='Szukaj...'
           value={searchString}
-          onChange={event => handleChange(event)}
+          onChange={handleChange}
         />
       </div>
     );
