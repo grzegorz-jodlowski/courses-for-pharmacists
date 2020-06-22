@@ -13,7 +13,7 @@ import { Info } from '../../common/Info/Info';
 
 import { connect } from 'react-redux';
 
-const Component = ({ className, courses, loading, loadingError }) => (
+const Component = ({ className, courses, loading, loadingError }) =>
   <main className={clsx(className, styles.root, 'container')}>
     <Hero />
     <Search />
@@ -22,8 +22,7 @@ const Component = ({ className, courses, loading, loadingError }) => (
         <CoursesCards courses={courses} />
         : <Info className={styles.info} variant='warning'>Brak pasujących kursów</Info>}
     <Newsletter />
-  </main>
-);
+  </main>;
 
 Component.propTypes = {
   className: PropTypes.string,

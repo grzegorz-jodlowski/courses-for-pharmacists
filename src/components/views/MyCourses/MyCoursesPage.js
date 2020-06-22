@@ -18,7 +18,7 @@ const Component = ({ className, courses, loading, loadingError, isLogged, user }
 
     return (
       <main className={clsx(className, styles.root, 'container')}>
-        <Title decoration={true} >Moje Kursy</Title>
+        <Title decoration={true}>Moje Kursy</Title>
         {loading || loadingError ? <Spinner /> : <CoursesCards courses={userCourses} />}
       </main>
     );

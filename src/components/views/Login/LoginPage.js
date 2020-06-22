@@ -45,12 +45,17 @@ class Component extends React.Component {
       <main className={clsx(className, 'container')}>
         {isLogged ?
           <>
-            <Info variant={'success'} >Jesteś zalogowany</Info>
+            <Info variant='success'>Jesteś zalogowany</Info>
             <GoogleLogout
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-              render={({ onClick, disabled }) => (
-                <button onClick={onClick} disabled={disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Kliknij żeby wylogować</button>
-              )}
+              render={({ onClick, disabled }) =>
+                <button
+                  onClick={onClick}
+                  disabled={disabled}
+                  className={clsx(styles.loginBtn, styles.loginBtnGoogle)}
+                >
+                  Kliknij żeby wylogować
+                </button>}
               buttonText="Logout"
               onLogoutSuccess={logout}
             >
@@ -61,15 +66,20 @@ class Component extends React.Component {
             <Title>Zaloguj się żeby uzyskać dostęp do swoich kursów</Title>
             <GoogleLogin
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-              render={({ onClick, disabled }) => (
-                <button onClick={onClick} disabled={disabled} className={clsx(styles.loginBtn, styles.loginBtnGoogle)}>Zaloguj się z Google</button>
-              )}
+              render={({ onClick, disabled }) =>
+                <button
+                  onClick={onClick}
+                  disabled={disabled}
+                  className={clsx(styles.loginBtn, styles.loginBtnGoogle)}
+                >
+                  Zaloguj się z Google
+                </button>}
               buttonText="Login"
               onSuccess={loginSuccess}
               onFailure={loginError}
               cookiePolicy={'single_host_origin'}
             />
-            {error && <Info variant={'error'}>Nie udało się zalogować</Info>}
+            {error && <Info variant='error'>Nie udało się zalogować</Info>}
           </>}
       </main>
     );

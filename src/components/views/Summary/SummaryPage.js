@@ -30,8 +30,12 @@ class Component extends React.Component {
 
     return (
       <div className={clsx(className, styles.root, 'container')}>
-        <Title decoration={true} >Zamówienie</Title>
-        {products.length > 0 ? <Summary products={products} orderValue={orderValue} /> : <Title>Brak pozycji zamówienia</Title>}
+        <Title decoration={true}>Zamówienie</Title>
+        {products.length
+          ?
+          <Summary products={products} orderValue={orderValue} />
+          :
+          <Title>Brak pozycji zamówienia</Title>}
         <SummaryForm orderValue={orderValue} />
       </div>
     );

@@ -58,7 +58,6 @@ class Component extends React.Component {
     const { quantity } = this.state;
     const { title, price, _id } = course;
 
-
     if (loading || loadingError) {
       return <Spinner />;
     } else {
@@ -70,17 +69,17 @@ class Component extends React.Component {
           <Course course={course} />
 
           {isCourseAlreadyBought && isLogged ?
-            <Button text={'Przejdź do panelu kursu'} path={`panel/${_id}`} />
+            <Button text='Przejdź do panelu kursu' path={`panel/${_id}`} />
             :
             (isCourseInCart ?
-              <div className={styles.toCart} >
-                <Info variant={'success'}>Kurs jest w koszyku</Info>
-                <Button text={'Przejdź do koszyka'} path={'cart'} />
+              <div className={styles.toCart}>
+                <Info variant='success'>Kurs jest w koszyku</Info>
+                <Button text='Przejdź do koszyka' path='cart' />
               </div>
               :
               <form className={styles.addCartForm} onSubmit={(e) => handleSubmit(e, _id, title, price)}>
-                <QuantityInput value={Number(quantity)} action={handleChange} text={'Ilość: '} />
-                <Button submitForm={true} text={'Dodaj do koszyka'} />
+                <QuantityInput value={Number(quantity)} action={handleChange} text='Ilość: ' />
+                <Button submitForm={true} text='Dodaj do koszyka' />
               </form>)}
         </main>
       );

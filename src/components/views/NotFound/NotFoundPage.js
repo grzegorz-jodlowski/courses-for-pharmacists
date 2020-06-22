@@ -8,13 +8,12 @@ import { Button } from '../../common/Button/Button';
 import { Title } from '../../common/Title/Title';
 import { Face } from '../../common/Face/Face';
 
-const Component = ({ className }) => (
+const Component = ({ className }) =>
   <main className={clsx(className, styles.root, 'container')}>
     <Face />
     <Title >Ups! Nie znalazłem tej strony!</Title>
-    <Button text={'Wróć do strony głównej'} />
-  </main>
-);
+    <Button text='Wróć do strony głównej' />
+  </main>;
 
 Component.propTypes = {
   className: PropTypes.string,

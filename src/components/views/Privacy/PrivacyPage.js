@@ -6,12 +6,11 @@ import styles from './PrivacyPage.module.scss';
 
 import { Title } from '../../common/Title/Title';
 
-const Component = ({ className, children }) => (
+const Component = ({ className, children }) =>
   <main className={clsx(className, styles.root, 'container')}>
-    <Title decoration={true} >Polityka prywatności</Title>
+    <Title decoration={true}>Polityka prywatności</Title>
     {children}
-  </main>
-);
+  </main>;
 
 Component.propTypes = {
   children: PropTypes.node,

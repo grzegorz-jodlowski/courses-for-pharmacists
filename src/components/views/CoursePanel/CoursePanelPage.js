@@ -15,7 +15,7 @@ const Component = ({ className, children, courses, match }) => {
   if (course) {
     return (
       <div className={clsx(className, styles.root, 'container')}>
-        <Title decoration={true} >{`Panel kursu: ${course.title}`}</Title>
+        <Title decoration={true}>{`Panel kursu: ${course.title}`}</Title>
         {children}
       </div>
     );

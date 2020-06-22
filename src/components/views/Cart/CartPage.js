@@ -23,14 +23,14 @@ const Component = ({ className, cart }) => {
   );
 
   return (
-    <main className={clsx(className, styles.root, 'container')} >
+    <main className={clsx(className, styles.root, 'container')}>
       <Title decoration={true}>Koszyk</Title>
       {cart.length
         ?
         <>
           {getMappedCart(cart)}
-          <Price price={cartValue} text={'Suma: '} />
-          <Button text={'Do podsumowania'} path={'summary'} />
+          <Price price={cartValue} text='Suma: ' />
+          <Button text='Do podsumowania' path='summary' />
         </>
         :
         <Title>Koszyk jest pusty</Title>
