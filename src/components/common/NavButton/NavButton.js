@@ -8,12 +8,11 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-const Component = ({ className, text, path, action, cartVariant, cart }) => (
+const Component = ({ className, text, path, action, cartVariant, cart }) =>
   <Link to={`${process.env.PUBLIC_URL}/${path}`} className={clsx(className, styles.root)} onClick={action}>
     {text}
     {(cartVariant && cart.length > 0) && <div className={styles.quantity}>{cart.length}</div>}
-  </Link>
-);
+  </Link>;
 
 Component.propTypes = {
   className: PropTypes.string,

@@ -4,11 +4,10 @@ import clsx from 'clsx';
 
 import styles from './Spinner.module.scss';
 
-const Component = ({ className }) => (
+const Component = ({ className }) =>
   <div className={clsx(className, styles.root)}>
     <div className={styles.spinner}></div>
-  </div>
-);
+  </div>;
 
 Component.propTypes = {
   className: PropTypes.string,

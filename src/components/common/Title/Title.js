@@ -4,14 +4,13 @@ import clsx from 'clsx';
 
 import styles from './Title.module.scss';
 
-const Component = ({ className, children, decoration }) => (
+const Component = ({ className, children, decoration }) =>
   <div>
     <h2 className={clsx(className, styles.root)}>
       {children}
       {decoration && <div className={styles.underscore}></div>}
     </h2>
-  </div>
-);
+  </div>;
 
 Component.propTypes = {
   children: PropTypes.node,

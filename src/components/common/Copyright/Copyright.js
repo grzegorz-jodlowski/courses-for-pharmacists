@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import styles from './Copyright.module.scss';
 
-const Component = ({ className }) => (
+const Component = ({ className }) =>
   <span className={className}>
-    {'Copyright © '}
-    <a href="https://kursydlafarmaceutow.pl" className={styles.link}>
+    Copyright ©&nbsp;
+    <a href='https://kursydlafarmaceutow.pl' className={styles.link}>
       Kursy dla Farmaceutów
-    </a>{' '}
+    </a>
+    &nbsp;
     {new Date().getFullYear()}
-    {'. '}
-  </span>
-);
+    .&nbsp;
+  </span>;
 
 Component.propTypes = {
   className: PropTypes.string,

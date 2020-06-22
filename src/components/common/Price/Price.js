@@ -4,11 +4,10 @@ import clsx from 'clsx';
 
 import styles from './Price.module.scss';
 
-const Component = ({ className, price, text }) => (
+const Component = ({ className, price, text }) =>
   <p className={clsx(className, styles.root)}>
     {`${text} ${price},00 PLN`}
-  </p>
-);
+  </p>;
 
 Component.propTypes = {
   className: PropTypes.string,

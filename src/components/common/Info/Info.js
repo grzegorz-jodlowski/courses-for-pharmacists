@@ -9,7 +9,6 @@ const Component = ({ className, children, variant }) =>
     {children}
   </div>;
 
-
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

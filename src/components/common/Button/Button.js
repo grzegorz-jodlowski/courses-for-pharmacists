@@ -6,16 +6,20 @@ import styles from './Button.module.scss';
 
 import { Link } from 'react-router-dom';
 
-const Component = ({ className, path, text, action, submitForm }) => {
-
-  return (
-    submitForm ?
-      <input className={clsx(className, styles.input)} type="submit" value={text} />
-      :
-      <button className={clsx(className, styles.button)} onClick={action || null}><Link to={`${process.env.PUBLIC_URL}/${path || ''}`} >{text}</Link></button>
-  );
-
-};
+const Component = ({ className, path, text, action, submitForm }) =>
+  submitForm ?
+    <input
+      className={clsx(className, styles.input)}
+      type='submit'
+      value={text}
+    />
+    :
+    <button
+      className={clsx(className, styles.button)}
+      onClick={action || null}
+    >
+      <Link to={`${process.env.PUBLIC_URL}/${path || ''}`}>{text}</Link>
+    </button>;
 
 Component.propTypes = {
   className: PropTypes.string,

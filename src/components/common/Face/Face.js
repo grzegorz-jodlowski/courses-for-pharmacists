@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import styles from './Face.module.scss';
 
-const Component = ({ className }) => (
+const Component = ({ className }) =>
   <section className={clsx(className, styles.root)}>
     <div className={styles.band}>
       <div className={styles.red}></div>
@@ -14,8 +14,7 @@ const Component = ({ className }) => (
     <div className={styles.eyes}></div>
     <div className={styles.dimples}></div>
     <div className={styles.mouth}></div>
-  </section>
-);
+  </section>;
 
 Component.propTypes = {
   className: PropTypes.string,
