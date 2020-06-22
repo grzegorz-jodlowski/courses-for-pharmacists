@@ -32,21 +32,23 @@ class Component extends React.Component {
   }
 
   render() {
+    const publicUrl = process.env.PUBLIC_URL;
+
     return (
       <MainLayout>
         <Switch>
-          <Route exact path={`${process.env.PUBLIC_URL}/`} component={HomePage} />
-          <Route exact path={`${process.env.PUBLIC_URL}/course/:_id`} component={CoursePage} />
-          <Route exact path={`${process.env.PUBLIC_URL}/courses`} component={MyCoursesPage} />
-          <Route exact path={`${process.env.PUBLIC_URL}/panel/:_id`} component={CoursePanelPage} />
-          <Route exact path={`${process.env.PUBLIC_URL}/cart`} component={CartPage} />
-          <Route exact path={`${process.env.PUBLIC_URL}/summary`} component={SummaryPage} />
-          <Route exact path={`${process.env.PUBLIC_URL}/contact`} component={ContactPage} />
-          <Route exact path={`${process.env.PUBLIC_URL}/privacy`} component={PrivacyPage} />
-          <Route exact path={`${process.env.PUBLIC_URL}/terms`} component={TermsPage} />
-          <Route exact path={`${process.env.PUBLIC_URL}/login`} component={LoginPage} />
-          <Route exact path={`${process.env.PUBLIC_URL}/logout`} component={HomePage} />
-          <Route exact path={`${process.env.PUBLIC_URL}*`} component={NotFoundPage} />
+          <Route exact path={`${publicUrl}/`} component={HomePage} />
+          <Route exact path={`${publicUrl}/course/:_id`} component={CoursePage} />
+          <Route exact path={`${publicUrl}/courses`} component={MyCoursesPage} />
+          <Route exact path={`${publicUrl}/panel/:_id`} component={CoursePanelPage} />
+          <Route exact path={`${publicUrl}/cart`} component={CartPage} />
+          <Route exact path={`${publicUrl}/summary`} component={SummaryPage} />
+          <Route exact path={`${publicUrl}/contact`} component={ContactPage} />
+          <Route exact path={`${publicUrl}/privacy`} component={PrivacyPage} />
+          <Route exact path={`${publicUrl}/terms`} component={TermsPage} />
+          <Route exact path={`${publicUrl}/login`} component={LoginPage} />
+          <Route exact path={`${publicUrl}/logout`} component={HomePage} />
+          <Route exact path={`${publicUrl}`} component={NotFoundPage} />
         </Switch>
       </MainLayout>
     );
