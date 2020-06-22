@@ -8,22 +8,21 @@ import { Link } from 'react-router-dom';
 
 import { Copyright } from '../../common/Copyright/Copyright';
 
-const Component = ({ className }) => (
+const Component = ({ className }) =>
   <footer className={clsx(className, styles.root)}>
     <p>
       <Copyright />
-      {'Korzystając ze strony wyrażasz zgodę na używanie cookies oraz akceptujesz '}
+      Korzystając ze strony wyrażasz zgodę na używanie cookies oraz akceptujesz&nbsp;
       <Link to={`${process.env.PUBLIC_URL}/terms`} className={styles.link}>
-        {'regulamin'}
+        regulamin
       </Link>
-      {', '}
+      ,&nbsp;
       <Link to={`${process.env.PUBLIC_URL}/privacy`} className={styles.link}>
-        {'politykę prywatności i politykę cookies'}
+        politykę prywatności i politykę cookies
       </Link>
-      {'.'}
+      .
     </p>
-  </footer>
-);
+  </footer>;
 
 Component.propTypes = {
   className: PropTypes.string,

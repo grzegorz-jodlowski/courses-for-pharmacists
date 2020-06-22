@@ -52,9 +52,9 @@ class Component extends React.Component {
         <div className={styles.wrapper}>
           <Logo action={handleMenuClick} />
           <div className={isOpen === null ? clsx(styles.buttons) : isOpen ? clsx(styles.buttons, styles.left) : clsx(styles.buttons, styles.right)}>
-            <NavButton action={handleMenuClick} text={'Moje kursy'} path={'courses'} />
-            <NavButton action={handleMenuClick} text={'Koszyk'} path={'cart'} cartVariant />
-            <NavButton action={handleMenuClick} text={'Kontakt'} path={'contact'} />
+            <NavButton action={handleMenuClick} text='Moje kursy' path='courses' />
+            <NavButton action={handleMenuClick} text='Koszyk' path='cart' cartVariant />
+            <NavButton action={handleMenuClick} text='Kontakt' path='contact' />
             <NavButton
               action={handleMenuClick}
               text={isLogged ? 'Wyloguj' : 'Zaloguj'}
